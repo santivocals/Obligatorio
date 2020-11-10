@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App para reserva de inmuebles</title>
+    <link rel="stylesheet" href="./assets/css/estilo.css">
+    <script src="./assets/js/clases.js" defer></script>
+    <script src="./assets/js/datos.js" defer></script>
+    <script src="./assets/js/ayuda.js" defer></script>
+    <script src="./assets/js/codigo.js" defer></script>
+</head>
+<body>
+    <div id="contenedor">
+		<div id="cabezal" class="clearfix">
+			<img id="logo" src="https://develotion.com/assets/img/logo.jpg" alt="logo">
+			<ul id="navPrincipal">
+				<li>
+					<a>Sección 1</a>
+				</li>
+				<li>
+					<a>Sección 2</a>
+				</li>
+				<li>
+					<a>Sección 3</a>
+				</li>
+				<li>
+					<a>Sección 4</a>
+				</li>
+
+			</ul>
+			<div id="aux">
+				<a>Login</a> | <a>Registrarse</a> | <a>Cerrar sesión</a>
+			</div><!-- FIN AUX -->
+		</div><!-- FIN CABEZAL -->
+
+		<div id="contenido">
+			<div id="divLogin">
+				<h3>Iniciar Sesión</h3>
+                <h5>Ingrese los datos para inciar sesión:</h5>
+                
+                <table>
+                    <form action="#" method="posts">
+                        <tr>
+                            <td><label for="txtLoginCorreo">Correo</label></td>
+                            <td><input type="text" id="txtLoginCorreo"></td>
+                        </tr>
+                
+                        <tr>
+                            <td><label for="txtLoginPassword">Password</label></td>
+                            <td><input type="password" id="txtLoginPassword"></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td><input type="button" value="Login" id="btnLogin"></td>
+                        </tr>
+                </table>
+	
+                <p id="msgLogin"></p>
+            </div><!--FIN LOGIN-->
+            
+            <div id="divRegistroHuesped">
+                <h3>Registro de Huéspedes</h3>
+                
+                <table>
+                    <form action="#" method="posts">
+                        <tr>
+                            <td><label for="txtRegNombre">Nombre *</label></td>
+                            <td><input type="text" id="txtRegNombre"></td>
+                        </tr>
+                
+                        <tr>
+                            <td><label for="txtRegApellido">Apellido *</label></td>
+                            <td><input type="text" id="txtRegApellido"></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="txtRegCorreo">Correo *</label></td>
+                            <td><input type="text" id="txtRegCorreo"></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="txtRegCelular">Celular *</label></td>
+                            <td><input type="text" id="txtRegCelular"></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="txtRegPassword">Contraseña *</label></td>
+                            <td><input type="password" id="txtRegPassword"></td>
+                        </tr>
+
+
+                        <tr>
+                            <td><label for="txtRegConfPassword">Confirmar<br>contraseña *</label></td>
+                            <td><input type="password" id="txtRegConfPassword"></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td><input type="button" value="Registrarse" id="btnRegistrarse"></td>
+                        </tr>
+                </table>
+
+                <h6>* Campos obligatorios</h6>
+	
+				<p id="msgRegHuesped"></p>
+            </div><!--FIN REGISTRO HUÉSPED-->
+            
+            <div id="divRegistroInmueble">
+                <h3>Registro de Inmueble</h3>
+                
+                <table>
+                    <form action="#" method="posts">
+                        <tr>
+                            <td><label for="txtInmTitulo">Título *</label></td>
+                            <td><input type="text" id="txtInmTitulo"></td>
+                        </tr>
+                
+                        <tr>
+                            <td><label for="txtInmDescripción">Descripción *</label></td>
+                            <td><textarea id="txtInmDescripción"></textarea></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="txtInmCiudad">Ciudad *</label></td>
+                            <td><input type="text" id="txtInmCiudad"></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="txtInmPrecio">Precio por noche *</label></td>
+                            <td><input type="text" id="txtInmPrecio"></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="txtInmImagenes">Seleccione<br>imágenes *</label></td>
+                            <td>**AQUÍ VAN LAS IMAGENES**</td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td><input type="button" value="Guardar" id="btnGuardarInmueble"></td>
+                        </tr>
+                </table>
+
+                <h6>* Campos obligatorios</h6>
+	
+				<p id="msgRegInmueble"></p>
+			</div><!--FIN REGISTRO INMUEBLE-->
+
+			<br><br>
+			<div class="galeria">
+				<div class="img-container">
+					<img src="https://develotion.com/assets/img/casacampo.jpg">
+				</div>
+				<div class="btn-container">
+					<input type="button" value="<<"><input class="btn-siguiente" type="button" value=">>"><br>
+				</div>
+			</div>
+
+			<hr>
+			<hr>
+			<div>
+				<h2>Casa de campo</h2>
+				<h4><strong>US$ 40</strong> por noche</h4>
+				<img src="https://develotion.com/assets/img/casacampo.jpg" alt="casa de campo">
+				<div>
+					<label><strong>Maldonado</strong></label><label class="duracion">Promedio:
+						<strong>4.9</strong></label>
+				</div>
+				<p>
+					Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed quis
+					tellus ac
+					justo commodo efficitur. Donec quis enim tortor. Nunc dapibus ultricies libero in maximus. Aenean
+					sed quam sed
+					nisl mollis dignissim. Nunc eu augue imperdiet, ultrices nunc eget, accumsan nulla.
+				</p>
+				<p class="ver-mas">
+					Ver más...
+				</p>
+				<hr>
+			</div>
+			<div>
+				<h2>Casa de campo</h2>
+				<h4><strong>US$ 40</strong> por noche</h4>
+				<img src="https://develotion.com/assets/img/casacampo.jpg" alt="casa de campo">
+				<div>
+					<label><strong>Maldonado</strong></label><label class="duracion">Promedio:
+						<strong>4.9</strong></label>
+				</div>
+				<p>
+					Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed quis
+					tellus ac
+					justo commodo efficitur. Donec quis enim tortor. Nunc dapibus ultricies libero in maximus. Aenean
+					sed quam sed
+					nisl mollis dignissim. Nunc eu augue imperdiet, ultrices nunc eget, accumsan nulla.
+				</p>
+				<p class="ver-mas">
+					Ver más...
+				</p>
+				<hr>
+			</div>
+			<!--FIN INMUEBLE-->
+		</div><!-- FIN CONTENIDO -->
+		<div id="pie">
+			<a href="https://www.ort.edu.uy">Footer</a>
+		</div><!-- FIN PIE -->
+	</div><!-- FIN CONTENEDOR -->
+
+</body>
+</html>
