@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App para reserva de inmuebles</title>
     <link rel="stylesheet" href="./assets/css/estilo.css">
+    
     <script src="./assets/js/clases.js" defer></script>
     <script src="./assets/js/datos.js" defer></script>
     <script src="./assets/js/ayuda.js" defer></script>
     <script src="./assets/js/codigo.js" defer></script>
+    
 </head>
+
 <body>
     <div id="contenedor">
-		<div id="cabezal" class="clearfix">
-			<img id="logo" src="https://develotion.com/assets/img/logo.jpg" alt="logo">
-			<ul id="navPrincipal">
-				<li>
-					<a>Sección 1</a>
-				</li>
-				<li>
-					<a>Sección 2</a>
-				</li>
-				<li>
-					<a>Sección 3</a>
-				</li>
-				<li>
-					<a>Sección 4</a>
-				</li>
+        <div id="cabezal" class="clearfix">
+            <img id="logo" src="https://develotion.com/assets/img/logo.jpg" alt="logo">
+            <ul id="navPrincipal">
+                <li id="anfOp1">
+                    <a id="aInmueblesHuesped">Ver Inmuebles</a>
+                </li>
+                <li id="anfOp2">
+                    <a id="aConsultaCalificacion">Consultar/Calificar reservas</a>
+                </li>
+                <li id="huespOp1">
+                    <a id="aMisInmueblesAnf">Ver mis inmuebles</a>
+                </li>
+                <li id="huespOp2">
+                    <a id="aRegistroInmueble">Registrar inmueble</a>
+                </li>
+                <li id="adminOp1">
+                    <a id="aAltaAnfitrion">Alta de anfitrión</a>
+                </li>
+                <li id="adminOp2">
+                    <a id="aCargaCotizacion">Cargar cotización</a>
+                </li>
+                <li id="adminOp3">
+                    <a id="aReporteInmuebles">Reporte de inmuebles</a>
+                </li>
 
-			</ul>
-			<div id="aux">
-				<a>Login</a> | <a>Registrarse</a> | <a>Cerrar sesión</a>
-			</div><!-- FIN AUX -->
-		</div><!-- FIN CABEZAL -->
+            </ul>
+            <div id="aux">
+                <a id="aInicio" >Inicio</a> <a id="aLogin" >Login</a> <a id="aRegistrarse">Registrarse</a> <a id="aCerrarSesion">Cerrar sesión</a>
+            </div><!-- FIN AUX -->
+        </div><!-- FIN CABEZAL -->
 
-		<div id="contenido">
-			<div id="divLogin">
-				<h3>Iniciar Sesión</h3>
+        <div id="contenido">
+            <div id="divLogin" class="pantalla">
+                <h3>Iniciar Sesión</h3>
                 <h5>Ingrese los datos para inciar sesión:</h5>
-                
+
                 <table>
                     <form action="#" method="posts">
                         <tr>
                             <td><label for="txtLoginCorreo">Correo</label></td>
                             <td><input type="text" id="txtLoginCorreo"></td>
                         </tr>
-                
+
                         <tr>
                             <td><label for="txtLoginPassword">Password</label></td>
                             <td><input type="password" id="txtLoginPassword"></td>
@@ -56,67 +69,104 @@
                             <td><input type="button" value="Login" id="btnLogin"></td>
                         </tr>
                 </table>
-	
+
                 <p id="msgLogin"></p>
-            </div><!--FIN LOGIN-->
-            
-            <div id="divRegistroHuesped">
-                <h3>Registro de Huéspedes</h3>
-                
+            </div>
+            <!--FIN LOGIN-->
+
+            <div id="divRegistro" class="pantalla">
+                <h3 id="tituloRegistroHuesped">Registro de Huéspedes</h3>
+                <h3 id="tituloAltaAnfitrion">Alta de anfitrión</h3>
                 <table>
                     <form action="#" method="posts">
                         <tr>
-                            <td><label for="txtRegNombre">Nombre *</label></td>
-                            <td><input type="text" id="txtRegNombre"></td>
-                        </tr>
-                
-                        <tr>
-                            <td><label for="txtRegApellido">Apellido *</label></td>
-                            <td><input type="text" id="txtRegApellido"></td>
+                            <td><label for="txtNombre">Nombre *</label></td>
+                            <td><input type="text" id="txtNombre"></td>
                         </tr>
 
                         <tr>
-                            <td><label for="txtRegCorreo">Correo *</label></td>
-                            <td><input type="text" id="txtRegCorreo"></td>
+                            <td><label for="txtApellido">Apellido *</label></td>
+                            <td><input type="text" id="txtApellido"></td>
                         </tr>
 
                         <tr>
-                            <td><label for="txtRegCelular">Celular *</label></td>
-                            <td><input type="text" id="txtRegCelular"></td>
+                            <td><label for="txtCorreo">Correo *</label></td>
+                            <td><input type="text" id="txtCorreo"></td>
                         </tr>
 
                         <tr>
-                            <td><label for="txtRegPassword">Contraseña *</label></td>
-                            <td><input type="password" id="txtRegPassword"></td>
+                            <td><label for="txtCelular">Celular *</label></td>
+                            <td><input type="text" id="txtCelular"></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="txtPassword">Contraseña *</label></td>
+                            <td><input type="password" id="txtPassword"></td>
                         </tr>
 
 
                         <tr>
-                            <td><label for="txtRegConfPassword">Confirmar<br>contraseña *</label></td>
-                            <td><input type="password" id="txtRegConfPassword"></td>
+                            <td><label for="txtConfPassword">Confirmar<br>contraseña *</label></td>
+                            <td><input type="password" id="txtConfPassword"></td>
                         </tr>
 
-                        <tr>
+                        <tr id="btnRegistroHuesped">
                             <td></td>
-                            <td><input type="button" value="Registrarse" id="btnRegistrarse"></td>
+                            <td><input type="button" value="Registrarse" id="btnRegistroHuesped"></td>
+                        </tr>
+                        <tr id="btnAltaAnfitrion">
+                            <td></td>
+                            <td><input type="button" value="Alta anfitrión" id="btnAltaAnfitrion"></td>
                         </tr>
                 </table>
 
                 <h6>* Campos obligatorios</h6>
-	
-				<p id="msgRegHuesped"></p>
-            </div><!--FIN REGISTRO HUÉSPED-->
-            
-            <div id="divRegistroInmueble">
+
+                <p id="msgRegistro"></p>
+            </div>
+            <!--FIN REGISTRO HUÉSPED-->
+
+            <div id="divHome" class="pantalla">
+                <h3>Home</h3>
+                <input type="text" id="txtHomeFiltrar">
+                <input type="button" value="Filtrar" id='btnHomeFiltro'>
+                <label class="label-moneda">Cambiar a $U</label>
+                <div id="divMuro">
+
+                </div>
+
+            </div>
+            <!--FIN HOME-->
+                       
+            <!--FIN INMUEBLES-->
+
+
+            <div id="divDetalles" class="pantalla">
+                <h3>Detalles</h3>
+
+            </div>
+            <!--FIN DETALLES-->
+
+            <div id="divConsultarCalificar" class="pantalla">
+                <h3>Consultar y Calificar reservas</h3>
+
+            </div>
+            <!--FIN DETALLES-->
+
+            <div id="divMisInmuebles" class="pantalla">
+                <h3>Mis inmuebles</h3>
+            </div>
+
+            <div id="divRegistroInmueble" class="pantalla">
                 <h3>Registro de Inmueble</h3>
-                
+
                 <table>
                     <form action="#" method="posts">
                         <tr>
                             <td><label for="txtInmTitulo">Título *</label></td>
                             <td><input type="text" id="txtInmTitulo"></td>
                         </tr>
-                
+
                         <tr>
                             <td><label for="txtInmDescripción">Descripción *</label></td>
                             <td><textarea id="txtInmDescripción"></textarea></td>
@@ -144,68 +194,27 @@
                 </table>
 
                 <h6>* Campos obligatorios</h6>
-	
-				<p id="msgRegInmueble"></p>
-			</div><!--FIN REGISTRO INMUEBLE-->
 
-			<br><br>
-			<div class="galeria">
-				<div class="img-container">
-					<img src="https://develotion.com/assets/img/casacampo.jpg">
-				</div>
-				<div class="btn-container">
-					<input type="button" value="<<"><input class="btn-siguiente" type="button" value=">>"><br>
-				</div>
-			</div>
+                <p id="msgRegInmueble"></p>
+            </div>
+            <!--FIN REGISTRO INMUEBLE-->
 
-			<hr>
-			<hr>
-			<div>
-				<h2>Casa de campo</h2>
-				<h4><strong>US$ 40</strong> por noche</h4>
-				<img src="https://develotion.com/assets/img/casacampo.jpg" alt="casa de campo">
-				<div>
-					<label><strong>Maldonado</strong></label><label class="duracion">Promedio:
-						<strong>4.9</strong></label>
-				</div>
-				<p>
-					Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed quis
-					tellus ac
-					justo commodo efficitur. Donec quis enim tortor. Nunc dapibus ultricies libero in maximus. Aenean
-					sed quam sed
-					nisl mollis dignissim. Nunc eu augue imperdiet, ultrices nunc eget, accumsan nulla.
-				</p>
-				<p class="ver-mas">
-					Ver más...
-				</p>
-				<hr>
-			</div>
-			<div>
-				<h2>Casa de campo</h2>
-				<h4><strong>US$ 40</strong> por noche</h4>
-				<img src="https://develotion.com/assets/img/casacampo.jpg" alt="casa de campo">
-				<div>
-					<label><strong>Maldonado</strong></label><label class="duracion">Promedio:
-						<strong>4.9</strong></label>
-				</div>
-				<p>
-					Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed quis
-					tellus ac
-					justo commodo efficitur. Donec quis enim tortor. Nunc dapibus ultricies libero in maximus. Aenean
-					sed quam sed
-					nisl mollis dignissim. Nunc eu augue imperdiet, ultrices nunc eget, accumsan nulla.
-				</p>
-				<p class="ver-mas">
-					Ver más...
-				</p>
-				<hr>
-			</div>
-			<!--FIN INMUEBLE-->
-		</div><!-- FIN CONTENIDO -->
-		<div id="pie">
-			<a href="https://www.ort.edu.uy">Footer</a>
-		</div><!-- FIN PIE -->
-	</div><!-- FIN CONTENEDOR -->
+            <div id="divCargaCotizacion" class="pantalla">
+                <h3>Actualización de cotización</h3>
+                <label for="txtUSD">Cotización de dólar</label>
+                <input type="text" id="txtUSD">
+
+                <input type="button" value="Actualizar" id="btnActualizarDolar">
+                <p id="msgActualizacion"></p>
+            </div>
+            <!--FIN CARGA COTIZACIÓN-->
+
+        </div><!-- FIN CONTENIDO -->
+        <div id="pie">
+            <a href="https://www.ort.edu.uy">Footer</a>
+        </div><!-- FIN PIE -->
+    </div><!-- FIN CONTENEDOR -->
 
 </body>
+
 </html>
