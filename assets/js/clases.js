@@ -4,7 +4,7 @@ class Usuario {
 	correo;
 	celular;
 	password;
-	//Tipo de usuario (admin, anfitrion, admin)
+	//Tipo de usuario (Huésped, anfitrion, admin)
 	tipo;
 	activo;
 	//Propiedad de huésped
