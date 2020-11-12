@@ -50,7 +50,7 @@ function limpiarCampos(pIdCampo1, pIdCampo2) {
 }
 
 
-
+//ATENCIÓN: MEJORAR FUNCIÓN
 //Funcion para validar que campo no esté vacio
 function validarCampo(pCadena) {
 
@@ -63,27 +63,27 @@ function validarCampo(pCadena) {
 }
 
 
-
+//ATENCIÓN: REVISAR QUE FUNCIONE CORRECTAMENTE
 //Función para validar correo
-function correoValido(_correo) {
+function correoValido(pCorreo) {
     let correoEsValido = false;
 
     //Me guardo posición de @
-    let buscarArroba = _correo.indexOf('@');
+    let buscarArroba = pCorreo.indexOf('@');
 
     //Me guardo posición de . luego de @ y un caracter
-    let buscarPunto = _correo.indexOf('.', (buscarArroba + 2));
+    let buscarPunto = pCorreo.indexOf('.', (buscarArroba + 2));
 
     if (buscarArroba !== -1 // Valido que exista el arroba en el string
         &&
         buscarPunto !== -1 //Valido que exista el punto luego de el arroba y al menos un caracter
         &&
-        buscarPunto < _correo.length - 1) { //Valido que la posición del punto no sea la última del string
+        buscarPunto < pCorreo.length - 1) { //Valido que la posición del punto no sea la última del string
         correoEsValido = true; //Si pasa todas esas validaciones, es true hasta que se demuestre lo contrario en el for
 
-        for (let i = 0; i < _correo.length; i++) {
+        for (let i = 0; i < pCorreo.length; i++) {
             //Si llega a haber un espacio, al entrar aqui se vuelve false sin posibilidad de volver a true
-            if (_correo[i] === ' ') {
+            if (pCorreo[i] === ' ') {
                 correoEsValido = false;
             }
         }

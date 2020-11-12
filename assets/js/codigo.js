@@ -174,9 +174,6 @@ function btnLoginHandler() {
         //limpiamos campos de texto para que usuario vuelva a ingresar
         limpiarCampos('txtLoginCorreo', 'txtLoginPassword');
     } else {
-        //POR AHORA MUESTRO MENSAJE DE CONFIRMACIÓN DE LOGIN LUEGO...
-        //LUEGO LIMPIAMOS EL PARRAFO Y DAMOS PASO A LA OTRA PANTALLA
-        //mostrarMensaje('msgLogin','');
         switch (usuarioConectado.tipo) {
             case 'admin':
                 pantallasAdmin();
@@ -188,6 +185,7 @@ function btnLoginHandler() {
                 pantallasHuesped();
                 break;
         }
+
         //Utilizo esto para recolocar las opciones
         document.getElementById('aux').style.padding = '0 24px 10px 0';
 
@@ -238,6 +236,8 @@ function bntRegistroHuespedHandler() {
                         arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipo))
 
                     } else {
+                    
+                        document.getElementById('txtConfPassword').value = "";
                         mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
                     }
                 } else {
@@ -296,12 +296,12 @@ crearBoton('btnAltaAnfitrion', btnAltaAnfitrionHandler);
 
 function btnAltaAnfitrionHandler() {
 
-    let nombre = document.getElementByIdO('txtNombre').value;
-    let apellido = document.getElementByIdO('txtApellido').value;
-    let correo = document.getElementByIdO('txtCorreo').value;
-    let celular = document.getElementByIdO('txtCelular').value;
-    let password = document.getElementByIdO('txtPassword').value;
-    let password2 = document.getElementByIdO('txtConfPassword').value;
+    let nombre = document.getElementById('txtNombre').value;
+    let apellido = document.getElementById('txtApellido').value;
+    let correo = document.getElementById('txtCorreo').value;
+    let celular = document.getElementById('txtCelular').value;
+    let password = document.getElementById('txtPassword').value;
+    let password2 = document.getElementById('txtConfPassword').value;
     let tipo = "anfitrion";
 
 
@@ -318,7 +318,7 @@ function btnAltaAnfitrionHandler() {
                         mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
                     }
                 } else {
-                    mostrarMensaje('msgRegistro', 'La contraseña debe contener por lo menos 6 carácteres, letres y números y por lo menos una letra mayúscula');
+                    mostrarMensaje('msgRegistro', 'La contraseña debe contener por lo menos 6 carácteres, letras y números y por lo menos una letra mayúscula');
                 }
             } else {
                 mostrarMensaje('msgRegistro', 'Celular inválido');
@@ -472,6 +472,8 @@ function pantallasAdmin() {
 function aAltaAnfitrionHandler() {
     mostrarPantalla('Registro');
 
+    document.getElementById('tituloRegistroHuesped').style.display = 'none';
+    document.getElementById('btnRegistroHuesped').style.display = 'none';
 }
 
 function aCargaCotizacionHandler() {
@@ -479,7 +481,7 @@ function aCargaCotizacionHandler() {
 }
 
 function aReporteInmueblesHandler() {
-
+    mostrarPantalla('ReporteInmuebles');
 }
 
 /******************************************************************************* */
