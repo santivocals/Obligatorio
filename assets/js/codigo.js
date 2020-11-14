@@ -478,6 +478,7 @@ function aAltaAnfitrionHandler() {
 
 function aCargaCotizacionHandler() {
     mostrarPantalla('CargaCotizacion');
+    document.getElementById('msgActualizacion').innerHTML = '';
 }
 
 function aReporteInmueblesHandler() {
@@ -517,12 +518,11 @@ function btnHomeFiltrarInmueblesHandler() {
         for (let i = 0; i < arrayInmuebles.length; i++) {
 
             let inmueble = arrayInmuebles[i];
-
             if (inmueble.titulo.toLowerCase().indexOf(valorFiltro) !== -1) {
                 inmueblesFiltrados.push(inmueble)
             }
         }
-        if (inmueblesFiltrados > 0) {
+        if (inmueblesFiltrados.length > 0) {
             armarMuro(inmueblesFiltrados);
         } else {
 
@@ -534,21 +534,31 @@ function btnHomeFiltrarInmueblesHandler() {
                     inmueblesFiltrados.push(inmueble)
                 }
             }
-        }
 
-        if (inmueblesFiltrados > 0) {
-            armarMuro(inmueblesFiltrados);
-        } else {
+            if (inmueblesFiltrados.length > 0) {
+                armarMuro(inmueblesFiltrados);
+            } else {
+    
+                for (let i = 0; i < arrayInmuebles.length; i++) {
+    
+                    let inmueble = arrayInmuebles[i];
+    
+                    if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1) {
+                        inmueblesFiltrados.push(inmueble)
+                    }
+                }
 
-            for (let i = 0; i < arrayInmuebles.length; i++) {
-
-                let inmueble = arrayInmuebles[i];
-
-                if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1) {
-                    inmueblesFiltrados.push(inmueble)
+                if (inmueblesFiltrados.length > 0) {
+                    armarMuro(inmueblesFiltrados);
+                } else {
+                    document.getElementById('msgHomeFiltroInmueble').innerText = `No se encontraron resultados`;
+                    armarMuro(0);
                 }
             }
+           
         }
+
+        
     } else {
         document.getElementById('msgHomeFiltroInmueble').innerText = `Debe ingresar criterio de búsqueda`;
         armarMuro(arrayInmuebles);
