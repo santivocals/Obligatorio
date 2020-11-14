@@ -15,15 +15,15 @@ class Usuario {
 	//Se agregan en array los inmuebles que registre el anfitrión
 	inmuebles;
 
-	constructor(pNombre, pApellido, pCorreo, pCelular, pPassword) {
+	constructor(pNombre, pApellido, pCorreo, pCelular, pPassword, pTipo) {
 		this.nombre = pNombre;
 		this.apellido = pApellido;
 		this.correo = pCorreo;
 		this.celular = pCelular;
 		this.password = pPassword;
+		this.tipo = pTipo;
 		
 		//Inicializamos atributos sin recibir información por parámetro
-		this.tipo = '';
 		this.activo = true;
 		//Array de inmuebles reservados por el Huésped
 		//Lo pusheamos desde la entidad Reserva
