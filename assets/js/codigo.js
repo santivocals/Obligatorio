@@ -1,6 +1,6 @@
 iniciarApp()
 
-armarMuro();
+armarMuro(arrayInmuebles);
 
 //Definimos las variables globales que vayamos a utilizar
 
@@ -236,7 +236,7 @@ function bntRegistroHuespedHandler() {
                         arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipo))
 
                     } else {
-                    
+
                         document.getElementById('txtConfPassword').value = "";
                         mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
                     }
@@ -490,14 +490,67 @@ function aReporteInmueblesHandler() {
 
 crearBoton('btnActualizarDolar', btnActualizarDolarHandler);
 
-function btnActualizarDolarHandler(){
+function btnActualizarDolarHandler() {
     let nuevoDolar = document.getElementById('txtUSD').value;
 
-    if (valorNumerico(nuevoDolar)){
+    if (valorNumerico(nuevoDolar)) {
         cotizacionDolar = Number(nuevoDolar);
         mostrarMensaje('msgActualizacion', 'Cotización actualizada correctamente');
         document.getElementById('txtUSD').value = '';
     } else {
         mostrarMensaje('msgActualizacion', 'Valor inválido')
+    }
+}
+
+
+//Funcion para filtrar vista de inmuebles en el muro segun busqueda del usuario
+crearBoton('btnHomeFiltrar', btnHomeFiltrarInmueblesHandler);
+
+
+function btnHomeFiltrarInmueblesHandler() {
+
+    let valorFiltro = document.getElementById('txtHomeFiltrar').value.toLowerCase();
+    let inmueblesFiltrados = [];
+
+    if (validarCampo(valorFiltro)) {
+
+        for (let i = 0; i < arrayInmuebles.length; i++) {
+
+            let inmueble = arrayInmuebles[i];
+
+            if (inmueble.titulo.toLowerCase().indexOf(valorFiltro) !== -1) {
+                inmueblesFiltrados.push(inmueble)
+            }
+        }
+        if (inmueblesFiltrados > 0) {
+            armarMuro(inmueblesFiltrados);
+        } else {
+
+            for (let i = 0; i < arrayInmuebles.length; i++) {
+
+                let inmueble = arrayInmuebles[i];
+
+                if (inmueble.ciudad.toLowerCase().indexOf(valorFiltro) !== -1) {
+                    inmueblesFiltrados.push(inmueble)
+                }
+            }
+        }
+
+        if (inmueblesFiltrados > 0) {
+            armarMuro(inmueblesFiltrados);
+        } else {
+
+            for (let i = 0; i < arrayInmuebles.length; i++) {
+
+                let inmueble = arrayInmuebles[i];
+
+                if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1) {
+                    inmueblesFiltrados.push(inmueble)
+                }
+            }
+        }
+    } else {
+        document.getElementById('msgHomeFiltroInmueble').innerText = `Debe ingresar criterio de búsqueda`;
+        armarMuro(arrayInmuebles);
     }
 }

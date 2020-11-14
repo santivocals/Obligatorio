@@ -194,13 +194,13 @@ function mostrarPantalla(pPantalla) {
 
 
 
-function armarMuro() {
+function armarMuro(pInmueblesAMostrar) {
 
     let muroHtml = "";
 
-    for (let i = 0; i < arrayInmuebles.length; i++) {
+    for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
-        let inmueble = arrayInmuebles[i];
+        let inmueble = pInmueblesAMostrar[i];
 
         
         if (inmueble.habilitado) {
@@ -226,6 +226,8 @@ function armarMuro() {
 
     document.getElementById('divMuro').innerHTML = muroHtml;
 }
+
+
 
 //Funcion validar numero
 function valorNumerico(_numero){
