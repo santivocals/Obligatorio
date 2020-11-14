@@ -201,11 +201,6 @@ function armarMuro(pInmueblesAMostrar) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i];
-
-        
-        if (inmueble.habilitado) {
-
-        let promedio = (inmueble.sumaCalificaciones / inmueble.calificaciones.length).toFixed(1);
         
         muroHtml += `<div>
         <h2>${inmueble.titulo}</h2>
@@ -213,7 +208,7 @@ function armarMuro(pInmueblesAMostrar) {
         <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
         <div>
             <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
-                <strong>${promedio}</strong></label>
+                <strong>${inmuebles.promedio}</strong></label>
         </div>
         <p>${inmueble.descripcion}</p>
         <p class="ver-mas" id="verMas${i}">
@@ -221,7 +216,6 @@ function armarMuro(pInmueblesAMostrar) {
         </p>
         <hr>
         </div>`
-        }
     }
 
     document.getElementById('divMuro').innerHTML = muroHtml;
@@ -230,12 +224,38 @@ function armarMuro(pInmueblesAMostrar) {
 
 
 //Funcion validar numero
-function valorNumerico(_numero){
+function valorNumerico(pNumero) {
     let esNumero; 
-    if (!isNaN(_numero) && _numero !== ''){
+    if (!isNaN(pNumero) && pNumero !== ''){
         esNumero = true;
     } else {
         esNumero = false;
     }
     return esNumero;
+}
+
+//Función para sumar elementos de un array de números
+function sumarArray(pArray) {
+    let suma = 0;
+    
+    for (i=0; i < pArray.length; i++) {
+        suma += pArray[i];
+    }
+
+    return suma;
+
+}
+
+//Función para realizar promedios
+function promedio(pSumatoria, pCantidad, pDigitoPosComa) {
+    let promedio = 0;
+
+    //Si no hay valores ingresados devolvemos 0, para no dividir entre 0
+    if (pCantidad === 0) {
+    //Si no hacemos el cálculo correspondiente
+    } else {
+        promedio = (pSumatoria / pCantidad).toFixed(pDigitoPosComa);
+    }
+
+    return promedio;
 }
