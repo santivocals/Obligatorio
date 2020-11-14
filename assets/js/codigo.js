@@ -266,12 +266,15 @@ function btnGuardarInmuebleHandler() {
     let ciudad = document.getElementById('txtInmCiudad').value;
     let precio = document.getElementById('txtInmPrecio').value;
     let imagenes = [];
+    let anfitrion = usuarioConectado;
+
+
 
 
     if (validarCampo(titulo) && validarCampo(descripcion) && validarCampo(ciudad) && validarCampo(precio)) {
 
         mostrarMensaje('msgRegInmueble', 'Registro de inmueble exitoso');
-        arrayInmuebles.push(new Inmueble(titulo, descripcion, ciudad, precio, imagenes))
+        arrayInmuebles.push(new Inmueble(titulo, descripcion, ciudad, precio, imagenes, anfitrion))
 
     } else {
 
@@ -558,5 +561,28 @@ function btnHomeFiltrarInmueblesHandler() {
     } else {
         document.getElementById('msgHomeFiltroInmueble').innerText = `Debe ingresar criterio de búsqueda`;
         armarMuro(arrayInmuebles);
+    }
+}
+
+
+
+
+//Funcion para mostrar inmuebles propios de cada anfitrion
+
+crearBoton('aMisInmueblesAnf', btnIrAInmueblesPropios);
+
+function btnIrAInmueblesPropios(){
+
+    let inmueblesAMostrar = [];
+
+    for(let i = 0; i < arrayInmuebles; i++){
+
+        let inmueble = arrayInmuebles[i]
+
+
+        if(inmueble.anfitrion === usuarioConectado.tipo){
+            inmueblesAMostrar.push(inmueble);
+        }
+        armarMuro(inmueblesAMostrar);
     }
 }
