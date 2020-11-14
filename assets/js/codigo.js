@@ -137,6 +137,8 @@ function aRegistroHandler() {
 //función de login
 function btnLoginHandler() {
 
+
+
     //tomo valor del correo del login
     let txtCorreo = document.getElementById('txtLoginCorreo').value;
 
@@ -199,6 +201,8 @@ function btnLoginHandler() {
 
 
 }
+
+//IMPORTANTE: NO OLVIDAR AL PROGRAMAR EL CIERRE DE SESIÓN DAR VALOR 'NULL' A LA VARIABLE GLOBAL 'usuarioConectado'
 
 //******************************************************************************************************************
 
