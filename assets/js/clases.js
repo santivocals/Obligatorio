@@ -43,6 +43,7 @@ class Inmueble {
 	anfitrion;
 	calificaciones;
 	promedio;
+	
 
 	constructor(pTitulo, pDescripcion, pCiudad, pPrecio, pImagenes) {
 		this.titulo = pTitulo;
@@ -57,8 +58,8 @@ class Inmueble {
 		this.anfitrion;
 		//Guardamos en un array las califiaciones que vamos a obtener desde la entidad Reserva
 		this.calificaciones = [];
-		//Usamos función promedio para obtener el mismo y lo guardamos como un atributo del Inmuble
-		this.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
+		this.promedio = 0;
+		
 	}
 }
 
