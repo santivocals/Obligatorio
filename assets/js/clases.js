@@ -15,22 +15,25 @@ class Usuario {
 	//Se agregan en array los inmuebles que registre el anfitrión
 	inmuebles;
 
-	constructor(pNombre, pApellido, pCorreo, pCelular, pPassword, pTipo) {
+	constructor(pNombre, pApellido, pCorreo, pCelular, pPassword) {
 		this.nombre = pNombre;
 		this.apellido = pApellido;
 		this.correo = pCorreo;
 		this.celular = pCelular;
 		this.password = pPassword;
-		this.tipo = pTipo;
 		
 <<<<<<< HEAD
 		//Inicializamos atributos sin recibir información por parámetro
+<<<<<<< HEAD
 =======
 		//Ver si corresponde colocarlo como un parámetro, ya que se asigna según la pantalla desde donde se resgistre
 		this.tipo = pTipo;
 
 		//Inicializamos atributos sin recibir información desde fuera
 >>>>>>> parent of f09e5bf... Update clases.js
+=======
+		this.tipo = '';
+>>>>>>> parent of 5ba7bab... Update clases.js
 		this.activo = true;
 		this.reservas = [];
 		this.inmuebles = [];
