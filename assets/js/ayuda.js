@@ -258,3 +258,49 @@ function promedio(pSumatoria, pCantidad, pDigitoPosComa) {
 
     return promedio;
 }
+
+//Función para quitar acentos 
+
+function quitarAcentos(pTexto) {
+    let nuevoTexto = "";
+
+    for (let i = 0; i < pTexto.length; i++) {
+        switch (pTexto[i]) {
+            case "á":
+                nuevoTexto += "a";
+                break;
+            case "é":
+                nuevoTexto += "e";
+                break;
+            case "í":
+                nuevoTexto += "i";
+                break;
+            case "ó":
+                nuevoTexto += "o";
+                break;
+            case "ú":
+                nuevoTexto += "u";
+                break;
+            case "Á":
+                nuevoTexto += "A";
+                break;
+            case "É":
+                nuevoTexto += "E";
+                break;
+            case "Í":
+                nuevoTexto += "I";
+                break;
+            case "Ó":
+                nuevoTexto += "O";
+                break;
+            case "Ú":
+                nuevoTexto += "U";
+                break;
+            default:
+                nuevoTexto += pTexto[i];
+
+        }
+    }
+
+    return nuevoTexto;
+}
