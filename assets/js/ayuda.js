@@ -192,8 +192,6 @@ function mostrarPantalla(pPantalla) {
 }
 
 
-
-
 function armarMuro(pInmueblesAMostrar) {
 
     let muroHtml = "";
@@ -201,6 +199,7 @@ function armarMuro(pInmueblesAMostrar) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i];
+        inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
         
         muroHtml += `<div>
         <h2>${inmueble.titulo}</h2>
@@ -208,7 +207,7 @@ function armarMuro(pInmueblesAMostrar) {
         <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
         <div>
             <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
-                <strong>${inmuebles.promedio}</strong></label>
+                <strong>${inmueble.promedio}</strong></label>
         </div>
         <p>${inmueble.descripcion}</p>
         <p class="ver-mas" id="verMas${i}">
