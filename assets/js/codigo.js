@@ -142,7 +142,7 @@ function aRegistroHandler() {
 
 //función de login
 function btnLoginHandler() {
-
+    
     //tomo valor del correo del login
     let txtCorreo = document.getElementById('txtLoginCorreo').value;
 
@@ -171,12 +171,15 @@ function btnLoginHandler() {
 
     }
 
-    //si usuarioConectado se mantiene undefined
+    //Creo un array con los Ids de los campos que quiero borrar
+    let arrayDeIds = ['txtLoginCorreo', 'txtLoginPassword'];
+
+    //si usuarioConectado se mantiene undefined o null
     if (usuarioConectado === undefined || usuarioConectado === null) {
         //mensaje de error
         mostrarMensaje('msgLogin', 'Usuario y/o password incorrectos');
         //limpiamos campos de texto para que usuario vuelva a ingresar
-        limpiarCampos('txtLoginCorreo', 'txtLoginPassword');
+        limpiarCampos(arrayDeIds);
     } else {
         switch (usuarioConectado.tipo) {
             case 'admin':
@@ -200,6 +203,9 @@ function btnLoginHandler() {
 
         //Muestro el cerrar sesión
         document.getElementById('aCerrarSesion').style.display = 'block';
+
+        //limpiamos campos de texto
+        limpiarCampos(arrayDeIds);
 
     }
 
@@ -258,38 +264,99 @@ function bntRegistroHuespedHandler() {
 
 
 
-/*************************************************************************************************************************************************** */
+/********************************************************************************************************************************/
 
 //PANTALLA DE REGISTRO DE INMUEBLE
 
-
 crearBoton('btnGuardarInmueble', btnGuardarInmuebleHandler);
 
-function btnGuardarInmuebleHandler() {
+//No habilitamos el botón de guardar hasta que usuario ingrese al menos 3 fotos
+if (imagenesSeleccionadas.length < 3) {
+    document.getElementById('btnGuardarInmueble').disabled = true;
+}
 
+//MODÚLO PARA AGREGAR IMAGENES EN REGISTRO INMUEBLE
+
+//Ceamos botón para dar alta a las imagenes
+crearBoton('btnAltaImagen', btnAltaImagenHandler);
+//función que arma automáticamente el selector para agregar imágenes
+armarSelectorImagenes();
+
+//función para armar el selector de imágenes en el Registro de inmueble
+function armarSelectorImagenes() {
+    //voy acumulando el html de las options
+    let options = "";
+
+    //ver en datos.js un array llamado arrayImagenes que es un array de strings,
+    //con los nombres de las fotos en la carpeta ./assets/img
+    for (let i = 0; i < arrayImagenes.length; i++) {
+        //para cada foto armo un option
+        options += `<option value='${arrayImagenes[i]}'>${arrayImagenes[i]}</option>`;
+    }
+    //las agrego al selector
+    document.getElementById("slcAltaImagenes").innerHTML = options;
+}
+
+//handle del agregar imágen en Registro de inmueble
+function btnAltaImagenHandler() {
+
+    //selecciono el value de la option seleccionada del selector (nombre del archivo)
+    let imagenSeleccionada = document.getElementById("slcAltaImagenes").value;
+
+    //si esa foto no está en el array de seleccionadas
+    if (imagenesSeleccionadas.indexOf(imagenSeleccionada) === -1) {
+        //agrego la foto al array global de imágenes seleccionadas
+        imagenesSeleccionadas.push(imagenSeleccionada);
+    } else {
+        //sino aviso que esa imagen ya fue seleccionada
+        mostrarMensaje('msgAltaImagenes', 'Esta imagen ya ha sido seleccionada')
+    }
+
+    if (imagenesSeleccionadas.length < 3) {
+        //Notificamos a usuario cuantos fotos quedan por cargar mínimo.
+        mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(",")} ha(n) sido cargada(s). Resta(n) al menos ${3 - imagenesSeleccionadas.length} imagen(es) más.`);
+    } else {
+        mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(",")} ha(n) sido cargada(s).`);
+        //Habilitamos botón para poder guardar el inmueble
+        document.getElementById('btnGuardarInmueble').disabled = false;
+    }
+
+}
+
+function btnGuardarInmuebleHandler() {
+    //Datos del inmueble
     let titulo = document.getElementById('txtInmTitulo').value;
     let descripcion = document.getElementById('txtInmDescripción').value;
     let ciudad = document.getElementById('txtInmCiudad').value;
     let precio = document.getElementById('txtInmPrecio').value;
-    let imagenes = [];
-    let anfitrion = usuarioConectado;
+    let anfitrion = usuarioConectado.correo;
+    //Creo array con los ids de los campos para luego utilizar función para borrarlos
+    let arrayDeIds = ['txtInmTitulo', 'txtInmDescripción', 'txtInmCiudad','txtInmPrecio']
 
-
-
-
-    if (validarCampo(titulo) && validarCampo(descripcion) && validarCampo(ciudad) && validarCampo(precio)) {
-
+    //Valido los campos
+    if (validarCampo(titulo) && validarCampo(descripcion) && validarCampo(ciudad) && valorNumerico(precio)) {
+        //Instancia para nuevo inmueble y le asigno los parametros correspondientes
+        let inmuebleNuevo = new Inmueble(titulo, descripcion, ciudad, precio, imagenesSeleccionadas, anfitrion);
+        //Lo agrego al array de inmuebles
+        arrayInmuebles.push(inmuebleNuevo);
+        //Muestro mensaje de Registro exitoso
         mostrarMensaje('msgRegInmueble', 'Registro de inmueble exitoso');
-        arrayInmuebles.push(new Inmueble(titulo, descripcion, ciudad, precio, imagenes, anfitrion))
-
+        //vacío el array de imágenes seleccionadas
+        imagenesSeleccionadas = [];
+        //Utlizo función para borrar los campos
+        limpiarCampos(arrayDeIds);
+        //recargo el muro
+        armarMuro(arrayInmuebles);
+        //Vuelvo a deshabilitar botón de guardar
+        document.getElementById('btnGuardarInmueble').disabled = true;
+        //Reposicionamos el selector en la primera opcion de la lista
+        document.getElementById("slcAltaImagenes").innerHTML = `<option selected>${arrayImagenes[0]}</option>`;
     } else {
-
-        mostrarMensaje('msgRegInmueble', 'Campos obligatorios');
+        //Muestro mensaje de error
+        mostrarMensaje('msgRegInmueble', 'Debe completar todos los campos');
     }
+
 }
-
-
-
 
 /******************************************************************************* */
 
@@ -570,8 +637,6 @@ function btnHomeFiltrarInmueblesHandler() {
 }
 
 
-
-
 //Funcion para mostrar inmuebles propios de cada anfitrion
 
 function mostrarInmueblesAnf() {
@@ -586,6 +651,7 @@ function mostrarInmueblesAnf() {
         if (inmueble.anfitrion === usuarioConectado.correo) {
             inmueblesAMostrar.push(inmueble);
         }
+
         misInmuebles(inmueblesAMostrar);
     }
 
