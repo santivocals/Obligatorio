@@ -45,7 +45,7 @@ class Inmueble {
 	promedio;
 	
 
-	constructor(pTitulo, pDescripcion, pCiudad, pPrecio, pImagenes) {
+	constructor(pTitulo, pDescripcion, pCiudad, pPrecio, pImagenes, pAnfitrion) {
 		this.titulo = pTitulo;
 		this.descripcion = pDescripcion;
 		this.ciudad = pCiudad;
@@ -55,7 +55,7 @@ class Inmueble {
 		//Inicializamos atributos sin recibir información por parámetro
 		this.habilitado = true;
 		//El anfitrión se obtiene desde el usuarioConectado que está creando el inmueble
-		this.anfitrion;
+		this.anfitrion = pAnfitrion;
 		//Guardamos en un array las califiaciones que vamos a obtener desde la entidad Reserva
 		this.calificaciones = [];
 		this.promedio = 0;
@@ -67,21 +67,21 @@ class Reserva {
 	cantNoches;
 	inmueble;
 	costoReserva;
-	calificación;
+	calificacion;
 
-	constructor(pCantNoches) {
+	constructor(pCantNoches, pInmueble) {
 		this.cantNoches = pCantNoches;
 
 		//Inicializamos atributos sin recibir información por parámetro
-		this.inmueble;
-		this.costoReserva = reserva.cantNoches * inmueble.precio;
+		this.inmueble = pInmueble;
+		this.costoReserva = pCantNoches * pInmueble.precio;
 		//ATENCIÓN: ARREGLAR CUANDO HAGAMOS EL MÓDULO DE CALIFICACIÓN, NO SE PUEDE INICIALIZAR EN 0
 		//YA QUE 0 ES UN VALOR VÁLIDO DE CALIFICACIÓN Y NO UNA CALIFICACIÓN NO REALIZADA
 		//QUIZÁ SEA BUENA IDEA INCIALIZAR EN 'FALSE' A UNA VARIABLE CALIFICADO Y MANEJAR LA CALIFICACIÓN COMO
 		//UNA VARIABLE GLOBAL QUE SE GUARDE EN EL ARRAY CALIFICACIONES Y QUE PASE A TRUE EL ATRIBUTO 'CALIFICADO´
 		//EN LA ENTIDAD CUANDO EL USUARIO INGRESE LA CALIFICACIÓN, Y DESHABILIE EL BOTÓN DE CALIFICAR SI EL ATRIBUTO
 		//reserva.calificado es True
-		this.calificación;
+		this.calificacion = 0;
 	}
 	
 	
