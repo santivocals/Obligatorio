@@ -42,6 +42,7 @@ class Inmueble {
 	anfitrion;
 	habilitado;
 	calificaciones;
+	promedio;
 	
 
 	constructor(pTitulo, pDescripcion, pCiudad, pPrecio, pImagenes, pAnfitrion) {
@@ -57,6 +58,7 @@ class Inmueble {
 		this.habilitado = true;
 		//Guardamos en un array las califiaciones que vamos a obtener desde la entidad Reserva
 		this.calificaciones = [];
+		this.promedio = 0;
 		
 	}
 }
