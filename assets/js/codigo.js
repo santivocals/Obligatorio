@@ -1,6 +1,6 @@
 iniciarApp()
 
-armarMuro(arrayInmuebles);
+
 
 //Definimos las variables globales que vayamos a utilizar
 
@@ -8,7 +8,7 @@ armarMuro(arrayInmuebles);
 
 //FUNCION PARA INICIAR LA APP
 function iniciarApp() {
-
+    armarMuro(arrayInmuebles);
     //utilizo la función que controla las pantallas para mostrar la de home
     mostrarPantalla('Home')
 
@@ -18,7 +18,6 @@ function iniciarApp() {
     crearBoton('aRegistrarse', aRegistroHandler);
     crearBoton('aCerrarSesion', aCerrarSesionHandler);
 
-    //Ocultar la opción de ver más TO DO!!
 
     //preparo clicks a las opciones de usuario huesped
     crearBoton('aInmueblesHuesped', aInmueblesHuespedHandler);
@@ -50,6 +49,13 @@ function iniciarApp() {
     //Oculto los links a cerrar sesión y el inicio
     document.getElementById('aCerrarSesion').style.display = 'none';
     document.getElementById('aInicio').style.display = 'none';
+
+    //Selecciono todos los ver mas
+    let verMas = document.querySelectorAll('.ver-mas')
+    
+    //Los oculto
+    ocultarElementos(verMas)
+
 
     //clicks filtros y monedas
     /* document.getElementById("btnHomeFiltro").addEventListener("click", btnHomeFiltroHandler); */
@@ -334,7 +340,7 @@ function btnAltaAnfitrionHandler() {
 
 //FILTRO DOLAR PESOS
 
-//función que recibe un importe del auto y retorna el importe en la 
+//función que recibe un importe del inmueble y retorna el importe en la 
 //moneda correspondiente.
 function obtenerPrecio(importe) {
     let precioAMostrar;
@@ -377,19 +383,11 @@ function labelMonedaHandler() {
 //CERRAR SESIÓN
 
 function aCerrarSesionHandler() {
-    mostrarPantalla('Home');
+    iniciarApp();
 
     document.getElementById('aLogin').style.display = 'block';
     document.getElementById('aRegistrarse').style.display = 'block';
     document.getElementById('aCerrarSesion').style.display = 'none';
-
-    document.getElementById('anfOp1').style.display = 'none';
-    document.getElementById('anfOp2').style.display = 'none';
-    document.getElementById('huespOp1').style.display = 'none';
-    document.getElementById('huespOp2').style.display = 'none';
-    document.getElementById('adminOp1').style.display = 'none';
-    document.getElementById('adminOp2').style.display = 'none';
-    document.getElementById('adminOp3').style.display = 'none';
 
 
     usuarioConectado = null;
@@ -403,7 +401,10 @@ function aCerrarSesionHandler() {
 function pantallasHuesped() {
 
     mostrarPantalla('Home');
-
+    //Selecciono todos los ver mas
+    let verMas = document.querySelectorAll('.ver-mas')
+    //Los muestro
+    mostrarElementos(verMas);
     document.getElementById('anfOp1').style.display = 'block';
     document.getElementById('anfOp2').style.display = 'block';
 
@@ -416,10 +417,12 @@ function pantallasHuesped() {
 
 function aInmueblesHuespedHandler() {
     mostrarPantalla('Home');
+    armarMuro(arrayInmuebles);
 }
 
 function aConsultaCalificacionHandler() {
     mostrarPantalla('ConsultarCalificar');
+    calificacionInmueble(usuarioConectado.reservas)
 }
 
 
@@ -428,8 +431,7 @@ function aConsultaCalificacionHandler() {
 //ACCESO DE ANFITRION
 
 function pantallasAnfitrion() {
-
-    mostrarPantalla('MisInmuebles');
+    aMisInmueblesAnfHandler();
 
     document.getElementById('huespOp1').style.display = 'block';
     document.getElementById('huespOp2').style.display = 'block';
@@ -441,6 +443,7 @@ function pantallasAnfitrion() {
 
 function aMisInmueblesAnfHandler() {
     mostrarPantalla('MisInmuebles');
+    mostrarInmueblesAnf();
 }
 
 function aRegistroInmuebleHandler() {
@@ -509,8 +512,9 @@ crearBoton('btnHomeFiltrar', btnHomeFiltrarInmueblesHandler);
 
 function btnHomeFiltrarInmueblesHandler() {
 
-    let valorFiltro = document.getElementById('txtHomeFiltrar').value.toLowerCase();
+    let valorFiltro = quitarAcentos(document.getElementById('txtHomeFiltrar').value.toLowerCase());
     let inmueblesFiltrados = [];
+    let mensaje = '';
 
     if (validarCampo(valorFiltro)) {
 
@@ -537,11 +541,11 @@ function btnHomeFiltrarInmueblesHandler() {
             if (inmueblesFiltrados.length > 0) {
                 armarMuro(inmueblesFiltrados);
             } else {
-    
+
                 for (let i = 0; i < arrayInmuebles.length; i++) {
-    
+
                     let inmueble = arrayInmuebles[i];
-    
+
                     if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1) {
                         inmueblesFiltrados.push(inmueble)
                     }
@@ -550,18 +554,19 @@ function btnHomeFiltrarInmueblesHandler() {
                 if (inmueblesFiltrados.length > 0) {
                     armarMuro(inmueblesFiltrados);
                 } else {
-                    document.getElementById('msgHomeFiltroInmueble').innerText = `No se encontraron resultados`;
+                    mensaje = 'No se encontraron resultados';
                     armarMuro(0);
                 }
             }
-           
+
         }
 
-        
+
     } else {
-        document.getElementById('msgHomeFiltroInmueble').innerText = `Debe ingresar criterio de búsqueda`;
+        mensaje = 'Debe ingresar criterio de búsqueda';
         armarMuro(arrayInmuebles);
     }
+    document.getElementById('msgHomeFiltroInmueble').innerText = mensaje;
 }
 
 
@@ -569,18 +574,104 @@ function btnHomeFiltrarInmueblesHandler() {
 
 //Funcion para mostrar inmuebles propios de cada anfitrion
 
-function mostrarInmueblesAnf(){
+function mostrarInmueblesAnf() {
 
     let inmueblesAMostrar = [];
 
-    for(let i = 0; i < arrayInmuebles; i++){
+    for (let i = 0; i < arrayInmuebles.length; i++) {
 
         let inmueble = arrayInmuebles[i]
 
 
-        if(inmueble.anfitrion.correo === usuarioConectado.correo){
+        if (inmueble.anfitrion === usuarioConectado.correo) {
             inmueblesAMostrar.push(inmueble);
         }
-        armarMuro(inmueblesAMostrar);
+        misInmuebles(inmueblesAMostrar);
+    }
+
+}
+
+//****************************************************************************** */
+//DETALLE
+
+
+
+//handler del botón anterior de la galería
+function btnGaleriaAnteriorHandler() {
+
+    //en la variable global posicionFotoGalería tengo guardada en número del índice
+    //de la foto que estoy mostrando actualmente en la galería.
+
+    //si la posción es distinta a 0 (pues no puedo mostrar la foto -1)
+    if (posicionFotoGaleria !== 0) {
+        //selecciono el elemento imagen
+        let imgElement = document.querySelector(".galeria .img-container img");
+        //disminuyo el valor de la posición;
+        posicionFotoGaleria--;
+
+        //modifico el src de la imagen con la nueva foto tomandola del array de las fotos
+        //del auto seleccionado;
+        imgElement.src = `./assets/img/${inmuebleSeleccionado.imagenes[posicionFotoGaleria]}`;
+    }
+}
+
+//handle del botón siguiente de la galeraía
+function btnGaleriaSiguienteHandler() {
+
+    //si no estoy parado en la última foto
+    if (posicionFotoGaleria !== inmuebleSeleccionado.imagenes.length - 1) {
+
+        //tomo el elemento foto de la galería
+        let imgElement = document.querySelector(".galeria .img-container img");
+
+        //aumento la posición de la foto para la siguiente
+        posicionFotoGaleria++;
+
+        //modifico el src del a foto con la siguiente imagen del auto seleccionado
+        imgElement.src = `./assets/img/${inmuebleSeleccionado.imagenes[posicionFotoGaleria]}`;
+    }
+}
+
+//handler de todos los botones ver más
+function verMasHandler() {
+    //con el id del ver más apretado tomo el substring correspondiente
+    //a la posición del auto que quiero mostrar en detalle
+    let posInm = Number(this.id.substr(6));
+
+    //cargo la variable global
+    inmuebleSeleccionado = arrayInmuebles[posInm];
+    //armo detalle
+    armarGaleria();
+    //lo muestro
+    mostrarPantalla('Detalles')
+}
+
+/******************************************************************************* */
+//RESERVAS
+
+function btnGuardarReservaHandler(){
+
+    let cantNoches = document.getElementById('txtCantidadNoches').value;
+
+    if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0){
+        usuarioConectado.reservas.push(new Reserva(cantNoches,inmuebleSeleccionado));
+
+        document.getElementById('msgReservaResultado').innerHTML = `Todo legal`
+    } else {
+        document.getElementById('msgReservaResultado').innerHTML = `Noches inválidas`
+    }
+}
+
+
+/******************************************************************************* */
+//GUARDAR CALIFICACION
+function guardarCalificacionHandler(){
+    let posInm = Number(this.id.substr(22));
+    let calificacionIngresada = document.getElementById(`txtCalificacion${posInm}`).value;
+
+    if (valorNumerico(calificacionIngresada) && validarCampo(calificacionIngresada) && calificacionIngresada >= 1 && calificacionIngresada <= 5){
+        usuarioConectado.reservas[posInm].calificacion = Number(calificacionIngresada);
+        inmuebleSeleccionado.calificaciones.push(Number(calificacionIngresada));
+        document.getElementById(`divCalificacion${posInm}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
     }
 }
