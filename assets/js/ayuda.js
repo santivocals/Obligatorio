@@ -224,7 +224,7 @@ function misInmuebles(pInmueblesAMostrar) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i];
-        //Definimos variable local y le pasamos funcion para calcular promedio
+        
         inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
 
         muroHtml += `<div>
@@ -243,9 +243,7 @@ function misInmuebles(pInmueblesAMostrar) {
 
     }
 
-    document.getElementById('divMisInm').innerHTML = muroHtml;
-
-    
+    document.getElementById('divMisInm').innerHTML = muroHtml;   
 
 }
 
