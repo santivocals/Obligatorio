@@ -569,9 +569,7 @@ function btnHomeFiltrarInmueblesHandler() {
 
 //Funcion para mostrar inmuebles propios de cada anfitrion
 
-crearBoton('aMisInmueblesAnf', btnIrAInmueblesPropios);
-
-function btnIrAInmueblesPropios(){
+function mostrarInmueblesAnf(){
 
     let inmueblesAMostrar = [];
 
@@ -580,7 +578,7 @@ function btnIrAInmueblesPropios(){
         let inmueble = arrayInmuebles[i]
 
 
-        if(inmueble.anfitrion === usuarioConectado.tipo){
+        if(inmueble.anfitrion.correo === usuarioConectado.correo){
             inmueblesAMostrar.push(inmueble);
         }
         armarMuro(inmueblesAMostrar);
