@@ -217,8 +217,7 @@ function armarMuro(pInmueblesAMostrar) {
     }
 }
 
-//Inmuebles propios
-
+//Inmuebles propios del anfitrion
 function misInmuebles(pInmueblesAMostrar) {
     let muroHtml = "";
 
@@ -236,12 +235,16 @@ function misInmuebles(pInmueblesAMostrar) {
                 <strong>${inmueble.promedio}</strong></label>
         </div>
         <p>${inmueble.descripcion}</p>
+        <input type="button" id="btnHabilitar" class = "btnHabilitar" value="Habililtar">
+        <input type="button" id="btnDeshabilitar" class = "btnDeshabilitar" value="Deshabilitar">
         <hr>
         </div>`
 
     }
 
     document.getElementById('divMisInm').innerHTML = muroHtml;
+
+    
 
 }
 
@@ -447,3 +450,9 @@ function mostrarElementos(elementos) {
         item.style.display = 'block';
     }
 }
+
+
+
+
+
+
