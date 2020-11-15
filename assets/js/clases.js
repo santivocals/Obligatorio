@@ -39,8 +39,8 @@ class Inmueble {
 	ciudad;
 	precio;
 	imagenes;
-	habilitado;
 	anfitrion;
+	habilitado;
 	calificaciones;
 	promedio;
 	
@@ -51,11 +51,11 @@ class Inmueble {
 		this.ciudad = pCiudad;
 		this.precio = pPrecio;
 		this.imagenes = pImagenes;
+		//El anfitrión se obtiene desde el usuarioConectado que está creando el inmueble
+		this.anfitrion = pAnfitrion;
 
 		//Inicializamos atributos sin recibir información por parámetro
 		this.habilitado = true;
-		//El anfitrión se obtiene desde el usuarioConectado que está creando el inmueble
-		this.anfitrion = pAnfitrion;
 		//Guardamos en un array las califiaciones que vamos a obtener desde la entidad Reserva
 		this.calificaciones = [];
 		this.promedio = 0;
