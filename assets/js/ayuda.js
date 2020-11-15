@@ -44,14 +44,16 @@ function existeUsuario(pCorreo) {
 }
 
 //Función para limpiar campos de texto
-function limpiarCampos(pIdCampo1, pIdCampo2) {
-    document.getElementById(pIdCampo1).value = ''
-    document.getElementById(pIdCampo2).value = '';
+function limpiarCampos(pArrayDeIds) {
+    //Recorremos una array cuyo contenido son los Ids de los campos que queremos borrar
+    for (i=0; i < pArrayDeIds.length; i++) {
+        document.getElementById(pArrayDeIds[i]).value = '';
+        console.log(pArrayDeIds[i]);
+    }
 }
 
-
 //ATENCIÓN: MEJORAR FUNCIÓN
-//Funcion para validar que campo no esté vacio
+//Funcion para validar que campo no esté vacio (Nota: Chequeada por San. No encontré errores. 15/11)
 function validarCampo(pCadena) {
 
     let campoValido = false;
@@ -238,12 +240,12 @@ function misInmuebles(pInmueblesAMostrar) {
         </div>`
 
     }
-    document.getElementById('divMisInm').innerHTML = muroHtml;
 
+    document.getElementById('divMisInm').innerHTML = muroHtml;
 
 }
 
-//Inmuebles propios
+//Calificación del Inmueble
 
 function calificacionInmueble(pInmueblesAMostrar) {
     let muroHtml = "";
@@ -288,8 +290,8 @@ function calificacionInmueble(pInmueblesAMostrar) {
 }
 
 //Armar pantalla detalle
-//función que arma el detalle del auto utilizando la variable global
-//autoSeleccionado que se debe cargar al momento de hacer click en ver mas en el muro
+//función que arma el detalle del inmueble utilizando la variable global
+//inmuebleSeleccionado que se debe cargar al momento de hacer click en ver mas en el muro
 
 function armarGaleria() {
     let muroHtml = "";
