@@ -14,7 +14,8 @@ arrayUsuarios.push(new Usuario('Fernanda', 'Mayer', 'fernanda@gmail.com', 916892
 let arrayInmuebles = [];
 
 //Creamos inmuebles precargados
-arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 2000, ['Casa 3.jpeg']))
+arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 2000, ['Casa 3.jpeg','Casa 2.jpeg'], 'agustina@gmail.com'))
+
 
 //variable global para la moneda
 let moneda = 'USD';
