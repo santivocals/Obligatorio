@@ -14,8 +14,17 @@ arrayUsuarios.push(new Usuario('Fernanda', 'Mayer', 'fernanda@gmail.com', 916892
 let arrayInmuebles = [];
 
 //Creamos inmuebles precargados
-arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 2000, ['Casa 3.jpeg','Casa 2.jpeg'], 'agustina@gmail.com'))
+arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 2000, ['Casa3.jpeg','Casa2.jpeg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa de campo', 'Rancho amplio terreno', 'Atlantida', 200, ['Casa1.jpeg','Casa5.jpeg'], 'agustina@gmail.com'));
 
+//array global para el array de archivo de fotos para los inmuebles
+let arrayImagenes = ['Casa1.jpeg','Casa2.jpeg','Casa3.jpeg','Casa4.jpeg','Casa5.jpeg','Casa6.jpeg','Casa7.jpeg'];
+
+//array global para ir guardando las fotos seleccionadas al momento del alta del inmueble
+let imagenesSeleccionadas = [];
+
+//variable global para guardar la posición de la imagen en el array de fotos del inmueble que se está mostrando
+let posicionFotoGaleria;
 
 //variable global para la moneda
 let moneda = 'USD';
