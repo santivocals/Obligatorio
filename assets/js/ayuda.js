@@ -92,9 +92,6 @@ function correoValido(pCorreo) {
     return correoEsValido;
 }
 
-
-
-
 //Funcion para validar si el celular ingresado contiene solo numeros y total de 8 caracteres
 function validarCelular(pCelular) {
 
@@ -109,8 +106,6 @@ function validarCelular(pCelular) {
     }
     return celularValido;
 }
-
-
 
 
 //Funcion para validar si la contraseña ingresada tiene al menos 6 caracteres, letras y numeros, y por lo menos una mayuscula
@@ -152,9 +147,6 @@ function validarContrasena(pContrasena) {
     return contrasenaValida;
 }
 
-
-
-
 //Funcion que verifica si las dos contraseñas ingresadas son iguales
 function validarConfirmarContrasena(pContrasena1, pContrasena2) {
 
@@ -165,10 +157,6 @@ function validarConfirmarContrasena(pContrasena1, pContrasena2) {
     }
     return contrasenaConfirmada;
 }
-
-
-
-
 
 //Funcion para mostrar pantalla. Recibe como parametro la pantalla que se quiere mostrar y oculta las demás
 function mostrarPantalla(pPantalla) {
@@ -191,7 +179,6 @@ function mostrarPantalla(pPantalla) {
 
 }
 
-
 function armarMuro(pInmueblesAMostrar) {
 
     let muroHtml = "";
@@ -200,7 +187,7 @@ function armarMuro(pInmueblesAMostrar) {
 
         let inmueble = pInmueblesAMostrar[i];
         inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
-        
+
         muroHtml += `<div>
         <h2>${inmueble.titulo}</h2>
         <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
@@ -218,14 +205,149 @@ function armarMuro(pInmueblesAMostrar) {
     }
 
     document.getElementById('divMuro').innerHTML = muroHtml;
+
+    //agregar handler a los "ver mas"
+    //selecciono los items ver más
+    let itemsVerMas = document.querySelectorAll('.ver-mas');
+    //los recorro y cargo el handler 1 a 1
+    for (let i = 0; i < itemsVerMas.length; i++) {
+        itemsVerMas[i].addEventListener('click', verMasHandler);
+    }
 }
 
+//Inmuebles propios
+
+function misInmuebles(pInmueblesAMostrar) {
+    let muroHtml = "";
+
+    for (let i = 0; i < pInmueblesAMostrar.length; i++) {
+
+        let inmueble = pInmueblesAMostrar[i];
+        inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
+
+        muroHtml += `<div>
+        <h2>${inmueble.titulo}</h2>
+        <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
+        <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
+        <div>
+            <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
+                <strong>${inmueble.promedio}</strong></label>
+        </div>
+        <p>${inmueble.descripcion}</p>
+        <hr>
+        </div>`
+
+    }
+    document.getElementById('divMisInm').innerHTML = muroHtml;
+
+
+}
+
+//Inmuebles propios
+
+function calificacionInmueble(pInmueblesAMostrar) {
+    let muroHtml = "";
+
+    for (let i = 0; i < pInmueblesAMostrar.length; i++) {
+
+        let inmueble = pInmueblesAMostrar[i].inmueble;
+
+        muroHtml += `<div>
+        <h2>${inmueble.titulo}</h2>
+        <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
+        <hr>
+        
+        `
+
+        if (pInmueblesAMostrar[i].calificacion === 0){
+            muroHtml += `
+            <div id='divCalificacion${[i]}'>
+            <label for="txtCalificacion${[i]}">Calificar</label>
+            <input type="text" id="txtCalificacion${[i]}">
+    
+            <input type="button" value="Reservar" class="guardarCal" id="btnGuardarCalificacion${[i]}">
+            </div>
+            </div>`
+        } else {
+            muroHtml +=`
+            <div id='divCalificacion${[i]}'>
+            <p>Su calificación fue de ${pInmueblesAMostrar[i].calificacion}</p>
+            </div>
+            </div>
+            `
+        }
+    }
+    
+    document.getElementById('divConsCalf').innerHTML = muroHtml;
+
+    let itemsGuardar = document.querySelectorAll('.guardarCal');
+    //los recorro y cargo el handler 1 a 1
+    for (let i = 0; i < itemsGuardar.length; i++) {
+        itemsGuardar[i].addEventListener('click', guardarCalificacionHandler);
+    }
+}
+
+//Armar pantalla detalle
+//función que arma el detalle del auto utilizando la variable global
+//autoSeleccionado que se debe cargar al momento de hacer click en ver mas en el muro
+
+function armarGaleria() {
+    let muroHtml = "";
+
+    let inmueble = inmuebleSeleccionado;
+    inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
+
+    muroHtml += `<div>
+        <h2>${inmueble.titulo}</h2>
+        <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
+        <div class="galeria">
+        <div class="img-container">
+        <img src="./assets/img/${inmueble.imagenes[0]}">
+        </div> 
+        <div class="btn-container">
+                <input type="button" value="<<" id="btnGaleriaAnterior"><input class="btn-siguiente" type="button" id="btnGaleriaSiguiente" value=">>"><br>
+        </div>       
+        </div>
+        <div>
+            <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
+                <strong>${inmueble.promedio}</strong></label>
+        </div>
+        <p>${inmueble.descripcion}</p>
+        <hr>
+        <h3>Reserva de inmueble</h3>
+        <div id="divReserva">
+                    <label for="txtCantidadNoches">Cantidad de noches</label>
+                    <input type="text" id="txtCantidadNoches">
+
+                    <input type="button" value="Reservar" id="btnGuardarReserva${[i]}">
+                    <p id="msgReservaResultado"></p>
+                </div>
+        </div>`
+
+    document.getElementById('divDetalleInm').innerHTML = muroHtml;
+
+    crearBoton(`btnGuardarReserva${[i]}`,btnGuardarReservaHandler);
+
+    let imgElement = document.querySelector(".galeria .img-container img");
+
+    //modifico el src para que muestre la primera foto
+    imgElement.src = `./assets/img/${inmuebleSeleccionado.imagenes[0]}`;
+
+    //marco la variable global de la posición de la foto en la galería con el valor 0
+    posicionFotoGaleria = 0;
+    //selecciono el elemento img de la galeria
+
+    //clicks de la pantalla de detalle (galería)
+    document.getElementById("btnGaleriaAnterior").addEventListener("click", btnGaleriaAnteriorHandler);
+    document.getElementById("btnGaleriaSiguiente").addEventListener("click", btnGaleriaSiguienteHandler);
+
+}
 
 
 //Funcion validar numero
 function valorNumerico(pNumero) {
-    let esNumero; 
-    if (!isNaN(pNumero) && pNumero !== ''){
+    let esNumero;
+    if (!isNaN(pNumero) && pNumero !== '') {
         esNumero = true;
     } else {
         esNumero = false;
@@ -236,8 +358,8 @@ function valorNumerico(pNumero) {
 //Función para sumar elementos de un array de números
 function sumarArray(pArray) {
     let suma = 0;
-    
-    for (i=0; i < pArray.length; i++) {
+
+    for (i = 0; i < pArray.length; i++) {
         suma += pArray[i];
     }
 
@@ -251,7 +373,7 @@ function promedio(pSumatoria, pCantidad, pDigitoPosComa) {
 
     //Si no hay valores ingresados devolvemos 0, para no dividir entre 0
     if (pCantidad === 0) {
-    //Si no hacemos el cálculo correspondiente
+        //Si no hacemos el cálculo correspondiente
     } else {
         promedio = (pSumatoria / pCantidad).toFixed(pDigitoPosComa);
     }
@@ -303,4 +425,23 @@ function quitarAcentos(pTexto) {
     }
 
     return nuevoTexto;
+}
+
+
+//función que recibe una colección de elementos
+//y los oculta
+function ocultarElementos(elementos) {
+    for (let i = 0; i < elementos.length; i++) {
+        let item = elementos[i];
+        item.style.display = 'none';
+    }
+}
+
+//función que recibe una colección de elementos
+//y los muestra
+function mostrarElementos(elementos) {
+    for (let i = 0; i < elementos.length; i++) {
+        let item = elementos[i];
+        item.style.display = 'block';
+    }
 }
