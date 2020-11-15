@@ -236,13 +236,23 @@ function misInmuebles(pInmueblesAMostrar) {
                 <strong>${inmueble.promedio}</strong></label>
         </div>
         <p>${inmueble.descripcion}</p>
+<<<<<<< Updated upstream
         <input type="button" value="Habililtar">
         <input type="button" value="Deshabilitar">
+=======
+        <input type="button" id="btnHabilitar${i}" class = "btnHabilitar" value="Habililtar">
+        <input type="button" id="btnDeshabilitar${i}" class = "btnDeshabilitar" value="Deshabilitar">
+>>>>>>> Stashed changes
         <hr>
         </div>`
 
     }
+<<<<<<< Updated upstream
     document.getElementById('divMisInm').innerHTML = muroHtml;
+=======
+
+    document.getElementById('divMisInm').innerHTML = muroHtml; 
+>>>>>>> Stashed changes
 
 }
 
@@ -452,5 +462,8 @@ function mostrarElementos(elementos) {
 
 
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
