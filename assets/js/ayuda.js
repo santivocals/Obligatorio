@@ -224,7 +224,8 @@ function misInmuebles(pInmueblesAMostrar) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i];
-        inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
+        //Definimos variable local y le pasamos funcion para calcular promedio
+        let promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
 
         muroHtml += `<div>
         <h2>${inmueble.titulo}</h2>
@@ -232,7 +233,7 @@ function misInmuebles(pInmueblesAMostrar) {
         <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
         <div>
             <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
-                <strong>${inmueble.promedio}</strong></label>
+                <strong>${promedio}</strong></label>
         </div>
         <p>${inmueble.descripcion}</p>
         <input type="button" id="btnHabilitar" class = "btnHabilitar" value="Habililtar">
@@ -300,7 +301,8 @@ function armarGaleria() {
     let muroHtml = "";
 
     let inmueble = inmuebleSeleccionado;
-    inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
+    //Definimos variable local y le pasamos funcion para calcular promedio
+    let promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
 
     muroHtml += `<div>
         <h2>${inmueble.titulo}</h2>
@@ -315,7 +317,7 @@ function armarGaleria() {
         </div>
         <div>
             <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
-                <strong>${inmueble.promedio}</strong></label>
+                <strong>${promedio}</strong></label>
         </div>
         <p>${inmueble.descripcion}</p>
         <hr>

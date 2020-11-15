@@ -314,9 +314,9 @@ function btnAltaImagenHandler() {
 
     if (imagenesSeleccionadas.length < 3) {
         //Notificamos a usuario cuantos fotos quedan por cargar mínimo.
-        mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(",")} ha(n) sido cargada(s). Resta(n) al menos ${3 - imagenesSeleccionadas.length} imagen(es) más.`);
+        mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(", ")} ha(n) sido cargada(s). Resta(n) al menos ${3 - imagenesSeleccionadas.length} imagen(es) más.`);
     } else {
-        mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(",")} ha(n) sido cargada(s).`);
+        mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(", ")} ha(n) sido cargada(s).`);
         //Habilitamos botón para poder guardar el inmueble
         document.getElementById('btnGuardarInmueble').disabled = false;
     }
@@ -345,8 +345,6 @@ function btnGuardarInmuebleHandler() {
         imagenesSeleccionadas = [];
         //Utlizo función para borrar los campos
         limpiarCampos(arrayDeIds);
-        //recargo el muro
-        armarMuro(arrayInmuebles);
         //Vuelvo a deshabilitar botón de guardar
         document.getElementById('btnGuardarInmueble').disabled = true;
         //Reposicionamos el selector en la primera opcion de la lista
