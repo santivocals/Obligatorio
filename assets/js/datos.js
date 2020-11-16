@@ -28,6 +28,9 @@ let posicionFotoGaleria;
 
 //variable global para la moneda
 let moneda = 'USD';
+
 //variable global para la cotización
 let cotizacionDolar = 43;
 
+//variable global tipo que utilizamos en registro
+let tipo = '';
