@@ -192,6 +192,8 @@ function armarMuro(pInmueblesAMostrar) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i];
+
+        if (inmueble.habilitado === true){
         //Asignamos valor a parametro promedio de la entidad Inmueble
         inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
 
@@ -209,6 +211,7 @@ function armarMuro(pInmueblesAMostrar) {
         </p>
         <hr>
         </div>`
+        }
     }
 
     document.getElementById('divMuro').innerHTML = muroHtml;
@@ -251,6 +254,7 @@ function misInmuebles(pInmueblesAMostrar) {
         <hr>
         </div>`
 
+
     }
 
    document.getElementById('divMisInm').innerHTML = muroHtml; 
@@ -272,19 +276,24 @@ function misInmuebles(pInmueblesAMostrar) {
         btnDeshabilitar.addEventListener('click', btnDesInmuebleHandler);
     }
 
+    
+
 }
 
 
 
 function btnHabInmuebleHandler(){
     posicion = Number(this.id.substr(13)); 
-
+    arrayInmuebles[posicion].habilitado = true;
+  
     
 }
 
 
 function btnDesInmuebleHandler(){
     posicion = Number(this.id.substr(16));  
+    arrayInmuebles[posicion].habilitado = false;
+
 }
 
 
