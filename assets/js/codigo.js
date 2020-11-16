@@ -610,7 +610,7 @@ function btnHomeFiltrarInmueblesHandler() {
                 if (inmueblesFiltrados.length > 0) {
                     armarMuro(inmueblesFiltrados);
                 } else {
-                    mensaje = 'No se encontraron resultados';
+                    mensaje = 'No existen resultados para su búsqueda';
                     armarMuro(0);
                 }
             }
@@ -707,13 +707,13 @@ function verMasHandler() {
 function btnGuardarReservaHandler() {
 
     let cantNoches = document.getElementById('txtCantidadNoches').value;
+    let precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
 
     if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0) {
-        usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado));
-
-        document.getElementById('msgReservaResultado').innerHTML = `Todo legal`
+        usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
+        document.getElementById('msgReservaResultado').innerHTML = `Precio total: ${moneda} ${precioTotal}`;
     } else {
-        document.getElementById('msgReservaResultado').innerHTML = `Noches inválidas`
+        document.getElementById('msgReservaResultado').innerHTML = `Noches inválidas`;
     }
 }
 
@@ -730,6 +730,8 @@ function guardarCalificacionHandler() {
         document.getElementById(`divCalificacion${posInm}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
     }
 }
+
+/******************************************************************************** */
 
 //Función para obtener la variable 'tipo' usada para el registro
 function obtenerTipo() {
