@@ -26,6 +26,10 @@ let imagenesSeleccionadas = [];
 //variable global para guardar la posición de la imagen en el array de fotos del inmueble que se está mostrando
 let posicionFotoGaleria;
 
+//Variable global para guardar la referencia al objeto correspondiente
+//al usuario que hace log in
+let usuarioConectado;
+
 //variable global para la moneda
 let moneda = 'USD';
 
