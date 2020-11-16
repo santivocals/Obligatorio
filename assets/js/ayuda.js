@@ -267,12 +267,14 @@ function misInmuebles(pInmueblesAMostrar) {
 
 
 function btnHabInmuebleHandler(){
-    posision = Number(this.id.substr(13)); 
+    posicion = Number(this.id.substr(13)); 
+
+    
 }
 
 
 function btnDesInmuebleHandler(){
-    posision = Number(this.id.substr(16));  
+    posicion = Number(this.id.substr(16));  
 }
 
 
