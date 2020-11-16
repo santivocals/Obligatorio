@@ -42,9 +42,8 @@ function iniciarApp() {
     document.getElementById('adminOp3').style.display = 'none';
 
 
-    //preparo clicks de los botones de la pantalla de Registro, Login
+    //preparo clicks de la pantalla de Login
     crearBoton('btnLogin', btnLoginHandler);
-    crearBoton('btnRegistroHuesped', bntRegistroHuespedHandler);
 
     //Oculto los links a cerrar sesión y el inicio
     document.getElementById('aCerrarSesion').style.display = 'none';
@@ -120,18 +119,20 @@ function aInicioHandler() {
 
 //ACCESO A LA PANTALLA DE REGISTRO HUESPED
 function aRegistroHandler() {
+    //Limpiamos parrafo de mensaje por si quedó de algún registro previo
+    mostrarMensaje('msgRegistro', '');
+    //Pasamos funcion para dar valor a variable tipo usada en el registro
+    obtenerTipo();
+    //Preparo dinámicamente el botón de alta y título del html Registro de huéspedes
+    document.getElementById('tituloRegistro').innerHTML = `<h3 id="tituloRegistroHuesped">Registro de Huéspedes</h3>`
+    document.getElementById('btnRegistro').innerHTML = `<input type="button" value="Registrar" id="btnRegistro"></input>`;
 
     mostrarPantalla('Registro');
-
 
     //Esconder links de acceso
     document.getElementById('aInicio').style.display = 'block';
     document.getElementById('aLogin').style.display = 'block';
     document.getElementById('aRegistrarse').style.display = 'none';
-
-    //Escondo lo que indicaría registro el alta de anfitrion
-    document.getElementById('tituloAltaAnfitrion').style.display = 'none';
-    document.getElementById('btnAltaAnfitrion').style.display = 'none';
 
 }
 
@@ -207,23 +208,34 @@ function btnLoginHandler() {
         //limpiamos campos de texto
         limpiarCampos(arrayDeIds);
 
+        //Pasamos funcion para dar valor a variable tipo usada en el registro
+        obtenerTipo();
+        
     }
-
 
 }
 
 //******************************************************************************************************************
 
-//REGISTRO HUESPED
+//REGISTRO HUÉSPED Y ALTA DE ANFITRIÓN
 
-function bntRegistroHuespedHandler() {
+//Asociamos clicks al botón correspondiente
+crearBoton('btnRegistro', bntRegistroHandler);
 
-    //Muestro la pantalla de registro y escondo pantalla home
-    document.getElementById('divRegistro').style.display = 'block';
-    document.getElementById('divHome').style.display = 'none';
+//Función para guardar datos en un Objeto (Registro Huésped/Alta Anfitrión)
+function bntRegistroHandler() {
 
-    document.getElementById('aInicio').style.display = 'block';
-    document.getElementById('aRegistrarse').style.display = 'none';
+    //REGISTRO HUESPED
+    //If para cuando usuario es undefined o null para registrar huésped
+    if (usuarioConectado === undefined || usuarioConectado === null) {
+        document.getElementById('divRegistro').style.display = 'block';
+        document.getElementById('divHome').style.display = 'none';
+
+        document.getElementById('aInicio').style.display = 'block';
+        document.getElementById('aRegistrarse').style.display = 'none';
+    }        
+
+    //CÓDIGO COMÚN A AMBOS REGISTROS
 
     let nombre = document.getElementById('txtNombre').value
     let apellido = document.getElementById('txtApellido').value
@@ -231,7 +243,6 @@ function bntRegistroHuespedHandler() {
     let celular = document.getElementById('txtCelular').value
     let password = document.getElementById('txtPassword').value
     let password2 = document.getElementById('txtConfPassword').value
-    let tipo = "huesped";
     //Creo array con los ids de los campos para luego utilizar función para borrarlos
     let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword'];
 
@@ -241,9 +252,9 @@ function bntRegistroHuespedHandler() {
             if (validarCelular(celular)) {
                 if (validarContrasena(password)) {
                     if (validarConfirmarContrasena(password, password2)) {
-                        document.getElementById('msgRegistro').innerText = `Registro exitoso`;
                         arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipo))
                         limpiarCampos(arrayDeIds);
+                        document.getElementById('msgRegistro').innerText = `Registro exitoso`;
                     } else {
 
                         mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
@@ -271,11 +282,10 @@ function bntRegistroHuespedHandler() {
         document.getElementById('txtNombre').focus();
 
     }
+
 }
 
-
-
-/********************************************************************************************************************************/
+//****************************************************************************************************************** */
 
 //PANTALLA DE REGISTRO DE INMUEBLE
 
@@ -367,52 +377,6 @@ function btnGuardarInmuebleHandler() {
         mostrarMensaje('msgRegInmueble', 'Debe completar todos los campos');
     }
 
-}
-
-/******************************************************************************* */
-
-
-//ALTA DE ANFITRION
-
-
-crearBoton('btnAltaAnfitrion', btnAltaAnfitrionHandler);
-
-function btnAltaAnfitrionHandler() {
-
-    let nombre = document.getElementById('txtNombre').value;
-    let apellido = document.getElementById('txtApellido').value;
-    let correo = document.getElementById('txtCorreo').value;
-    let celular = document.getElementById('txtCelular').value;
-    let password = document.getElementById('txtPassword').value;
-    let password2 = document.getElementById('txtConfPassword').value;
-    let tipo = "anfitrion";
-    //Creo array con los ids de los campos para luego utilizar función para borrarlos
-    let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword'];
-
-
-    if (validarCampo(nombre) === true) {
-        if (validarCampo(apellido) === true) {
-            if (validarCelular(celular)) {
-                if (validarContrasena(password)) {
-                    if (validarConfirmarContrasena(password, password2)) {
-                        mostrarMensaje('msgRegistro', `Registro exitoso`);
-                        arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipo))
-                        limpiarCampos(arrayDeIds);
-                    } else {
-                        mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
-                    }
-                } else {
-                    mostrarMensaje('msgRegistro', 'La contraseña debe contener por lo menos 6 carácteres, letras y números y por lo menos una letra mayúscula');
-                }
-            } else {
-                mostrarMensaje('msgRegistro', 'Celular inválido');
-            }
-        } else {
-            mostrarMensaje('msgRegistro', 'Apellido inválido');
-        }
-    } else {
-        mostrarMensaje('msgRegistro', 'Nombre inválido');
-    }
 }
 
 //**************************************************************************************************************
@@ -536,12 +500,14 @@ function aRegistroInmuebleHandler() {
 //ACCESO DE ADMIN
 
 function pantallasAdmin() {
+    //Preparo Registro Administrador
+    //Preparo dinámicamente el botón de alta y título del html altaAnfitrión
+    document.getElementById('tituloRegistro').innerHTML = `<h3 id="tituloAltaAnfitrion">Alta de anfitrión</h3>`
+    document.getElementById('btnRegistro').innerHTML = `<input type="button" value="Alta anfitrión" id="btnRegistro"></input>`;
+    //Limpiamos parrafo de mensaje por si quedó de algún registro previo
+    mostrarMensaje('msgRegistro', '');
 
     mostrarPantalla('Registro');
-
-    //Escondo lo que indicaría registro de huesped
-    document.getElementById('tituloRegistroHuesped').style.display = 'none';
-    document.getElementById('btnRegistroHuesped').style.display = 'none';
 
     document.getElementById('adminOp1').style.display = 'block';
     document.getElementById('adminOp2').style.display = 'block';
@@ -555,8 +521,8 @@ function pantallasAdmin() {
 function aAltaAnfitrionHandler() {
     mostrarPantalla('Registro');
 
-    document.getElementById('tituloRegistroHuesped').style.display = 'none';
-    document.getElementById('btnRegistroHuesped').style.display = 'none';
+    //Limpiamos acá también parrafo de mensaje por si quedó de algún registro previo
+    mostrarMensaje('msgRegistro', '');
 }
 
 function aCargaCotizacionHandler() {
@@ -674,8 +640,6 @@ function mostrarInmueblesAnf() {
 //****************************************************************************** */
 //DETALLE
 
-
-
 //handler del botón anterior de la galería
 function btnGaleriaAnteriorHandler() {
 
@@ -753,5 +717,14 @@ function guardarCalificacionHandler() {
         usuarioConectado.reservas[posInm].calificacion = Number(calificacionIngresada);
         inmuebleSeleccionado.calificaciones.push(Number(calificacionIngresada));
         document.getElementById(`divCalificacion${posInm}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
+    }
+}
+
+//Función para obtener la variable 'tipo' usada para el registro
+function obtenerTipo() {
+    if (usuarioConectado === undefined || usuarioConectado === null) {
+        tipo = 'huesped';
+    } else if (usuarioConectado.tipo === 'admin') {
+        tipo = 'admin';
     }
 }
