@@ -236,6 +236,7 @@ function bntRegistroHandler() {
     }        
 
     //CÓDIGO COMÚN A AMBOS REGISTROS
+    //Nota: Recordamos qque la variable global 'tipo' se asigna cuando admin se loguea o cuando huesped entra a menú de "Registrarse"
 
     let nombre = document.getElementById('txtNombre').value
     let apellido = document.getElementById('txtApellido').value
@@ -249,36 +250,41 @@ function bntRegistroHandler() {
 
     if (validarCampo(nombre)) {
         if (validarCampo(apellido)) {
-            if (validarCelular(celular)) {
-                if (validarContrasena(password)) {
-                    if (validarConfirmarContrasena(password, password2)) {
-                        arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipo))
-                        limpiarCampos(arrayDeIds);
-                        document.getElementById('msgRegistro').innerText = `Registro exitoso`;
+            if (validarCorreo(correo)) {
+                if (validarCelular(celular)) {
+                    if (validarContrasena(password)) {
+                        if (validarConfirmarContrasena(password, password2)) {
+                            arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipo))
+                            limpiarCampos(arrayDeIds);
+                            document.getElementById('msgRegistro').innerText = `Registro exitoso`;
+                        } else {
+                            mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
+                            limpiarCampos('txtConfPassword');
+                            document.getElementById('txtConfPassword').focus();
+                        }
                     } else {
-
-                        mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
-                        document.getElementById('txtConfPassword').value = "";
-                        document.getElementById('txtConfPassword').focus();
+                        mostrarMensaje('msgRegistro', 'La contraseña debe contener por lo menos 6 carácteres, letras y números y por lo menos una letra mayúscula');
+                        limpiarCampos('txtPassword');
+                        document.getElementById('txtPassword').focus();
                     }
                 } else {
-                    mostrarMensaje('msgRegistro', 'La contraseña debe contener por lo menos 6 carácteres, letras y números y por lo menos una letra mayúscula');
-                    document.getElementById('txtPassword').value = "";
-                    document.getElementById('txtPassword').focus();
+                    mostrarMensaje('msgRegistro', 'Celular inválido');
+                    limpiarCampos('txtCelular');
+                    document.getElementById('txtCelular').focus();
                 }
             } else {
-                mostrarMensaje('msgRegistro', 'Celular inválido');
-                document.getElementById('txtCelular').value = "";
-                document.getElementById('txtCelular').focus();
+                mostrarMensaje('msgRegistro', 'Ingrese un correo válido');
+                limpiarCampos('txtCorreo');
+                document.getElementById('txtCorreo').focus();
             }
         } else {
             mostrarMensaje('msgRegistro', 'Apellido inválido');
-            document.getElementById('txtApellido').value = "";
+            limpiarCampos('txtApellido');
             document.getElementById('txtApellido').focus();
         }
     } else {
         mostrarMensaje('msgRegistro', 'Nombre inválido');
-        document.getElementById('txtNombre').value = "";
+        limpiarCampos('txtNombre');
         document.getElementById('txtNombre').focus();
 
     }
