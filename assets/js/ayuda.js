@@ -43,11 +43,19 @@ function existeUsuario(pCorreo) {
 
 }
 
-//Función para limpiar campos de texto a partir de una array con los Ids de los campos que queremos borrar
-function limpiarCampos(pArrayDeIds) {
-    for (i=0; i < pArrayDeIds.length; i++) {
-        document.getElementById(pArrayDeIds[i]).value = '';
+//Función para limpiar campos de texto
+//Para un campo se pasa valor en un string
+//Para más de un campo se pasan los valores en un array
+//Distingue entre una array para borrar más de un campo y un string para borrar un campo solo
+function limpiarCampos(pParametro) {
+    if (typeof pParametro === 'object') {
+        for (i=0; i < pParametro.length; i++) {
+            document.getElementById(pParametro[i]).value = '';
+        }
+    } else if (typeof pParametro === 'string') {
+        document.getElementById(pParametro).value = '';
     }
+
 }
 
 //ATENCIÓN: MEJORAR FUNCIÓN
@@ -65,7 +73,7 @@ function validarCampo(pCadena) {
 
 //ATENCIÓN: REVISAR QUE FUNCIONE CORRECTAMENTE
 //Función para validar correo
-function correoValido(pCorreo) {
+function validarCorreo(pCorreo) {
     let correoEsValido = false;
 
     //Me guardo posición de @
