@@ -483,7 +483,3 @@ function mostrarElementos(elementos) {
         item.style.display = 'block';
     }
 }
-
-
-
-
