@@ -67,6 +67,7 @@ class Reserva {
 	cantNoches;
 	inmueble;
 	costoReserva;
+	calificacion;
 	calificado;
 
 	constructor(pCantNoches, pInmueble, pCostoReserva) {
@@ -75,6 +76,7 @@ class Reserva {
 		this.costoReserva = pCostoReserva;
 
 		//Inicializamos atributos sin recibir información por parámetro
+		this.calificacion = 0;
 		this.calificado = false;
 	}
 	
