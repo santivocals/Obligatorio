@@ -236,16 +236,48 @@ function misInmuebles(pInmueblesAMostrar) {
                 <strong>${inmueble.promedio}</strong></label>
         </div>
         <p>${inmueble.descripcion}</p>
-        <input type="button" id="btnHabilitar" class = "btnHabilitar" value="Habililtar">
-        <input type="button" id="btnDeshabilitar" class = "btnDeshabilitar" value="Deshabilitar">
+        <input type="button" id="btnHabilitar${i}" class ="btnHabilitar" value="Habililtar">
+        <input type="button" id="btnDeshabilitar${i}" class ="btnDeshabilitar" value="Deshabilitar">
         <hr>
         </div>`
 
     }
 
-    document.getElementById('divMisInm').innerHTML = muroHtml;   
+   document.getElementById('divMisInm').innerHTML = muroHtml; 
+
+    let botonesDeshabilitar = document.querySelectorAll('.btnDeshabilitar');
+    let botonesHabilitar = document.querySelectorAll('.btnHabilitar');
+
+
+   for(let i = 0; i < botonesHabilitar.length; i++){
+
+        btnHabilitar = botonesHabilitar[i];
+        btnHabilitar.addEventListener('click', btnHabInmuebleHandler);    
+    }
+
+
+    for(let i = 0; i < botonesDeshabilitar.length; i++){
+
+        btnDeshabilitar = botonesDeshabilitar[i];
+        btnDeshabilitar.addEventListener('click', btnDesInmuebleHandler);
+    }
 
 }
+
+
+
+function btnHabInmuebleHandler(){
+    posision = Number(this.id.substr(13)); 
+}
+
+
+function btnDesInmuebleHandler(){
+    posision = Number(this.id.substr(16));  
+}
+
+
+
+
 
 //Calificación del Inmueble
 
