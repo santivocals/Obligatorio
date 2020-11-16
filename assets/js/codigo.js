@@ -86,10 +86,6 @@ function mostrarPantalla(pPantalla) {
     document.getElementById(`div${pPantalla}`).style.display = "block";
 }
 
-//Variable global para guardar la referencia al objeto correspondiente
-//al usuario que hace log in
-let usuarioConectado;
-
 //**************************************************************************************************************
 
 //ACCESO A LA PANTALLA LOGIN
@@ -123,7 +119,7 @@ function aInicioHandler() {
 function aRegistroHandler() {
     //Limpiamos parrafo de mensaje por si quedó de algún registro previo
     mostrarMensaje('msgRegistro', '');
-    //Pasamos funcion para dar valor a variable tipo usada en el registro
+    //Pasamos funcion para dar valor a variable 'tipo' usada en el registro
     obtenerTipo();
     //Preparo dinámicamente el botón de alta y título del html Registro de huéspedes
     document.getElementById('tituloRegistro').innerHTML = `<h3 id="tituloRegistroHuesped">Registro de Huéspedes</h3>`
@@ -240,12 +236,12 @@ function bntRegistroHandler() {
     //CÓDIGO COMÚN A AMBOS REGISTROS
     //Nota: Recordamos qque la variable global 'tipo' se asigna cuando admin se loguea o cuando huesped entra a menú de "Registrarse"
 
-    let nombre = document.getElementById('txtNombre').value
-    let apellido = document.getElementById('txtApellido').value
-    let correo = document.getElementById('txtCorreo').value
-    let celular = document.getElementById('txtCelular').value
-    let password = document.getElementById('txtPassword').value
-    let password2 = document.getElementById('txtConfPassword').value
+    let nombre = document.getElementById('txtNombre').value;
+    let apellido = document.getElementById('txtApellido').value;
+    let correo = document.getElementById('txtCorreo').value;
+    let celular = document.getElementById('txtCelular').value;
+    let password = document.getElementById('txtPassword').value;
+    let password2 = document.getElementById('txtConfPassword').value;
     //Creo array con los ids de los campos para luego utilizar función para borrarlos
     let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword'];
 
