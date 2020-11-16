@@ -43,12 +43,10 @@ function existeUsuario(pCorreo) {
 
 }
 
-//Función para limpiar campos de texto
+//Función para limpiar campos de texto a partir de una array con los Ids de los campos que queremos borrar
 function limpiarCampos(pArrayDeIds) {
-    //Recorremos una array cuyo contenido son los Ids de los campos que queremos borrar
     for (i=0; i < pArrayDeIds.length; i++) {
         document.getElementById(pArrayDeIds[i]).value = '';
-        console.log(pArrayDeIds[i]);
     }
 }
 
@@ -188,6 +186,7 @@ function armarMuro(pInmueblesAMostrar) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i];
+        //Asignamos valor a parametro promedio de la entidad Inmueble
         inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
 
         muroHtml += `<div>
@@ -224,7 +223,7 @@ function misInmuebles(pInmueblesAMostrar) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i];
-        
+        //Asignamos valor a parametro promedio de la entidad Inmueble
         inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
 
         muroHtml += `<div>
@@ -331,7 +330,7 @@ function armarGaleria() {
     let muroHtml = "";
 
     let inmueble = inmuebleSeleccionado;
-    //Definimos variable local y le pasamos funcion para calcular promedio
+    //Asignamos valor a parametro promedio de la entidad Inmueble
     inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
     
     muroHtml += `<div>
