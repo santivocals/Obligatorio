@@ -222,6 +222,11 @@ function armarMuro(pInmueblesAMostrar) {
     for (let i = 0; i < itemsVerMas.length; i++) {
         itemsVerMas[i].addEventListener('click', verMasHandler);
     }
+
+    //Borramos cualquier mensaje que pueda haber quedado en el párrafo del filtro de búsqueda
+    //cada vez que recargamos el muro
+    mostrarMensaje('msgHomeFiltroInmueble', '');
+    
 }
 
 //Inmuebles propios del anfitrion
