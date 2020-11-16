@@ -52,7 +52,7 @@ function iniciarApp() {
 
     //Selecciono todos los ver mas
     let verMas = document.querySelectorAll('.ver-mas')
-    
+
     //Los oculto
     ocultarElementos(verMas)
 
@@ -142,7 +142,7 @@ function aRegistroHandler() {
 
 //función de login
 function btnLoginHandler() {
-    
+
     //tomo valor del correo del login
     let txtCorreo = document.getElementById('txtLoginCorreo').value;
 
@@ -233,7 +233,7 @@ function bntRegistroHuespedHandler() {
     let password2 = document.getElementById('txtConfPassword').value
     let tipo = "huesped";
     //Creo array con los ids de los campos para luego utilizar función para borrarlos
-    let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword' ];
+    let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword'];
 
 
     if (validarCampo(nombre)) {
@@ -246,20 +246,30 @@ function bntRegistroHuespedHandler() {
                         limpiarCampos(arrayDeIds);
                     } else {
 
-                        document.getElementById('txtConfPassword').value = "";
                         mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
+                        document.getElementById('txtConfPassword').value = "";
+                        document.getElementById('txtConfPassword').focus();
                     }
                 } else {
                     mostrarMensaje('msgRegistro', 'La contraseña debe contener por lo menos 6 carácteres, letras y números y por lo menos una letra mayúscula');
+                    document.getElementById('txtPassword').value = "";
+                    document.getElementById('txtPassword').focus();
                 }
             } else {
                 mostrarMensaje('msgRegistro', 'Celular inválido');
+                document.getElementById('txtCelular').value = "";
+                document.getElementById('txtCelular').focus();
             }
         } else {
             mostrarMensaje('msgRegistro', 'Apellido inválido');
+            document.getElementById('txtApellido').value = "";
+            document.getElementById('txtApellido').focus();
         }
     } else {
         mostrarMensaje('msgRegistro', 'Nombre inválido');
+        document.getElementById('txtNombre').value = "";
+        document.getElementById('txtNombre').focus();
+
     }
 }
 
@@ -332,7 +342,7 @@ function btnGuardarInmuebleHandler() {
     let precio = document.getElementById('txtInmPrecio').value;
     let anfitrion = usuarioConectado.correo;
     //Creo array con los ids de los campos para luego utilizar función para borrarlos
-    let arrayDeIds = ['txtInmTitulo', 'txtInmDescripción', 'txtInmCiudad','txtInmPrecio'];
+    let arrayDeIds = ['txtInmTitulo', 'txtInmDescripción', 'txtInmCiudad', 'txtInmPrecio'];
 
     //Valido los campos
     if (validarCampo(titulo) && validarCampo(descripcion) && validarCampo(ciudad) && valorNumerico(precio)) {
@@ -377,7 +387,7 @@ function btnAltaAnfitrionHandler() {
     let password2 = document.getElementById('txtConfPassword').value;
     let tipo = "anfitrion";
     //Creo array con los ids de los campos para luego utilizar función para borrarlos
-    let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword' ];
+    let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword'];
 
 
     if (validarCampo(nombre) === true) {
@@ -719,12 +729,12 @@ function verMasHandler() {
 /******************************************************************************* */
 //RESERVAS
 
-function btnGuardarReservaHandler(){
+function btnGuardarReservaHandler() {
 
     let cantNoches = document.getElementById('txtCantidadNoches').value;
 
-    if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0){
-        usuarioConectado.reservas.push(new Reserva(cantNoches,inmuebleSeleccionado));
+    if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0) {
+        usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado));
 
         document.getElementById('msgReservaResultado').innerHTML = `Todo legal`
     } else {
@@ -735,11 +745,11 @@ function btnGuardarReservaHandler(){
 
 /******************************************************************************* */
 //GUARDAR CALIFICACION
-function guardarCalificacionHandler(){
+function guardarCalificacionHandler() {
     let posInm = Number(this.id.substr(22));
     let calificacionIngresada = document.getElementById(`txtCalificacion${posInm}`).value;
 
-    if (valorNumerico(calificacionIngresada) && validarCampo(calificacionIngresada) && calificacionIngresada >= 1 && calificacionIngresada <= 5){
+    if (valorNumerico(calificacionIngresada) && validarCampo(calificacionIngresada) && calificacionIngresada >= 1 && calificacionIngresada <= 5) {
         usuarioConectado.reservas[posInm].calificacion = Number(calificacionIngresada);
         inmuebleSeleccionado.calificaciones.push(Number(calificacionIngresada));
         document.getElementById(`divCalificacion${posInm}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
