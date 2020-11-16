@@ -125,7 +125,7 @@ function aRegistroHandler() {
 
 
     //Esconder links de acceso
-    document.getElementById('aInicio').style.display = 'Block';
+    document.getElementById('aInicio').style.display = 'block';
     document.getElementById('aLogin').style.display = 'block';
     document.getElementById('aRegistrarse').style.display = 'none';
 
@@ -232,6 +232,8 @@ function bntRegistroHuespedHandler() {
     let password = document.getElementById('txtPassword').value
     let password2 = document.getElementById('txtConfPassword').value
     let tipo = "huesped";
+    //Creo array con los ids de los campos para luego utilizar función para borrarlos
+    let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword' ];
 
 
     if (validarCampo(nombre)) {
@@ -239,17 +241,16 @@ function bntRegistroHuespedHandler() {
             if (validarCelular(celular)) {
                 if (validarContrasena(password)) {
                     if (validarConfirmarContrasena(password, password2)) {
-
                         document.getElementById('msgRegistro').innerText = `Registro exitoso`;
                         arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipo))
-
+                        limpiarCampos(arrayDeIds);
                     } else {
 
                         document.getElementById('txtConfPassword').value = "";
                         mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
                     }
                 } else {
-                    mostrarMensaje('msgRegistro', 'La contraseña debe contener por lo menos 6 carácteres, letres y números y por lo menos una letra mayúscula');
+                    mostrarMensaje('msgRegistro', 'La contraseña debe contener por lo menos 6 carácteres, letras y números y por lo menos una letra mayúscula');
                 }
             } else {
                 mostrarMensaje('msgRegistro', 'Celular inválido');
@@ -331,7 +332,7 @@ function btnGuardarInmuebleHandler() {
     let precio = document.getElementById('txtInmPrecio').value;
     let anfitrion = usuarioConectado.correo;
     //Creo array con los ids de los campos para luego utilizar función para borrarlos
-    let arrayDeIds = ['txtInmTitulo', 'txtInmDescripción', 'txtInmCiudad','txtInmPrecio']
+    let arrayDeIds = ['txtInmTitulo', 'txtInmDescripción', 'txtInmCiudad','txtInmPrecio'];
 
     //Valido los campos
     if (validarCampo(titulo) && validarCampo(descripcion) && validarCampo(ciudad) && valorNumerico(precio)) {
@@ -375,6 +376,8 @@ function btnAltaAnfitrionHandler() {
     let password = document.getElementById('txtPassword').value;
     let password2 = document.getElementById('txtConfPassword').value;
     let tipo = "anfitrion";
+    //Creo array con los ids de los campos para luego utilizar función para borrarlos
+    let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword' ];
 
 
     if (validarCampo(nombre) === true) {
@@ -382,10 +385,9 @@ function btnAltaAnfitrionHandler() {
             if (validarCelular(celular)) {
                 if (validarContrasena(password)) {
                     if (validarConfirmarContrasena(password, password2)) {
-
-                        document.getElementById('msgRegistro').innerText = `Registro exitoso`;
+                        mostrarMensaje('msgRegistro', `Registro exitoso`);
                         arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipo))
-
+                        limpiarCampos(arrayDeIds);
                     } else {
                         mostrarMensaje('msgRegistro', 'Contraseñas no coinciden');
                     }
