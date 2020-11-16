@@ -107,7 +107,9 @@ function aLoginHandler() {
 
 //ACCESO A LA PANTALLA DE INICIO
 function aInicioHandler() {
-
+    //Recargo el muro cada vez que entro por si previamente ser realizó algún filtro
+    armarMuro(arrayInmuebles);
+    
     mostrarPantalla('Home');
 
     document.getElementById('aInicio').style.display = 'none';
@@ -593,6 +595,7 @@ function btnHomeFiltrarInmueblesHandler() {
 
             if (inmueblesFiltrados.length > 0) {
                 armarMuro(inmueblesFiltrados);
+                mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
             } else {
 
                 for (let i = 0; i < arrayInmuebles.length; i++) {
@@ -619,7 +622,9 @@ function btnHomeFiltrarInmueblesHandler() {
         mensaje = 'Debe ingresar criterio de búsqueda';
         armarMuro(arrayInmuebles);
     }
+
     document.getElementById('msgHomeFiltroInmueble').innerText = mensaje;
+    limpiarCampos('txtHomeFiltrar');
 }
 
 
