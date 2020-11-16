@@ -70,8 +70,6 @@ function validarCampo(pCadena) {
     return campoValido;
 }
 
-
-//ATENCIÓN: REVISAR QUE FUNCIONE CORRECTAMENTE
 //Función para validar correo
 function validarCorreo(pCorreo) {
     let correoEsValido = false;
@@ -226,7 +224,7 @@ function armarMuro(pInmueblesAMostrar) {
     //Borramos cualquier mensaje que pueda haber quedado en el párrafo del filtro de búsqueda
     //cada vez que recargamos el muro
     mostrarMensaje('msgHomeFiltroInmueble', '');
-    
+
 }
 
 //Inmuebles propios del anfitrion
