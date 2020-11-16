@@ -67,21 +67,15 @@ class Reserva {
 	cantNoches;
 	inmueble;
 	costoReserva;
-	calificacion;
+	calificado;
 
-	constructor(pCantNoches, pInmueble) {
+	constructor(pCantNoches, pInmueble, pCostoReserva) {
 		this.cantNoches = pCantNoches;
+		this.inmueble = pInmueble;
+		this.costoReserva = pCostoReserva;
 
 		//Inicializamos atributos sin recibir información por parámetro
-		this.inmueble = pInmueble;
-		this.costoReserva = pCantNoches * pInmueble.precio;
-		//ATENCIÓN: ARREGLAR CUANDO HAGAMOS EL MÓDULO DE CALIFICACIÓN, NO SE PUEDE INICIALIZAR EN 0
-		//YA QUE 0 ES UN VALOR VÁLIDO DE CALIFICACIÓN Y NO UNA CALIFICACIÓN NO REALIZADA
-		//QUIZÁ SEA BUENA IDEA INCIALIZAR EN 'FALSE' A UNA VARIABLE CALIFICADO Y MANEJAR LA CALIFICACIÓN COMO
-		//UNA VARIABLE GLOBAL QUE SE GUARDE EN EL ARRAY CALIFICACIONES Y QUE PASE A TRUE EL ATRIBUTO 'CALIFICADO´
-		//EN LA ENTIDAD CUANDO EL USUARIO INGRESE LA CALIFICACIÓN, Y DESHABILIE EL BOTÓN DE CALIFICAR SI EL ATRIBUTO
-		//reserva.calificado es True
-		this.calificacion = 0;
+		this.calificado = false;
 	}
 	
 	
