@@ -715,6 +715,9 @@ function btnGuardarReservaHandler() {
     } else {
         document.getElementById('msgReservaResultado').innerHTML = `Noches inválidas`;
     }
+
+    limpiarCampos('txtCantidadNoches');
+
 }
 
 
