@@ -453,12 +453,4 @@ function mostrarElementos(elementos) {
 
 
 
-<<<<<<< Updated upstream
 
-
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-=======
-
->>>>>>> parent of 1497377... Update ayuda.js
