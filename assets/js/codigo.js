@@ -345,10 +345,12 @@ function btnGuardarInmuebleHandler() {
         imagenesSeleccionadas = [];
         //Utlizo función para borrar los campos
         limpiarCampos(arrayDeIds);
+        //Limpiamos parrafo imagenes
+        mostrarMensaje('msgAltaImagenes', '');
         //Vuelvo a deshabilitar botón de guardar
         document.getElementById('btnGuardarInmueble').disabled = true;
-        //Reposicionamos el selector en la primera opcion de la lista
-        document.getElementById("slcAltaImagenes").innerHTML = `<option selected>${arrayImagenes[0]}</option>`;
+        //Rearmamos el selector
+        armarSelectorImagenes();
     } else {
         //Muestro mensaje de error
         mostrarMensaje('msgRegInmueble', 'Debe completar todos los campos');
@@ -513,6 +515,8 @@ function aMisInmueblesAnfHandler() {
 
 function aRegistroInmuebleHandler() {
     mostrarPantalla('RegistroInmueble');
+    //Dejo párrafo vacío por si quedó info del registro anterior
+    mostrarMensaje('msgRegInmueble', '');
 }
 
 /******************************************************************************* */

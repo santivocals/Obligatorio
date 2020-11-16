@@ -224,7 +224,7 @@ function misInmuebles(pInmueblesAMostrar) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i];
-        //Definimos variable local y le pasamos funcion para calcular promedio
+        
         inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
 
         muroHtml += `<div>
@@ -243,9 +243,7 @@ function misInmuebles(pInmueblesAMostrar) {
 
     }
 
-    document.getElementById('divMisInm').innerHTML = muroHtml;
-
-    
+    document.getElementById('divMisInm').innerHTML = muroHtml;   
 
 }
 
@@ -302,8 +300,8 @@ function armarGaleria() {
 
     let inmueble = inmuebleSeleccionado;
     //Definimos variable local y le pasamos funcion para calcular promedio
-    let promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
-
+    inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
+    
     muroHtml += `<div>
         <h2>${inmueble.titulo}</h2>
         <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
@@ -317,7 +315,7 @@ function armarGaleria() {
         </div>
         <div>
             <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
-                <strong>${promedio}</strong></label>
+                <strong>${inmueble.promedio}</strong></label>
         </div>
         <p>${inmueble.descripcion}</p>
         <hr>
