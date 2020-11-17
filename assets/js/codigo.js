@@ -740,6 +740,7 @@ function guardarCalificacionHandler() {
     if (valorNumerico(calificacionIngresada) && validarCampo(calificacionIngresada) && calificacionIngresada >= 1 && calificacionIngresada <= 5) {
         usuarioConectado.reservas[posInm].calificacion = Number(calificacionIngresada);
         inmuebleSeleccionado.calificaciones.push(Number(calificacionIngresada));
+        inmuebleSeleccionado.promedio = promedio(sumarArray(inmuebleSeleccionado.calificaciones), inmuebleSeleccionado.calificaciones.length, 1);
         document.getElementById(`divCalificacion${posInm}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
     }
 }
