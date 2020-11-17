@@ -738,9 +738,15 @@ function guardarCalificacionHandler() {
     let calificacionIngresada = document.getElementById(`txtCalificacion${posInm}`).value;
 
     if (valorNumerico(calificacionIngresada) && validarCampo(calificacionIngresada) && calificacionIngresada >= 1 && calificacionIngresada <= 5) {
+        //Pasamos parámetro de califacion a la reserva
         usuarioConectado.reservas[posInm].calificacion = Number(calificacionIngresada);
+        //Ingresamo calificacion al inmueble seleccionado
         inmuebleSeleccionado.calificaciones.push(Number(calificacionIngresada));
+        //Ingresamos el promedio al mueble seleccionado
         inmuebleSeleccionado.promedio = promedio(sumarArray(inmuebleSeleccionado.calificaciones), inmuebleSeleccionado.calificaciones.length, 1);
+        //Cambiamos el atributo de la reserva .calificado a true
+        usuarioConectado.reservas[posInm].calificado = true;
+        //Mensaje de éxito
         document.getElementById(`divCalificacion${posInm}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
     }
 }
