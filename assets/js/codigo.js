@@ -123,7 +123,7 @@ function aRegistroHandler() {
     obtenerTipo();
     //Preparo dinámicamente el botón de alta y título del html Registro de huéspedes
     document.getElementById('tituloRegistro').innerHTML = `<h3 id="tituloRegistroHuesped">Registro de Huéspedes</h3>`
-    document.getElementById('btnRegistro').innerHTML = `<input type="button" value="Registrar" id="btnRegistro"></input>`;
+    document.getElementById('btnRegistro').innerHTML = `<td></td> <td><input type="button" value="Registrar" id="btnRegistro"></input></td>`;
 
     mostrarPantalla('Registro');
 
@@ -507,7 +507,7 @@ function pantallasAdmin() {
     //Preparo Registro Administrador
     //Preparo dinámicamente el botón de alta y título del html altaAnfitrión
     document.getElementById('tituloRegistro').innerHTML = `<h3 id="tituloAltaAnfitrion">Alta de anfitrión</h3>`
-    document.getElementById('btnRegistro').innerHTML = `<input type="button" value="Alta anfitrión" id="btnRegistro"></input>`;
+    document.getElementById('btnRegistro').innerHTML = `<td></td> <td><input type="button" value="Alta anfitrión" id="btnRegistro"></input></td>`;
     //Limpiamos parrafo de mensaje por si quedó de algún registro previo
     mostrarMensaje('msgRegistro', '');
 
@@ -578,6 +578,7 @@ function btnHomeFiltrarInmueblesHandler() {
         }
         if (inmueblesFiltrados.length > 0) {
             armarMuro(inmueblesFiltrados);
+            mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
         } else {
 
             for (let i = 0; i < arrayInmuebles.length; i++) {
@@ -605,6 +606,7 @@ function btnHomeFiltrarInmueblesHandler() {
 
                 if (inmueblesFiltrados.length > 0) {
                     armarMuro(inmueblesFiltrados);
+                    mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
                 } else {
                     mensaje = 'No existen resultados para su búsqueda';
                     armarMuro(0);
