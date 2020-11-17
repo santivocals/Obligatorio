@@ -58,7 +58,7 @@ function iniciarApp() {
 
     //clicks filtros y monedas
     /* document.getElementById("btnHomeFiltro").addEventListener("click", btnHomeFiltroHandler); */
-    document.getElementById("btnCambiarMoneda").addEventListener("click", labelMonedaHandler);
+    document.getElementById("btnCambiarMoneda").addEventListener("click", btnMonedaHandler);
 
 
 }
@@ -405,7 +405,7 @@ function obtenerPrecio(importe) {
 }
 
 //función del handler del cambio de moneda
-function labelMonedaHandler() {
+function btnMonedaHandler() {
     //me guardo la moneda anterior (string)
     let monedaAnterior = moneda;
 
@@ -701,18 +701,22 @@ function verMasHandler() {
 
 /******************************************************************************* */
 //RESERVAS
-
-function btnGuardarReservaHandler() {
-
+function btnSolicitarHandler(){
     let cantNoches = document.getElementById('txtCantidadNoches').value;
     let precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
-
+    document.getElementById('btnGuardarReserva').style.display = 'block';
     if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0) {
-        usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
         document.getElementById('msgReservaResultado').innerHTML = `Precio total: ${moneda} ${precioTotal}`;
     } else {
         document.getElementById('msgReservaResultado').innerHTML = `Noches inválidas`;
+        document.getElementById('btnGuardarReserva').style.display = 'none';
     }
+}
+
+
+function btnGuardarReservaHandler(cantNoches,precioTotal) {
+
+       usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
 
     limpiarCampos('txtCantidadNoches');
 
