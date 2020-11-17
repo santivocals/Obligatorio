@@ -804,4 +804,20 @@ function btnFiltroMontosHandler() {
 }
 
 
+crearBoton('btnHomeFiltarInm', btnHomeFiltrarInm);
 
+function btnHomeFiltrarInm() {
+
+    let criterio = document.getElementById('btnHomeFiltarInm').value;
+
+    if (criterio === "Filtrar por popularidad") {
+        document.getElementById('btnHomeFiltarInm').value = "Filtrar por precio";
+        armarMuro(arrayInmuebles)
+    } else {
+        document.getElementById('btnHomeFiltarInm').value = "Filtrar por popularidad";
+        criterioOrden = "precio";
+        armarMuro(arrayInmuebles)
+    }
+
+
+}

@@ -517,9 +517,15 @@ function criterioOrdenPopu(pInmueble1, pInmueble2) {
 
     let ponderacion;
 
-    if(pInmueble1.promedio > pInmueble2.promedio){
+    if (pInmueble1.promedio > pInmueble2.promedio) {
         ponderacion = -1;
-    } else{
+    } else if (pInmueble1.promedio === pInmueble2.promedio) {
+        if (pInmueble1.precio > pInmueble2.precio) {
+            ponderacion = -1;
+        } else {
+            ponderacion = 1;
+        }
+    } else {
         ponderacion = 1;
     }
     return ponderacion;
@@ -532,9 +538,15 @@ function criterioOrdenPrecio(pInmueble1, pInmueble2) {
 
     let ponderacion;
 
-    if(pInmueble1.precio > pInmueble2.precio){
+    if (pInmueble1.precio > pInmueble2.precio) {
         ponderacion = -1;
-    } else{
+    } else if (pInmueble1.precio === pInmueble2.precio) {
+        if (pInmueble1.promedio > pInmueble2.promedio) {
+            ponderacion = -1;
+        } else {
+            ponderacion = 1;
+        }
+    } else {
         ponderacion = 1;
     }
     return ponderacion;
