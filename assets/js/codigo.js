@@ -701,9 +701,13 @@ function verMasHandler() {
 
 /******************************************************************************* */
 //RESERVAS
-function btnSolicitarHandler(){
-    let cantNoches = document.getElementById('txtCantidadNoches').value;
-    let precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
+
+let cantNoches;
+let precioTotal;
+
+function btnSolicitarHandler(){ 
+    cantNoches = document.getElementById('txtCantidadNoches').value;
+    precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
     document.getElementById('btnGuardarReserva').style.display = 'block';
     if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0) {
         document.getElementById('msgReservaResultado').innerHTML = `Precio total: ${moneda} ${precioTotal}`;
@@ -715,17 +719,10 @@ function btnSolicitarHandler(){
 
 
 function btnGuardarReservaHandler() {
-    let cantNoches = document.getElementById('txtCantidadNoches').value;
-    let precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
-
-    if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0) {
         usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
-    } else {
-        document.getElementById('msgReservaResultado').innerHTML = `Noches inválidas`;
+        document.getElementById('msgReservaResultado').innerHTML = `Reserva exitosa`;
         document.getElementById('btnGuardarReserva').style.display = 'none';
-    }
-
-    limpiarCampos('txtCantidadNoches');
+        limpiarCampos('txtCantidadNoches');
 
 }
 
