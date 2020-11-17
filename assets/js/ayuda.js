@@ -215,6 +215,7 @@ function armarMuro(pInmueblesAMostrar) {
     }
 
     document.getElementById('divMuro').innerHTML = muroHtml;
+    document.getElementById('divReporte').innerHTML = muroHtml;
 
     //agregar handler a los "ver mas"
     //selecciono los items ver más
@@ -406,7 +407,7 @@ function armarGaleria() {
 //Funcion validar numero
 function valorNumerico(pNumero) {
     let esNumero;
-    if (!isNaN(pNumero) && pNumero !== '') {
+    if (!isNaN(pNumero)) {
         esNumero = true;
     } else {
         esNumero = false;
