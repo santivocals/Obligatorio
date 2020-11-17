@@ -190,65 +190,33 @@ function armarMuro(pInmueblesAMostrar) {
 
     let muroHtml = "";
 
-    if(criterioOrden === "popularidad"){
+    pInmueblesAMostrar.sort(criterioOrdenPopu);
 
-        pInmueblesAMostrar.sort(criterioOrdenPopu);
+    for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
-        for (let i = 0; i < pInmueblesAMostrar.length; i++) {
-    
-            let inmueble = pInmueblesAMostrar[i];
-    
-            if (inmueble.habilitado === true){
-            //Asignamos valor a parametro promedio de la entidad Inmueble
-            inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
-    
-            muroHtml += `<div>
-            <h2>${inmueble.titulo}</h2>
-            <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
-            <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
-            <div>
-                <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
-                    <strong>${inmueble.promedio}</strong></label>
-            </div>
-            <p>${inmueble.descripcion}</p>
-            <p class="ver-mas" id="verMas${i}">
-                Ver más...
-            </p>
-            <hr>
-            </div>`
-            }
+        let inmueble = pInmueblesAMostrar[i];
+
+        if (inmueble.habilitado === true){
+        //Asignamos valor a parametro promedio de la entidad Inmueble
+        inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
+
+        muroHtml += `<div>
+        <h2>${inmueble.titulo}</h2>
+        <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
+        <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
+        <div>
+            <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
+                <strong>${inmueble.promedio}</strong></label>
+        </div>
+        <p>${inmueble.descripcion}</p>
+        <p class="ver-mas" id="verMas${i}">
+            Ver más...
+        </p>
+        <hr>
+        </div>`
         }
-    } else{
 
-        pInmueblesAMostrar.sort(criterioOrdenPrecio);
-
-        for (let i = 0; i < pInmueblesAMostrar.length; i++) {
-    
-            let inmueble = pInmueblesAMostrar[i];
-    
-            if (inmueble.habilitado === true){
-            //Asignamos valor a parametro promedio de la entidad Inmueble
-            inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
-    
-            muroHtml += `<div>
-            <h2>${inmueble.titulo}</h2>
-            <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
-            <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
-            <div>
-                <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
-                    <strong>${inmueble.promedio}</strong></label>
-            </div>
-            <p>${inmueble.descripcion}</p>
-            <p class="ver-mas" id="verMas${i}">
-                Ver más...
-            </p>
-            <hr>
-            </div>`
-            }
-        }
     }
-
-    
 
     document.getElementById('divMuro').innerHTML = muroHtml;
     document.getElementById('divReporte').innerHTML = muroHtml;
@@ -332,10 +300,6 @@ function btnDesInmuebleHandler(){
     arrayInmuebles[posicion].habilitado = false;
 
 }
-
-
-
-
 
 //Calificación del Inmueble
 
