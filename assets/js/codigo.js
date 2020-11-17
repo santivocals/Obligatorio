@@ -758,18 +758,68 @@ function obtenerTipo() {
 
 
 //Funcion para filtrar inmubles por popularidad y por precio
+let arrayInmueblesCopia = [...arrayInmuebles];
 crearBoton('btnHomeFiltarInm', btnHomeFiltro);
 
 function btnHomeFiltro() {
-    let valor = document.getElementById('btnHomeFiltarInm').value;
 
-    if (valor === "Filtrar por popularidad") {
+    let criterio = document.getElementById('btnHomeFiltarInm').value;
+
+      if(criterio === "Filtrar por popularidad"){
         document.getElementById('btnHomeFiltarInm').value = "Filtrar por precio";
-    } else {
-        document.getElementById('btnHomeFiltarInm').value = "Filtrar por popularidad"
-    }
+      } else{
+        document.getElementById('btnHomeFiltarInm').value = "Filtrar por popularidad";
+        criterioOrden = "precio";
+      }
+
 
 }
+
+function criterioOrdenPopu(pInmueble1, pInmueble2){
+
+    let ponderacion;
+
+    for(let i = 0; i < arrayInmueblesCopia.length; i++){
+
+        if(pInmueble1.promedio > pInmueble2.promedio){
+            ponderacion = -1;
+        } else {
+            ponderacion = 1;
+        }
+    }
+    return ponderacion;
+}
+
+function criterioOrdenPrecio(pInmueble1, pInmueble2){
+
+    let ponderacion;
+
+    for(let i = 0;i < arrayInmueblesCopia.length; i++){
+
+        if(pInmueble1.precio > pInmueble2.precio){
+            ponderacion = -1;
+        } else {
+            ponderacion = 1;
+        }
+    }
+    return ponderacion;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //********************************************************************* */
