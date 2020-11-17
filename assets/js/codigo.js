@@ -812,6 +812,7 @@ function btnHomeFiltrarInm() {
 
     if (criterio === "Filtrar por popularidad") {
         document.getElementById('btnHomeFiltarInm').value = "Filtrar por precio";
+        criterioOrden = "popularidad";
         armarMuro(arrayInmuebles)
     } else {
         document.getElementById('btnHomeFiltarInm').value = "Filtrar por popularidad";
