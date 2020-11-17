@@ -714,7 +714,10 @@ function btnSolicitarHandler(){
     } else {
         document.getElementById('msgReservaResultado').innerHTML = `Noches inválidas`;
         document.getElementById('btnGuardarReserva').style.display = 'none';
+        
     }
+
+    limpiarCampos('txtCantidadNoches');
 }
 
 
@@ -722,9 +725,10 @@ function btnGuardarReservaHandler() {
         usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
         document.getElementById('msgReservaResultado').innerHTML = `Reserva exitosa`;
         document.getElementById('btnGuardarReserva').style.display = 'none';
-        limpiarCampos('txtCantidadNoches');
 
 }
+
+
 
 
 /******************************************************************************* */
