@@ -705,7 +705,7 @@ function verMasHandler() {
 let cantNoches;
 let precioTotal;
 
-function btnSolicitarHandler(){ 
+function btnSolicitarHandler() {
     cantNoches = document.getElementById('txtCantidadNoches').value;
     precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
     document.getElementById('btnGuardarReserva').style.display = 'block';
@@ -714,7 +714,7 @@ function btnSolicitarHandler(){
     } else {
         document.getElementById('msgReservaResultado').innerHTML = `Noche(s) inválidas`;
         document.getElementById('btnGuardarReserva').style.display = 'none';
-        
+
     }
 
     limpiarCampos('txtCantidadNoches');
@@ -722,9 +722,9 @@ function btnSolicitarHandler(){
 
 
 function btnGuardarReservaHandler() {
-        usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
-        document.getElementById('msgReservaResultado').innerHTML = `Reserva exitosa`;
-        document.getElementById('btnGuardarReserva').style.display = 'none';
+    usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
+    document.getElementById('msgReservaResultado').innerHTML = `Reserva exitosa`;
+    document.getElementById('btnGuardarReserva').style.display = 'none';
 
 }
 
@@ -754,73 +754,6 @@ function obtenerTipo() {
         tipo = 'admin';
     }
 }
-
-
-
-//Funcion para filtrar inmubles por popularidad y por precio
-let arrayInmueblesCopia = [...arrayInmuebles];
-crearBoton('btnHomeFiltarInm', btnHomeFiltro);
-
-function btnHomeFiltro() {
-
-    let criterio = document.getElementById('btnHomeFiltarInm').value;
-
-      if(criterio === "Filtrar por popularidad"){
-        document.getElementById('btnHomeFiltarInm').value = "Filtrar por precio";
-      } else{
-        document.getElementById('btnHomeFiltarInm').value = "Filtrar por popularidad";
-        criterioOrden = "precio";
-      }
-
-
-}
-
-function criterioOrdenPopu(pInmueble1, pInmueble2){
-
-    let ponderacion;
-
-    for(let i = 0; i < arrayInmueblesCopia.length; i++){
-
-        if(pInmueble1.promedio > pInmueble2.promedio){
-            ponderacion = -1;
-        } else {
-            ponderacion = 1;
-        }
-    }
-    return ponderacion;
-}
-
-function criterioOrdenPrecio(pInmueble1, pInmueble2){
-
-    let ponderacion;
-
-    for(let i = 0;i < arrayInmueblesCopia.length; i++){
-
-        if(pInmueble1.precio > pInmueble2.precio){
-            ponderacion = -1;
-        } else {
-            ponderacion = 1;
-        }
-    }
-    return ponderacion;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //********************************************************************* */
 crearBoton('btnFiltroMontos', btnFiltroMontosHandler)
@@ -869,3 +802,6 @@ function btnFiltroMontosHandler() {
     document.getElementById('msgResultadoFiltroMonto').innerText = mensaje;
 
 }
+
+
+
