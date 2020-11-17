@@ -105,7 +105,7 @@ function aLoginHandler() {
 function aInicioHandler() {
     //Recargo el muro cada vez que entro por si previamente ser realizó algún filtro
     armarMuro(arrayInmuebles);
-    
+
     mostrarPantalla('Home');
 
     document.getElementById('aInicio').style.display = 'none';
@@ -208,7 +208,7 @@ function btnLoginHandler() {
 
         //Pasamos funcion para dar valor a variable tipo usada en el registro
         obtenerTipo();
-        
+
     }
 
 }
@@ -231,7 +231,7 @@ function bntRegistroHandler() {
 
         document.getElementById('aInicio').style.display = 'block';
         document.getElementById('aRegistrarse').style.display = 'none';
-    }        
+    }
 
     //CÓDIGO COMÚN A AMBOS REGISTROS
     //Nota: Recordamos qque la variable global 'tipo' se asigna cuando admin se loguea o cuando huesped entra a menú de "Registrarse"
@@ -701,6 +701,7 @@ function verMasHandler() {
 
 /******************************************************************************* */
 //RESERVAS
+<<<<<<< Updated upstream
 
 let cantNoches;
 let precioTotal;
@@ -708,6 +709,11 @@ let precioTotal;
 function btnSolicitarHandler(){ 
     cantNoches = document.getElementById('txtCantidadNoches').value;
     precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
+=======
+function btnSolicitarHandler() {
+    let cantNoches = document.getElementById('txtCantidadNoches').value;
+    let precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
+>>>>>>> Stashed changes
     document.getElementById('btnGuardarReserva').style.display = 'block';
     if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0) {
         document.getElementById('msgReservaResultado').innerHTML = `Precio total: ${moneda} ${precioTotal}`;
@@ -754,14 +760,64 @@ function obtenerTipo() {
 
 
 //Funcion para filtrar inmubles por popularidad y por precio
-crearBoton('btnHomeFiltarInm',btnHomeFiltro);
-function btnHomeFiltro(){
+crearBoton('btnHomeFiltarInm', btnHomeFiltro);
+
+function btnHomeFiltro() {
     let valor = document.getElementById('btnHomeFiltarInm').value;
 
-    if(valor === "Filtrar por popularidad"){
+    if (valor === "Filtrar por popularidad") {
         document.getElementById('btnHomeFiltarInm').value = "Filtrar por precio";
-    } else{
+    } else {
         document.getElementById('btnHomeFiltarInm').value = "Filtrar por popularidad"
     }
-  
+
+}
+
+
+//********************************************************************* */
+crearBoton('btnFiltroMontos', btnFiltroMontosHandler)
+
+function btnFiltroMontosHandler() {
+    let montoDesde = (document.getElementById('txtMontoDesde').value).trim();
+    let montoHasta = (document.getElementById('txtMontoHasta').value).trim();
+
+    let inmueblesFiltrados = [];
+    let mensaje = '';
+
+    for (let i = 0; i < arrayInmuebles.length; i++) {
+
+        let inmueble = arrayInmuebles[i];
+        if (montoDesde === '' && montoHasta === '') {
+            inmueblesFiltrados.push(inmueble)
+
+        } else if (valorNumerico(montoDesde) && montoHasta === '') {
+
+            if (inmueble.precio >= Number(montoDesde)) {
+                inmueblesFiltrados.push(inmueble)
+            }
+
+        } else if (montoDesde === '' && valorNumerico(montoHasta)) {
+
+            if (inmueble.precio <= Number(montoHasta)) {
+                inmueblesFiltrados.push(inmueble)
+            }
+
+        } else if (valorNumerico(montoDesde) && valorNumerico(montoHasta)) {
+
+            if (inmueble.precio >= Number(montoDesde) && inmueble.precio <= Number(montoHasta)) {
+                inmueblesFiltrados.push(inmueble)
+            }
+        }
+
+    }
+    if (inmueblesFiltrados.length > 0) {
+        armarMuro(inmueblesFiltrados);
+        mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
+    } else {
+        mensaje = 'No existen resultados para su búsqueda';
+        armarMuro(0);
+    }
+
+    document.getElementById('msgResultadoFiltroMonto').innerText = mensaje;
+
 }
