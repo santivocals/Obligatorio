@@ -714,9 +714,16 @@ function btnSolicitarHandler(){
 }
 
 
-function btnGuardarReservaHandler(cantNoches,precioTotal) {
+function btnGuardarReservaHandler() {
+    let cantNoches = document.getElementById('txtCantidadNoches').value;
+    let precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
 
-       usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
+    if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0) {
+        usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
+    } else {
+        document.getElementById('msgReservaResultado').innerHTML = `Noches inválidas`;
+        document.getElementById('btnGuardarReserva').style.display = 'none';
+    }
 
     limpiarCampos('txtCantidadNoches');
 
