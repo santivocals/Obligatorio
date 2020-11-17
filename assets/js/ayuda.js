@@ -441,7 +441,7 @@ function promedio(pSumatoria, pCantidad, pDigitoPosComa) {
     if (pCantidad === 0) {
         //Si no hacemos el cálculo correspondiente
     } else {
-        promedio = (pSumatoria / pCantidad).toFixed(pDigitoPosComa);
+        promedio = Number((pSumatoria / pCantidad).toFixed(pDigitoPosComa));
     }
 
     return promedio;
