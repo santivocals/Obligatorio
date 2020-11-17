@@ -125,9 +125,10 @@
             <div id="divHome" class="pantalla">
                 <h3>Home</h3>
                 <input type="text" id="txtHomeFiltrar">
-                <input type="button" value="Buscar" id='btnHomeFiltrar'>
-                <input type="button" value="Cambiar a $U" id='btnCambiarMoneda'>
+                <input type="button" value="Buscar" id='btnHomeFiltrar'> <br>
                 <p id="msgHomeFiltroInmueble"></p>
+                <input type="button" value="Cambiar a $U" id='btnCambiarMoneda'>
+                
                 <input type="button" id="btnHomeFiltarInm" value ="Filtrar por popularidad">
                 <div id="divMuro">
 
@@ -222,7 +223,28 @@
 
             <div id="divReporteInmuebles" class="pantalla">
                 <h3>Reporte de inmuebles</h3>
+                <table>
+                    <tr>
+                        <td><label for="txtMontoDesde">Desde</label></td>
+                        <td>$U <input type="text" id="txtMontoDesde"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="txtMontoHasta">Hasta</label></td>
+                        <td>$U <input type="text" id="txtMontoHasta"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="button" value="Filtrar" id="btnFiltroMontos"></td>
+                    </tr>
+                </table>
+                <p id="msgResultadoFiltroMonto"></p>
+                <div id="divReporte"></div>
+                
+                
+                
+                
 
+                
             </div>
             <!--FIN DETALLES-->
 
