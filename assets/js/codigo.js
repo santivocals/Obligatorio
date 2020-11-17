@@ -276,12 +276,12 @@ function bntRegistroHandler() {
                 document.getElementById('txtCorreo').focus();
             }
         } else {
-            mostrarMensaje('msgRegistro', 'Apellido inválido');
+            mostrarMensaje('msgRegistro', 'Debe completar todos los campos');
             limpiarCampos('txtApellido');
             document.getElementById('txtApellido').focus();
         }
     } else {
-        mostrarMensaje('msgRegistro', 'Nombre inválido');
+        mostrarMensaje('msgRegistro', 'Debe completar todos los campos');
         limpiarCampos('txtNombre');
         document.getElementById('txtNombre').focus();
 
