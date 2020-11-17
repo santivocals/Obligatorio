@@ -185,9 +185,12 @@ function mostrarPantalla(pPantalla) {
 
 }
 
+
 function armarMuro(pInmueblesAMostrar) {
 
     let muroHtml = "";
+
+    pInmueblesAMostrar.sort(criterioOrdenPopu);
 
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
@@ -212,6 +215,7 @@ function armarMuro(pInmueblesAMostrar) {
         <hr>
         </div>`
         }
+
     }
 
     document.getElementById('divMuro').innerHTML = muroHtml;
@@ -230,6 +234,8 @@ function armarMuro(pInmueblesAMostrar) {
     mostrarMensaje('msgHomeFiltroInmueble', '');
 
 }
+
+
 
 //Inmuebles propios del anfitrion
 function misInmuebles(pInmueblesAMostrar) {
@@ -504,4 +510,32 @@ function mostrarElementos(elementos) {
         let item = elementos[i];
         item.style.display = 'block';
     }
+}
+
+
+function criterioOrdenPopu(pInmueble1, pInmueble2) {
+
+    let ponderacion;
+
+    if(pInmueble1.promedio > pInmueble2.promedio){
+        ponderacion = -1;
+    } else{
+        ponderacion = 1;
+    }
+    return ponderacion;
+}
+
+
+
+
+function criterioOrdenPrecio(pInmueble1, pInmueble2) {
+
+    let ponderacion;
+
+    if(pInmueble1.precio > pInmueble2.precio){
+        ponderacion = -1;
+    } else{
+        ponderacion = 1;
+    }
+    return ponderacion;
 }
