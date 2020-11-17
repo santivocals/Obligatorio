@@ -14,7 +14,7 @@ arrayUsuarios.push(new Usuario('Fernanda', 'Mayer', 'fernanda@gmail.com', 916892
 let arrayInmuebles = [];
 
 //Creamos inmuebles precargados
-arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 2, ['Casa3.jpeg','Casa2.jpeg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 20, ['Casa3.jpeg','Casa2.jpeg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa de campo', 'Rancho amplio terreno', 'Atlantida', 200, ['Casa1.jpeg','Casa5.jpeg'], 'agustina@gmail.com'));
 
 //array global para el array de archivo de fotos para los inmuebles
@@ -42,4 +42,4 @@ let tipo = '';
 
 //variable global para el orden del muro
 
-let criterioOrden = "popularidad";
+let criterioOrden;
