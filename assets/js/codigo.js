@@ -742,3 +742,18 @@ function obtenerTipo() {
         tipo = 'admin';
     }
 }
+
+
+
+//Funcion para filtrar inmubles por popularidad y por precio
+crearBoton('btnHomeFiltarInm',btnHomeFiltro);
+function btnHomeFiltro(){
+    let valor = document.getElementById('btnHomeFiltarInm').value;
+
+    if(valor === "Filtrar por popularidad"){
+        document.getElementById('btnHomeFiltarInm').value = "Filtrar por precio";
+    } else{
+        document.getElementById('btnHomeFiltarInm').value = "Filtrar por popularidad"
+    }
+  
+}
