@@ -317,10 +317,10 @@ function calificacionInmueble(pInmueblesAMostrar) {
         if (pInmueblesAMostrar[i].calificacion === 0){
             muroHtml += `
             <div id='divCalificacion${[i]}'>
-            <label for="txtCalificacion${[i]}">Calificar</label>
+            <label for="txtCalificacion${[i]}">Calificación</label>
             <input type="text" id="txtCalificacion${[i]}">
     
-            <input type="button" value="Reservar" class="guardarCal" id="btnGuardarCalificacion${[i]}">
+            <input type="button" value="Calificar" class="guardarCal" id="btnGuardarCalificacion${[i]}">
             </div>
             </div>`
         } else {
