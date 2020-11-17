@@ -254,7 +254,6 @@ function misInmuebles(pInmueblesAMostrar) {
         <hr>
         </div>`
 
-
     }
 
    document.getElementById('divMisInm').innerHTML = muroHtml; 
@@ -276,7 +275,6 @@ function misInmuebles(pInmueblesAMostrar) {
         btnDeshabilitar.addEventListener('click', btnDesInmuebleHandler);
     }
 
-    
 
 }
 
@@ -376,15 +374,16 @@ function armarGaleria() {
         <div id="divReserva">
                     <label for="txtCantidadNoches">Cantidad de noches</label>
                     <input type="text" id="txtCantidadNoches">
-
-                    <input type="button" value="Reservar" id="btnGuardarReserva${[i]}">
+                    <input type="button" value="Solicitar" id="btnSolicitar"> <br> <br>
+                    <input type="button" value="Reservar" id="btnGuardarReserva">
                     <p id="msgReservaResultado"></p>
                 </div>
         </div>`
 
     document.getElementById('divDetalleInm').innerHTML = muroHtml;
 
-    crearBoton(`btnGuardarReserva${[i]}`,btnGuardarReservaHandler);
+    crearBoton(`btnSolicitar`,btnSolicitarHandler);
+    crearBoton(`btnGuardarReserva`,btnGuardarReservaHandler);
 
     let imgElement = document.querySelector(".galeria .img-container img");
 
@@ -398,6 +397,8 @@ function armarGaleria() {
     //clicks de la pantalla de detalle (galería)
     document.getElementById("btnGaleriaAnterior").addEventListener("click", btnGaleriaAnteriorHandler);
     document.getElementById("btnGaleriaSiguiente").addEventListener("click", btnGaleriaSiguienteHandler);
+
+    document.getElementById(`btnGuardarReserva`).style.display = 'none';
 
 }
 
