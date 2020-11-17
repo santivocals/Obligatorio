@@ -58,7 +58,7 @@ function iniciarApp() {
 
     //clicks filtros y monedas
     /* document.getElementById("btnHomeFiltro").addEventListener("click", btnHomeFiltroHandler); */
-    document.querySelector(".label-moneda").addEventListener("click", labelMonedaHandler);
+    document.getElementById("btnCambiarMoneda").addEventListener("click", labelMonedaHandler);
 
 
 }
@@ -421,7 +421,7 @@ function labelMonedaHandler() {
     armarMuro(arrayInmuebles);
 
     //modifico la etiqueta para volver a la moneda anterior
-    document.querySelector(".label-moneda").innerText = "Cambiar a " + monedaAnterior;
+    document.getElementById("btnCambiarMoneda").value = `Cambiar a ${monedaAnterior}`;
 }
 
 
