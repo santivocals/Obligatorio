@@ -190,13 +190,24 @@ function armarMuro(pInmueblesAMostrar) {
 
     let muroHtml = "";
 
-    let copiaArray = [...pInmueblesAMostrar];
 
-    copiaArray.sort(criterioOrdenPopu);
+    if (pInmueblesAMostrar !== 0){
+        arrayInmueblesOrden = pInmueblesAMostrar.slice();
+        switch (criterioOrden) {
+            case 'popularidad':
+                arrayInmueblesOrden.sort(criterioOrdenPopu)
+                break;
+            case 'precio':
+                arrayInmueblesOrden.sort(criterioOrdenPrecio)
+                break;
+        }
+    } else {
+        arrayInmueblesOrden = [0];
+    }
 
-    for (let i = 0; i < pInmueblesAMostrar.length; i++) {
+    for (let i = 0; i < arrayInmueblesOrden.length; i++) {
 
-        let inmueble = pInmueblesAMostrar[i];
+        let inmueble = arrayInmueblesOrden[i];
 
         if (inmueble.habilitado === true){
         //Asignamos valor a parametro promedio de la entidad Inmueble
@@ -312,33 +323,33 @@ function calificacionInmueble(pInmueblesAMostrar) {
 
         let inmueble = pInmueblesAMostrar[i].inmueble;
 
-        muroHtml += `<div>
-        <h2>${inmueble.titulo}</h2>
-        <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
-        <hr>
+        muroHtml += `<tr>
+        <td class="tableColumn"><img src="./assets/img/${inmueble.imagenes[0]}"></td>
+        <td class="tableColumn">${inmueble.titulo}</td>
+        <td class="tableColumn" id="tdCalificacion${[i]}">
         
         `
 
-        if (pInmueblesAMostrar[i].calificacion === 0){
+        if (pInmueblesAMostrar[i].calificacion === 0) {
             muroHtml += `
-            <div id='divCalificacion${[i]}'>
+            
             <label for="txtCalificacion${[i]}">Calificación</label>
             <input type="text" id="txtCalificacion${[i]}">
     
             <input type="button" value="Calificar" class="guardarCal" id="btnGuardarCalificacion${[i]}">
-            </div>
-            </div>`
+            </td>
+             </tr>`
         } else {
-            muroHtml +=`
-            <div id='divCalificacion${[i]}'>
+            muroHtml += `
             <p>Su calificación fue de ${pInmueblesAMostrar[i].calificacion}</p>
-            </div>
-            </div>
+            </td>
+                </tr>
+
             `
         }
     }
     
-    document.getElementById('divConsCalf').innerHTML = muroHtml;
+    document.getElementById('tableCalificacion').innerHTML = muroHtml;
 
     let itemsGuardar = document.querySelectorAll('.guardarCal');
     //los recorro y cargo el handler 1 a 1
