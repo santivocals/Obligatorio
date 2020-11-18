@@ -637,6 +637,13 @@ function btnHomeFiltrarInmueblesHandler() {
 
     document.getElementById('msgHomeFiltroInmueble').innerText = mensaje;
     limpiarCampos('txtHomeFiltrar');
+    if (usuarioConectado == null || usuarioConectado == undefined){
+        //Selecciono todos los ver mas
+   let verMas = document.querySelectorAll('.ver-mas')
+
+   //Los oculto
+   ocultarElementos(verMas)
+   }
 }
 
 
@@ -849,7 +856,7 @@ function btnHomeFiltrarInmHandler() {
     }
 
     armarMuro(arrayInmuebles);
-    if (usuarioConectado == null){
+    if (usuarioConectado == null || usuarioConectado == undefined){
          //Selecciono todos los ver mas
     let verMas = document.querySelectorAll('.ver-mas')
 
