@@ -54,7 +54,7 @@ let posicionFotoGaleria;
 let usuarioConectado;
 
 //variable global para la moneda
-let moneda = 'USD';
+let moneda = '$U';
 
 //variable global para la cotización
 let cotizacionDolar = 43;
