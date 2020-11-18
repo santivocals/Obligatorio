@@ -399,11 +399,11 @@ function obtenerPrecio(importe) {
 
     //si la moneda es dólares
     if (moneda === "USD") {
-        //es el mismo precio
-        precioAMostrar = importe;
+        //Hacemos conversión a dolares
+        precioAMostrar = (importe / cotizacionDolar).toFixed(2);
     } else {
-        //sino es dólares el precio es importe * corización
-        precioAMostrar = importe * cotizacionDolar;
+        //sino es dólares el precio es el dado
+        precioAMostrar = importe; 
     }
     //retorno precio
     return precioAMostrar;
