@@ -261,6 +261,7 @@ function misInmuebles(pInmueblesAMostrar) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i];
+        if (inmueble.anfitrion === usuarioConectado.correo) {
         //Asignamos valor a parametro promedio de la entidad Inmueble
         inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
 
@@ -277,6 +278,7 @@ function misInmuebles(pInmueblesAMostrar) {
         <input type="button" id="btnDeshabilitar${i}" class ="btnDeshabilitar" value="Deshabilitar">
         <hr>
         </div>`
+        }
 
     }
 
@@ -305,16 +307,16 @@ function misInmuebles(pInmueblesAMostrar) {
 
 
 function btnHabInmuebleHandler(){
-    posicion = Number(this.id.substr(13)); 
-    arrayInmuebles[posicion].habilitado = true;
+    posicion = Number(this.id.substr(12)); 
+    arrayInmueblesOrden[posicion].habilitado = true;
   
     
 }
 
 
 function btnDesInmuebleHandler(){
-    posicion = Number(this.id.substr(16));  
-    arrayInmuebles[posicion].habilitado = false;
+    posicion = Number(this.id.substr(15));  
+    arrayInmueblesOrden[posicion].habilitado = false;
 
 }
 
