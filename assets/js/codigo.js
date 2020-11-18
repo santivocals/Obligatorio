@@ -703,7 +703,7 @@ function verMasHandler() {
     let posInm = Number(this.id.substr(6));
 
     //cargo la variable global
-    inmuebleSeleccionado = arrayInmuebles[posInm];
+    inmuebleSeleccionado = arrayInmueblesOrden[posInm];
     //armo detalle
     armarGaleria();
     //lo muestro
@@ -751,15 +751,20 @@ function guardarCalificacionHandler() {
     if (valorNumerico(calificacionIngresada) && validarCampo(calificacionIngresada) && calificacionIngresada >= 1 && calificacionIngresada <= 5) {
         //Pasamos parámetro de califacion a la reserva
         usuarioConectado.reservas[posGuardar].calificacion = Number(calificacionIngresada);
+
+        calificacionInmueble(usuarioConectado.reservas)
         //Ingresamo calificacion al inmueble seleccionado
-        inmuebleSeleccionado.calificaciones.push(Number(calificacionIngresada));
+        usuarioConectado.reservas[posGuardar].inmueble.calificaciones.push(Number(calificacionIngresada));
+
         //Ingresamos el promedio al mueble seleccionado
-        inmuebleSeleccionado.promedio = promedio(sumarArray(inmuebleSeleccionado.calificaciones), inmuebleSeleccionado.calificaciones.length, 1);
+        usuarioConectado.reservas[posGuardar].inmueble.promedio = promedio(sumarArray(usuarioConectado.reservas[posGuardar].inmueble.calificaciones), usuarioConectado.reservas[posGuardar].inmueble.calificaciones.length, 1);
         //Cambiamos el atributo de la reserva .calificado a true
         usuarioConectado.reservas[posGuardar].calificado = true;
         //Mensaje de éxito
         document.getElementById(`tdCalificacion${posGuardar}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
+        
     }
+    
 }
 
 /******************************************************************************** */
@@ -822,25 +827,28 @@ function btnFiltroMontosHandler() {
 }
 
 
-crearBoton('btnHomeFiltarInm', btnHomeFiltrarInm);
+crearBoton('btnHomeFiltrarInm', btnHomeFiltrarInmHandler);
 
-function btnHomeFiltrarInm() {
+function btnHomeFiltrarInmHandler() {
 
-    let criterio = document.getElementById('btnHomeFiltarInm').value;
+    let criterio = document.getElementById('btnHomeFiltrarInm').value;
 
     if (criterio === "Filtrar por popularidad") {
-        document.getElementById('btnHomeFiltarInm').value = "Filtrar por precio";
+        document.getElementById('btnHomeFiltrarInm').value = "Filtrar por precio";
         criterioOrden = "precio";
         
     } else {
-        document.getElementById('btnHomeFiltarInm').value = "Filtrar por popularidad";
+        document.getElementById('btnHomeFiltrarInm').value = "Filtrar por popularidad";
         criterioOrden = "popularidad";
     }
 
     armarMuro(arrayInmuebles);
-    //Selecciono todos los ver mas
+    if (usuarioConectado == null){
+         //Selecciono todos los ver mas
     let verMas = document.querySelectorAll('.ver-mas')
 
     //Los oculto
     ocultarElementos(verMas)
+    }
+   
 }
