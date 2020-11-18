@@ -819,13 +819,17 @@ function btnHomeFiltrarInm() {
 
     if (criterio === "Filtrar por popularidad") {
         document.getElementById('btnHomeFiltarInm').value = "Filtrar por precio";
-        criterioOrden = "popularidad";
+        criterioOrden = "precio";
         
     } else {
         document.getElementById('btnHomeFiltarInm').value = "Filtrar por popularidad";
-        criterioOrden = "precio";
+        criterioOrden = "popularidad";
     }
 
     armarMuro(arrayInmuebles);
+    //Selecciono todos los ver mas
+    let verMas = document.querySelectorAll('.ver-mas')
 
+    //Los oculto
+    ocultarElementos(verMas)
 }
