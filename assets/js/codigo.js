@@ -33,13 +33,18 @@ function iniciarApp() {
     crearBoton('aReporteInmuebles', aReporteInmueblesHandler);
 
     //Oculto las opciones que solo tienen los usuarios logueados
-    document.getElementById('anfOp1').style.display = 'none';
+    /* document.getElementById('anfOp1').style.display = 'none';
     document.getElementById('anfOp2').style.display = 'none';
     document.getElementById('huespOp1').style.display = 'none';
     document.getElementById('huespOp2').style.display = 'none';
     document.getElementById('adminOp1').style.display = 'none';
     document.getElementById('adminOp2').style.display = 'none';
-    document.getElementById('adminOp3').style.display = 'none';
+    document.getElementById('adminOp3').style.display = 'none'; */
+    //Selecciono todos los ver mas
+    let menus = document.querySelectorAll('.menu')
+
+    //Los oculto
+    ocultarElementos(menus)
 
 
     //preparo clicks de la pantalla de Login
@@ -452,9 +457,11 @@ function pantallasHuesped() {
     let verMas = document.querySelectorAll('.ver-mas')
     //Los muestro
     mostrarElementos(verMas);
-    document.getElementById('anfOp1').style.display = 'block';
-    document.getElementById('anfOp2').style.display = 'block';
 
+    //Selecciono los menú del huesped
+    let menuHuesp = document.querySelectorAll('.menuHuesp')
+    //Los muestro
+    mostrarElementos(menuHuesp);
 
 }
 
@@ -480,8 +487,10 @@ function aConsultaCalificacionHandler() {
 function pantallasAnfitrion() {
     aMisInmueblesAnfHandler();
 
-    document.getElementById('huespOp1').style.display = 'block';
-    document.getElementById('huespOp2').style.display = 'block';
+     //Selecciono los menú del anfitrión
+     let menuAnf = document.querySelectorAll('.menuAnf')
+     //Los muestro
+     mostrarElementos(menuAnf);
 }
 
 /******************************************************************************* */
@@ -513,9 +522,11 @@ function pantallasAdmin() {
 
     mostrarPantalla('Registro');
 
-    document.getElementById('adminOp1').style.display = 'block';
-    document.getElementById('adminOp2').style.display = 'block';
-    document.getElementById('adminOp3').style.display = 'block';
+    //Selecciono los menú del admin
+    let menuAdmin = document.querySelectorAll('.menuAdmin')
+    //Los muestro
+    mostrarElementos(menuAdmin);
+
 }
 
 /******************************************************************************* */
