@@ -74,6 +74,19 @@ label{
   float:right;
 }
 
+#tableCalificacion {
+  border-collapse: collapse;
+  border: 1px solid #243F5D;
+  width: 660px;
+}
+
+.tableColumn {
+  width: 220px !important;
+  padding: 10px;
+  border-collapse: collapse;
+  border: 1px solid #243F5D;
+}
+
 textarea{
   min-height:80px;
 }
@@ -144,8 +157,11 @@ p.ver-mas {
 }
 
 #contenido img{
-  max-width:100%;
+  max-width:80%;
   margin-bottom: 1%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #lateral {
@@ -211,3 +227,4 @@ input[type="button"]:disabled {
 .btn-siguiente {
     float: right;
 }
+
