@@ -335,17 +335,11 @@ function calificacionInmueble(pInmueblesAMostrar) {
             
             <label for="txtCalificacion${[i]}">Calificación</label>
             <input type="text" id="txtCalificacion${[i]}">
-    
             <input type="button" value="Calificar" class="guardarCal" id="btnGuardarCalificacion${[i]}">
-            </td>
-             </tr>`
+            <p id='msgCalificar${[i]}'></p>`
         } else {
             muroHtml += `
-            <p>Su calificación fue de ${pInmueblesAMostrar[i].calificacion}</p>
-            </td>
-                </tr>
-
-            `
+            <p>Su calificación fue de ${pInmueblesAMostrar[i].calificacion}</p>`
         }
     }
     
