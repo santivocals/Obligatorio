@@ -1,3 +1,7 @@
+//COMENTARIO 
+
+
+
 //Función auxiliar que recibe un id de un input tipo botón y un handler y lo crea
 function crearBoton(pIdBoton, pHandler) {
     document.getElementById(pIdBoton).addEventListener('click', pHandler);
