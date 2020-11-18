@@ -59,7 +59,5 @@ let cotizacionDolar = 43;
 //variable global tipo que utilizamos en registro
 let tipo = '';
 
-
 //variable global para el orden del muro
-
 let criterioOrden = 'popularidad';
