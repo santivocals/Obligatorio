@@ -189,15 +189,22 @@ function mostrarPantalla(pPantalla) {
 function armarMuro(pInmueblesAMostrar) {
 
     let muroHtml = "";
-    let inmuebleOrden = pInmueblesAMostrar.slice();
-    switch (criterioOrden) {
-        case 'popularidad':
-            inmuebleOrden.sort(criterioOrdenPopu)
-            break;
-        case 'precio':
-            inmuebleOrden.sort(criterioOrdenPrecio)
-            break;
+    let inmuebleOrden = [];
+    if (pInmueblesAMostrar !== 0){
+        inmuebleOrden = pInmueblesAMostrar.slice();
+        switch (criterioOrden) {
+            case 'popularidad':
+                inmuebleOrden.sort(criterioOrdenPopu)
+                break;
+            case 'precio':
+                inmuebleOrden.sort(criterioOrdenPrecio)
+                break;
+        }
+    } else {
+        inmuebleOrden = [0];
     }
+    
+    
 
     for (let i = 0; i < inmuebleOrden.length; i++) {
 
