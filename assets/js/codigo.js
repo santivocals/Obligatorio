@@ -650,20 +650,8 @@ function btnHomeFiltrarInmueblesHandler() {
 //Funcion para mostrar inmuebles propios de cada anfitrion
 
 function mostrarInmueblesAnf() {
+        misInmuebles(arrayInmueblesOrden);
 
-    let inmueblesAMostrar = [];
-
-    for (let i = 0; i < arrayInmuebles.length; i++) {
-
-        let inmueble = arrayInmuebles[i]
-
-
-        if (inmueble.anfitrion === usuarioConectado.correo) {
-            inmueblesAMostrar.push(inmueble);
-        }
-
-        misInmuebles(inmueblesAMostrar);
-    }
 
 }
 
