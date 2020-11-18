@@ -763,6 +763,9 @@ function guardarCalificacionHandler() {
         //Mensaje de éxito
         document.getElementById(`tdCalificacion${posGuardar}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
         
+    } else{
+        document.getElementById(`msgCalificar${[i]}`).innerHTML += `<p>Ingrese un numero entre 1 y 5</p>`
+        limpiarCampos(`txtCalificacion${posGuardar}`);
     }
     
 }
