@@ -189,20 +189,24 @@ function mostrarPantalla(pPantalla) {
 function armarMuro(pInmueblesAMostrar) {
 
     let muroHtml = "";
-    let arrayInmueblesOrdenado = pInmueblesAMostrar.sort(criterioOrdenPopu);
+    let inmuebleOrden = pInmueblesAMostrar.slice();
+    switch (criterioOrden) {
+        case 'popularidad':
+            inmuebleOrden.sort(criterioOrdenPopu)
+            break;
+        case 'precio':
+            inmuebleOrden.sort(criterioOrdenPrecio)
+            break;
+    }
 
-    if(criterioOrden === "popularidad"){
+    for (let i = 0; i < inmuebleOrden.length; i++) {
 
-        pInmueblesAMostrar.sort(criterioOrdenPopu);
+        let inmueble = inmuebleOrden[i];
 
-        for (let i = 0; i < pInmueblesAMostrar.length; i++) {
-    
-            let inmueble = pInmueblesAMostrar[i];
-    
-            if (inmueble.habilitado === true){
+        if (inmueble.habilitado === true) {
             //Asignamos valor a parametro promedio de la entidad Inmueble
             inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
-    
+
             muroHtml += `<div>
             <h2>${inmueble.titulo}</h2>
             <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
@@ -217,57 +221,25 @@ function armarMuro(pInmueblesAMostrar) {
             </p>
             <hr>
             </div>`
-            }
         }
-    } else{
 
-        pInmueblesAMostrar.sort(criterioOrdenPrecio);
+        document.getElementById('divMuro').innerHTML = muroHtml;
+        document.getElementById('divReporte').innerHTML = muroHtml;
 
-        for (let i = 0; i < pInmueblesAMostrar.length; i++) {
-    
-            let inmueble = pInmueblesAMostrar[i];
-    
-            if (inmueble.habilitado === true){
-            //Asignamos valor a parametro promedio de la entidad Inmueble
-            inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
-    
-            muroHtml += `<div>
-            <h2>${inmueble.titulo}</h2>
-            <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
-            <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
-            <div>
-                <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
-                    <strong>${inmueble.promedio}</strong></label>
-            </div>
-            <p>${inmueble.descripcion}</p>
-            <p class="ver-mas" id="verMas${i}">
-                Ver más...
-            </p>
-            <hr>
-            </div>`
-            }
+        //agregar handler a los "ver mas"
+        //selecciono los items ver más
+        let itemsVerMas = document.querySelectorAll('.ver-mas');
+        //los recorro y cargo el handler 1 a 1
+        for (let i = 0; i < itemsVerMas.length; i++) {
+            itemsVerMas[i].addEventListener('click', verMasHandler);
         }
+
+        //Borramos cualquier mensaje que pueda haber quedado en el párrafo del filtro de búsqueda
+        //cada vez que recargamos el muro
+        mostrarMensaje('msgHomeFiltroInmueble', '');
+
     }
-
-    
-
-    document.getElementById('divMuro').innerHTML = muroHtml;
-    document.getElementById('divReporte').innerHTML = muroHtml;
-
-    //agregar handler a los "ver mas"
-    //selecciono los items ver más
-    let itemsVerMas = document.querySelectorAll('.ver-mas');
-    //los recorro y cargo el handler 1 a 1
-    for (let i = 0; i < itemsVerMas.length; i++) {
-        itemsVerMas[i].addEventListener('click', verMasHandler);
-    }
-
-    //Borramos cualquier mensaje que pueda haber quedado en el párrafo del filtro de búsqueda
-    //cada vez que recargamos el muro
-    mostrarMensaje('msgHomeFiltroInmueble', '');
-
 }
-
 
 
 //Inmuebles propios del anfitrion
