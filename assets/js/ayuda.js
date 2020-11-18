@@ -325,6 +325,7 @@ function btnDesInmuebleHandler(){
 function calificacionInmueble(pInmueblesAMostrar) {
     let muroHtml = "";
 
+    if (pInmueblesAMostrar > 0) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i].inmueble;
@@ -348,8 +349,12 @@ function calificacionInmueble(pInmueblesAMostrar) {
             <p>Su calificación fue de ${pInmueblesAMostrar[i].calificacion}</p>`
         }
     }
-    
     document.getElementById('tableCalificacion').innerHTML = muroHtml;
+} else {
+    document.getElementById('msgCalificarReserva').innerText = `No ha realizado ninguna reserva.`;
+}
+    
+    
 
     let itemsGuardar = document.querySelectorAll('.guardarCal');
     //los recorro y cargo el handler 1 a 1
