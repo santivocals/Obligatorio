@@ -1,5 +1,6 @@
 //Funciones para validaciones
 
+
 //Función auxiliar que recibe un id de un input tipo botón y un handler y lo crea
 function crearBoton(pIdBoton, pHandler) {
     document.getElementById(pIdBoton).addEventListener('click', pHandler);
@@ -58,6 +59,26 @@ function limpiarCampos(pParametro) {
         document.getElementById(pParametro).value = '';
     }
 
+}
+
+//Función para obtener la variable 'tipo' usada para el registro
+function obtenerTipo() {
+    if (usuarioConectado === undefined || usuarioConectado === null) {
+        tipoRegistro = 'huesped';
+    } else if (usuarioConectado.tipo === 'admin') {
+        tipoRegistro = 'admin';
+    }
+}
+
+//Función para resetear moneda a $U y criterioOrden a 'Popular'
+function reseteoCriteriosYMoneda() {
+    if (moneda === 'USD') {
+        btnMonedaHandler();
+    }
+
+    if (criterioOrden === 'precio') {
+        btnHomeFiltrarInmHandler();
+    }
 }
 
 //Funcion para validar que campo no esté vacio (Nota: Chequeada por San. No encontré errores. 15/11)
@@ -324,6 +345,23 @@ function criterioOrdenPrecio(pInmueble1, pInmueble2) {
     return ponderacion;
 }
 
+//función que recibe un importe del inmueble y retorna el importe en la 
+//moneda correspondiente.
+function obtenerPrecio(importe) {
+    let precioAMostrar;
+
+    //si la moneda es dólares
+    if (moneda === "USD") {
+        //Hacemos conversión a dolares
+        precioAMostrar = (importe / cotizacionDolar).toFixed(2);
+    } else {
+        //sino es dólares el precio es el dado
+        precioAMostrar = importe;
+    }
+    //retorno precio
+    return precioAMostrar;
+}
+
 //Funcion para mostrar pantalla. Recibe como parametro la pantalla que se quiere mostrar y oculta las demás
 function mostrarPantalla(pPantalla) {
 
@@ -400,7 +438,7 @@ function armarMuro(pInmueblesAMostrar) {
 
 
     document.getElementById('divMuro').innerHTML = muroHtml;
-    
+
 
     //agregar handler a los "ver mas"
     //selecciono los items ver más
@@ -422,7 +460,7 @@ function calificacionInmueble(pInmueblesAMostrar) {
     let muroHtml = "";
 
     if (pInmueblesAMostrar.length > 0) {
-        for (let i = ((pInmueblesAMostrar.length)-1); i >= 0; i--) {
+        for (let i = ((pInmueblesAMostrar.length) - 1); i >= 0; i--) {
 
             let inmueble = pInmueblesAMostrar[i].inmueble;
 
@@ -615,7 +653,7 @@ function btnDesInmuebleHandler() {
 //ADMIN
 
 //Reporte de inmuebles
-function reporteInm(pInmueblesAMostrar){
+function reporteInm(pInmueblesAMostrar) {
     let muroHtml = "";
 
     if (pInmueblesAMostrar !== 0) {
@@ -623,7 +661,7 @@ function reporteInm(pInmueblesAMostrar){
             let inmueble = pInmueblesAMostrar[i];
             if (inmueble.habilitado === true) {
                 //Asignamos valor a parametro promedio de la entidad Inmueble
-    
+
                 muroHtml += `<tr>
                 <td class="tableColumn"><img src="./assets/img/${inmueble.imagenes[0]}"></td>
                 <td class="tableColumn">${inmueble.titulo}</td>
@@ -636,6 +674,6 @@ function reporteInm(pInmueblesAMostrar){
     }
 
 
-    
+
     document.getElementById('tableReporte').innerHTML = muroHtml;
 }
