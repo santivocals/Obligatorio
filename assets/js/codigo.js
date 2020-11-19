@@ -59,7 +59,6 @@ function iniciarApp() {
 
 
     //clicks filtros y monedas
-    /* document.getElementById("btnHomeFiltro").addEventListener("click", btnHomeFiltroHandler); */
     document.getElementById("btnCambiarMoneda").addEventListener("click", btnMonedaHandler);
 
 
@@ -106,14 +105,9 @@ function aLoginHandler() {
 
 //ACCESO A LA PANTALLA DE INICIO
 function aInicioHandler() {
-    //Llamamos función para cambiar moneda
-    if (moneda === 'USD')  {
-        btnMonedaHandler();
-    }
+    //Llamamos función para cambiar criterioOrden y moneda
+    reseteoCriteriosYMoneda();
 
-    if (criterioOrden === 'precio')  {
-        btnHomeFiltrarInmHandler();
-    }
     //Recargo el muro cada vez que entro por si previamente ser realizó algún filtro
     armarMuro(arrayInmuebles);
 
@@ -129,11 +123,6 @@ function aInicioHandler() {
 //ACCESO A LA PANTALLA DE REGISTRO HUESPED
 function aRegistroHandler() {
      
-    //Limpiamos parrafo de mensaje por si quedó de algún registro previo
-    mostrarMensaje('msgRegistro', '');
-    //Pasamos funcion para dar valor a variable 'tipo' usada en el registro
-    obtenerTipo();
-    //Preparo dinámicamente el botón de alta y título del html Registro de huéspedes
     document.getElementById('tituloRegistro').innerHTML = `<h3 id="tituloRegistroHuesped">Registro de Huéspedes</h3>`
     document.getElementById('btnRegistro').innerHTML = `<td></td> <td><input type="button" value="Registrar" id="btnRegistro"></input></td>`;
 
@@ -218,15 +207,8 @@ function btnLoginHandler() {
         //limpiamos campos de texto
         limpiarCampos(arrayDeIds);
 
-         //Llamamos función para cambiar moneda si está en USD para que aparezca en $U
-         if (moneda === 'USD')  {
-            btnMonedaHandler();
-        }
-
-        if (criterioOrden === 'precio')  {
-            btnHomeFiltrarInmHandler();
-        }
-
+        //Llamamos función para cambiar criterioOrden y moneda
+        reseteoCriteriosYMoneda();
 
         //Pasamos funcion para dar valor a variable tipo usada en el registro
         obtenerTipo();
@@ -452,14 +434,8 @@ function btnMonedaHandler() {
 
 function aCerrarSesionHandler() {
 
-    //Llamamos función para cambiar moneda
-    if (moneda === 'USD')  {
-        btnMonedaHandler();
-    }
-    
-    if (criterioOrden === 'precio')  {
-        btnHomeFiltrarInmHandler();
-    }
+    //Llamamos función para cambiar criterioOrden y moneda
+    reseteoCriteriosYMoneda();
     
     iniciarApp();
 
@@ -877,4 +853,15 @@ function btnHomeFiltrarInmHandler() {
     ocultarElementos(verMas)
     }
    
+}
+
+//Función para resetear moneda a $U y criterioOrden a 'Popular'
+function reseteoCriteriosYMoneda() {
+    if (moneda === 'USD')  {
+        btnMonedaHandler();
+    }
+    
+    if (criterioOrden === 'precio')  {
+        btnHomeFiltrarInmHandler();
+    }
 }
