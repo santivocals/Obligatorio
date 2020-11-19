@@ -267,7 +267,6 @@ function bntRegistroHandler() {
     //Creo array con los ids de los campos para luego utilizar función para borrarlos
     let arrayDeIds = ['txtNombre', 'txtApellido', 'txtCorreo', 'txtCelular', 'txtPassword', 'txtConfPassword'];
 
-
     if (validarCampo(nombre)) {
         if (validarCampo(apellido)) {
             if (validarCorreo(correo)) {
