@@ -262,7 +262,7 @@ function armarMuro(pInmueblesAMostrar) {
 
 
     document.getElementById('divMuro').innerHTML = muroHtml;
-    document.getElementById('divReporte').innerHTML = muroHtml;
+    
 
     //agregar handler a los "ver mas"
     //selecciono los items ver más
@@ -278,8 +278,31 @@ function armarMuro(pInmueblesAMostrar) {
 
 }
 
+//Reporte de inmuebles
+function reporteInm(pInmueblesAMostrar){
+    let muroHtml = "";
+
+    if (pInmueblesAMostrar !== 0) {
+        for (let i = 0; i < pInmueblesAMostrar.length; i++) {
+            let inmueble = pInmueblesAMostrar[i];
+            if (inmueble.habilitado === true) {
+                //Asignamos valor a parametro promedio de la entidad Inmueble
+    
+                muroHtml += `<tr>
+                <td class="tableColumn"><img src="./assets/img/${inmueble.imagenes[0]}"></td>
+                <td class="tableColumn">${inmueble.titulo}</td>
+                <td class="tableColumn">${moneda} ${obtenerPrecio(inmueble.precio)}</td>
+                </tr>`
+            }
+        }
+    } else {
+        pInmueblesAMostrar = [0];
+    }
 
 
+    
+    document.getElementById('tableReporte').innerHTML = muroHtml;
+}
 //Inmuebles propios del anfitrion
 function misInmuebles(pInmueblesAMostrar) {
     //Llamamos función para cambiar moneda
