@@ -197,43 +197,47 @@ function armarMuro(pInmueblesAMostrar) {
 
     if (pInmueblesAMostrar !== 0){
         arrayInmueblesOrden = pInmueblesAMostrar.slice();
-        switch (criterioOrden) {
-            case 'popularidad':
-                arrayInmueblesOrden.sort(criterioOrdenPopu)
-                break;
-            case 'precio':
-                arrayInmueblesOrden.sort(criterioOrdenPrecio)
-                break;
-        }
-    } else {
+        for (let i = 0; i < arrayInmueblesOrden.length; i++) {
+
+            let inmueble = arrayInmueblesOrden[i];
+            inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
+            switch (criterioOrden) {
+                case 'popularidad':
+                    arrayInmueblesOrden.sort(criterioOrdenPopu)
+                    break;
+                case 'precio':
+                    arrayInmueblesOrden.sort(criterioOrdenPrecio)
+                    break;
+            }
+    } }else {
         arrayInmueblesOrden = [0];
     }
 
-    for (let i = 0; i < arrayInmueblesOrden.length; i++) {
-
-        let inmueble = arrayInmueblesOrden[i];
-
-        if (inmueble.habilitado === true){
-        //Asignamos valor a parametro promedio de la entidad Inmueble
-        inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
-
-        muroHtml += `<div>
-        <h2>${inmueble.titulo}</h2>
-        <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
-        <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
-        <div>
-            <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
-                <strong>${inmueble.promedio}</strong></label>
-        </div>
-        <p>${inmueble.descripcion}</p>
-        <p class="ver-mas" id="verMas${i}">
-            Ver más...
-        </p>
-        <hr>
-        </div>`
+   
+        for (let i = 0; i < arrayInmueblesOrden.length; i++) {
+            let inmueble = arrayInmueblesOrden[i];
+            if (inmueble.habilitado === true){
+                //Asignamos valor a parametro promedio de la entidad Inmueble
+                
+                muroHtml += `<div>
+                <h2>${inmueble.titulo}</h2>
+                <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
+                <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
+                <div>
+                    <label><strong>${inmueble.ciudad}</strong></label><label class="duracion">Promedio:
+                        <strong>${inmueble.promedio}</strong></label>
+                </div>
+                <p>${inmueble.descripcion}</p>
+                <p class="ver-mas" id="verMas${i}">
+                    Ver más...
+                </p>
+                <hr>
+                </div>`
+                }
         }
+        
 
-    }
+    
 
     document.getElementById('divMuro').innerHTML = muroHtml;
     document.getElementById('divReporte').innerHTML = muroHtml;
