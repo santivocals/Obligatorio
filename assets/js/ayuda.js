@@ -53,7 +53,7 @@ function existeUsuario(pCorreo) {
 //Distingue entre una array para borrar más de un campo y un string para borrar un campo solo
 function limpiarCampos(pParametro) {
     if (typeof pParametro === 'object') {
-        for (i=0; i < pParametro.length; i++) {
+        for (i = 0; i < pParametro.length; i++) {
             document.getElementById(pParametro[i]).value = '';
         }
     } else if (typeof pParametro === 'string') {
@@ -76,7 +76,7 @@ function validarCampo(pCadena) {
 
 //Función para comprobar si correo existe en el array de usuarios
 function compararCorreo(pCorreo) {
-    for (let i=0; i < arrayUsuarios.length; i++) {
+    for (let i = 0; i < arrayUsuarios.length; i++) {
         correoAComparar = arrayUsuarios[i].correo;
         if (pCorreo === correoAComparar) {
             correoEsValido = false;
@@ -89,7 +89,7 @@ function compararCorreo(pCorreo) {
 //Función para validar correo
 function validarCorreo(pCorreo) {
     let correoEsValido = false;
-    
+
     //Llamamos a la función comparar correo y almacenamos en una variable
     let comparacionCorreo = compararCorreo(pCorreo);
 
@@ -213,7 +213,7 @@ function armarMuro(pInmueblesAMostrar) {
     let muroHtml = "";
 
 
-    if (pInmueblesAMostrar !== 0){
+    if (pInmueblesAMostrar !== 0) {
         arrayInmueblesOrden = pInmueblesAMostrar.slice();
         for (let i = 0; i < arrayInmueblesOrden.length; i++) {
 
@@ -227,17 +227,18 @@ function armarMuro(pInmueblesAMostrar) {
                     arrayInmueblesOrden.sort(criterioOrdenPrecio)
                     break;
             }
-    } }else {
+        }
+    } else {
         arrayInmueblesOrden = [0];
     }
 
-   
-        for (let i = 0; i < arrayInmueblesOrden.length; i++) {
-            let inmueble = arrayInmueblesOrden[i];
-            if (inmueble.habilitado === true){
-                //Asignamos valor a parametro promedio de la entidad Inmueble
-                
-                muroHtml += `<div>
+
+    for (let i = 0; i < arrayInmueblesOrden.length; i++) {
+        let inmueble = arrayInmueblesOrden[i];
+        if (inmueble.habilitado === true) {
+            //Asignamos valor a parametro promedio de la entidad Inmueble
+
+            muroHtml += `<div>
                 <h2>${inmueble.titulo}</h2>
                 <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
                 <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
@@ -251,11 +252,11 @@ function armarMuro(pInmueblesAMostrar) {
                 </p>
                 <hr>
                 </div>`
-                }
         }
-        
+    }
 
-    
+
+
 
     document.getElementById('divMuro').innerHTML = muroHtml;
     document.getElementById('divReporte').innerHTML = muroHtml;
@@ -278,8 +279,8 @@ function armarMuro(pInmueblesAMostrar) {
 
 //Inmuebles propios del anfitrion
 function misInmuebles(pInmueblesAMostrar) {
-     //Llamamos función para cambiar moneda
-     if (moneda === 'USD')  {
+    //Llamamos función para cambiar moneda
+    if (moneda === 'USD') {
         btnMonedaHandler();
     }
 
@@ -289,10 +290,10 @@ function misInmuebles(pInmueblesAMostrar) {
 
         let inmueble = pInmueblesAMostrar[i];
         if (inmueble.anfitrion === usuarioConectado.correo) {
-        //Asignamos valor a parametro promedio de la entidad Inmueble
-        inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
+            //Asignamos valor a parametro promedio de la entidad Inmueble
+            inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
 
-        muroHtml += `<div>
+            muroHtml += `<div>
         <h2>${inmueble.titulo}</h2>
         <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
         <img src="./assets/img/${inmueble.imagenes[0]}" alt="casa de campo">
@@ -301,15 +302,24 @@ function misInmuebles(pInmueblesAMostrar) {
                 <strong>${inmueble.promedio}</strong></label>
         </div>
         <p>${inmueble.descripcion}</p>
-        <input type="button" id="btnHabilitar${i}" class ="btnHabilitar" value="Habililtar">
-        <input type="button" id="btnDeshabilitar${i}" class ="btnDeshabilitar" value="Deshabilitar">
-        <hr>
-        </div>`
-
+        `
+            if (inmueble.habilitado == true) {
+                muroHtml += `<input type="button" id="btnHabilitar${i}" class ="btnHabilitar" value="Habililtar" disabled>
+            <input type="button" id="btnDeshabilitar${i}" class ="btnDeshabilitar" value="Deshabilitar">
+            <hr>
+            </div>`
+            } else {
+                muroHtml += `<input type="button" id="btnHabilitar${i}" class ="btnHabilitar" value="Habililtar">
+            <input type="button" id="btnDeshabilitar${i}" class ="btnDeshabilitar" value="Deshabilitar" disabled>
+            <hr>
+            </div>`
+            }
         }
 
-        
-        
+
+
+
+
     }
 
     document.getElementById('divMisInm').innerHTML = muroHtml;
@@ -318,45 +328,45 @@ function misInmuebles(pInmueblesAMostrar) {
     let botonesHabilitar = document.querySelectorAll('.btnHabilitar');
 
 
-   for(let i = 0; i < botonesHabilitar.length; i++){
+    for (let i = 0; i < botonesHabilitar.length; i++) {
 
         btnHabilitar = botonesHabilitar[i];
-        btnHabilitar.addEventListener('click', btnHabInmuebleHandler);    
+        btnHabilitar.addEventListener('click', btnHabInmuebleHandler);
     }
 
 
-    for(let i = 0; i < botonesDeshabilitar.length; i++){
+    for (let i = 0; i < botonesDeshabilitar.length; i++) {
 
         btnDeshabilitar = botonesDeshabilitar[i];
         btnDeshabilitar.addEventListener('click', btnDesInmuebleHandler);
     }
 
-    
+
 }
 
 
 // Función para cambiar propiedad del inmueble a habilitado
-function btnHabInmuebleHandler(){
-    posicion = Number(this.id.substr(12)); 
-        //Habilitamos el inmueble al presionar el botón
-        arrayInmueblesOrden[posicion].habilitado = true;
-        //Deshabilitamos el botón de habilitar
-        document.getElementById(`btnHabilitar${posicion}`).disabled = true;
-        //Habilitamos el botón de deshabilitar
-        document.getElementById(`btnDeshabilitar${posicion}`).disabled = false;    
+function btnHabInmuebleHandler() {
+    posicion = Number(this.id.substr(12));
+    //Habilitamos el inmueble al presionar el botón
+    arrayInmueblesOrden[posicion].habilitado = true;
+    //Deshabilitamos el botón de habilitar
+    document.getElementById(`btnHabilitar${posicion}`).disabled = true;
+    //Habilitamos el botón de deshabilitar
+    document.getElementById(`btnDeshabilitar${posicion}`).disabled = false;
 }
 
 // Función para cambiar propiedad del inmueble a Deshabilitado
-function btnDesInmuebleHandler(){
+function btnDesInmuebleHandler() {
     posicion = Number(this.id.substr(15));
-        //Deshabilitamos inmueble al presionar botón
-        arrayInmueblesOrden[posicion].habilitado = false;
-        //Deshabilitamos botón de deshabilitar
-        document.getElementById(`btnDeshabilitar${posicion}`).disabled = true;
-        //Habilitamos botón de habilitar
-        document.getElementById(`btnHabilitar${posicion}`).disabled = false;
-      
-    
+    //Deshabilitamos inmueble al presionar botón
+    arrayInmueblesOrden[posicion].habilitado = false;
+    //Deshabilitamos botón de deshabilitar
+    document.getElementById(`btnDeshabilitar${posicion}`).disabled = true;
+    //Habilitamos botón de habilitar
+    document.getElementById(`btnHabilitar${posicion}`).disabled = false;
+
+
 
 }
 
@@ -366,36 +376,36 @@ function calificacionInmueble(pInmueblesAMostrar) {
     let muroHtml = "";
 
     if (pInmueblesAMostrar.length > 0) {
-    for (let i = 0; i < pInmueblesAMostrar.length; i++) {
+        for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
-        let inmueble = pInmueblesAMostrar[i].inmueble;
+            let inmueble = pInmueblesAMostrar[i].inmueble;
 
-        muroHtml += `<tr>
+            muroHtml += `<tr>
         <td class="tableColumn"><img src="./assets/img/${inmueble.imagenes[0]}"></td>
         <td class="tableColumn">${inmueble.titulo}</td>
         <td class="tableColumn" id="tdCalificacion${[i]}">
         
         `
 
-        if (pInmueblesAMostrar[i].calificacion === 0) {
-            muroHtml += `
+            if (pInmueblesAMostrar[i].calificacion === 0) {
+                muroHtml += `
             
             <label for="txtCalificacion${[i]}">Calificación</label>
             <input type="text" id="txtCalificacion${[i]}">
             <input type="button" value="Calificar" class="guardarCal" id="btnGuardarCalificacion${[i]}">
             <p id='msgCalificar${[i]}'></p>`
-        } else {
-            muroHtml += `
+            } else {
+                muroHtml += `
             <p>Su calificación fue de ${pInmueblesAMostrar[i].calificacion}</p>`
+            }
         }
+        document.getElementById('tableCalificacion').innerHTML = muroHtml;
+        document.getElementById('msgCalificarReserva').innerText = ``;
+    } else {
+        document.getElementById('msgCalificarReserva').innerText = `No ha realizado ninguna reserva.`;
     }
-    document.getElementById('tableCalificacion').innerHTML = muroHtml;
-    document.getElementById('msgCalificarReserva').innerText = ``;
-} else {
-    document.getElementById('msgCalificarReserva').innerText = `No ha realizado ninguna reserva.`;
-}
-    
-    
+
+
 
     let itemsGuardar = document.querySelectorAll('.guardarCal');
     //los recorro y cargo el handler 1 a 1
@@ -414,7 +424,7 @@ function armarGaleria() {
     let inmueble = inmuebleSeleccionado;
     //Asignamos valor a parametro promedio de la entidad Inmueble
     inmueble.promedio = promedio(sumarArray(inmueble.calificaciones), inmueble.calificaciones.length, 1);
-    
+
     muroHtml += `<div>
         <h2>${inmueble.titulo}</h2>
         <h4><strong>${moneda} ${obtenerPrecio(inmueble.precio)}</strong> por noche</h4>
@@ -444,8 +454,8 @@ function armarGaleria() {
 
     document.getElementById('divDetalleInm').innerHTML = muroHtml;
 
-    crearBoton(`btnSolicitar`,btnSolicitarHandler);
-    crearBoton(`btnGuardarReserva`,btnGuardarReservaHandler);
+    crearBoton(`btnSolicitar`, btnSolicitarHandler);
+    crearBoton(`btnGuardarReserva`, btnGuardarReservaHandler);
 
     let imgElement = document.querySelector(".galeria .img-container img");
 
