@@ -23,6 +23,13 @@ function iniciarApp() {
     crearBoton('aRegistrarse', aRegistroHandler);
     crearBoton('aCerrarSesion', aCerrarSesionHandler);
 
+    //Botón que realiza el registro de huésped o de anfitrion
+    crearBoton('btnRegistro', btnRegistroHandler);
+
+    //Preparo botones de filtros visitante y huesped
+    crearBoton('btnHomeFiltrar', btnHomeFiltrarInmueblesHandler); //Buscador
+    crearBoton('btnHomeFiltrarInm', btnHomeFiltrarInmHandler); //Filtro popularidad/precio
+
 
     //preparo clicks a las opciones de usuario huesped
     crearBoton('aInmueblesHuesped', aInmueblesHuespedHandler);
@@ -36,6 +43,14 @@ function iniciarApp() {
     crearBoton('aAltaAnfitrion', aAltaAnfitrionHandler);
     crearBoton('aCargaCotizacion', aCargaCotizacionHandler);
     crearBoton('aReporteInmuebles', aReporteInmueblesHandler);
+
+    //Preparo botones de anfitrión
+    crearBoton('btnAltaImagen', btnAltaImagenHandler); //Agregar imagen
+    crearBoton('btnGuardarInmueble', btnGuardarInmuebleHandler); //Guardar inmueble
+
+    //Preparo botones de admin
+    crearBoton('btnActualizarDolar', btnActualizarDolarHandler); //cotización
+    crearBoton('btnFiltroMontos', btnFiltroMontosHandler) //Filtro monto para reportes
 
     //Selecciono todos los ver mas
     let menus = document.querySelectorAll('.menu')
@@ -59,44 +74,22 @@ function iniciarApp() {
 
 
     //clicks filtros y monedas
-    document.getElementById("btnCambiarMoneda").addEventListener("click", btnMonedaHandler);
+    crearBoton('btnCambiarMoneda', btnMonedaHandler);
 
 
-}
-
-//**************************************************************************************************************
-
-//FUNCION PARA MOSTRAR PANTALLA
-/**
- * Esta función recibe un parámetro con el string de la pantalla a mostrar.
- * Oculta las demás y muestra la correspondiente
- */
-function mostrarPantalla(pPantalla) {
-    //Observar en el index.html que todos los divs que corresponden a pantallas (por ej divLogin)
-    //tienen como atributo class la palabra "pantalla". Esto me sirve para poder seleccionarlos en grupo desde
-    //la lógica.
-    let pantallas = document.querySelectorAll(".pantalla");
-
-    //para cada una de las pantallas, modifico su display para ocultarlas
-    for (let i = 0; i < pantallas.length; i++) {
-        let p = pantallas[i];
-        p.style.display = "none";
-    }
-    //utilizo el valor de pPantalla para concatenarlo al prefijo div, para seleccionar
-    //el div correspondiente y mostrarlo
-    document.getElementById(`div${pPantalla}`).style.display = "block";
 }
 
 //**************************************************************************************************************
 
 //ACCESO A LA PANTALLA LOGIN
 function aLoginHandler() {
-    
-    //Muestro la pantalla de login y escondo el home
+
+    //Muestro la pantalla de login
     mostrarPantalla('Login');
 
-    document.getElementById('aInicio').style.display = 'block';
     document.getElementById('aLogin').style.display = 'none';
+
+    document.getElementById('aInicio').style.display = 'block';
     document.getElementById('aRegistrarse').style.display = 'block';
     document.getElementById('msgLogin').innerText = '';
 
@@ -115,6 +108,7 @@ function aInicioHandler() {
     mostrarPantalla('Home');
 
     document.getElementById('aInicio').style.display = 'none';
+
     document.getElementById('aLogin').style.display = 'block';
     document.getElementById('aRegistrarse').style.display = 'block';
 }
@@ -131,10 +125,12 @@ function aRegistroHandler() {
 
     mostrarPantalla('Registro');
 
-    //Esconder links de acceso
+    document.getElementById('aRegistrarse').style.display = 'none';
+
+    //Muestro links de acceso
     document.getElementById('aInicio').style.display = 'block';
     document.getElementById('aLogin').style.display = 'block';
-    document.getElementById('aRegistrarse').style.display = 'none';
+
 
 }
 
@@ -224,11 +220,10 @@ function btnLoginHandler() {
 
 //REGISTRO HUÉSPED Y ALTA DE ANFITRIÓN
 
-//Asociamos clicks al botón correspondiente
-crearBoton('btnRegistro', bntRegistroHandler);
+
 
 //Función para guardar datos en un Objeto (Registro Huésped/Alta Anfitrión)
-function bntRegistroHandler() {
+function btnRegistroHandler() {
 
     //REGISTRO HUESPED
     //If para cuando usuario es undefined o null para registrar huésped
@@ -295,11 +290,266 @@ function bntRegistroHandler() {
 
 }
 
-//****************************************************************************************************************** */
+/******************************************************************************* */
 
-//PANTALLA DE REGISTRO DE INMUEBLE
 
-crearBoton('btnGuardarInmueble', btnGuardarInmuebleHandler);
+//ACCESO DE HUÉSPED
+
+function pantallasHuesped() {
+    armarMuro(arrayInmuebles);
+
+    mostrarPantalla('Home');
+    //Selecciono todos los ver mas
+    let verMas = document.querySelectorAll('.ver-mas')
+    //Los muestro
+    mostrarElementos(verMas);
+
+    //Selecciono los menú del huesped
+    let menuHuesp = document.querySelectorAll('.menuHuesp')
+    //Los muestro
+    mostrarElementos(menuHuesp);
+
+}
+
+//MENÚ DE HUÉSPED
+
+function aInmueblesHuespedHandler() {
+    mostrarPantalla('Home');
+    armarMuro(arrayInmueblesOrden);
+}
+
+function aConsultaCalificacionHandler() {
+    mostrarPantalla('ConsultarCalificar');
+    calificacionInmueble(usuarioConectado.reservas)
+}
+
+//Funcion para filtrar vista de inmuebles en el muro segun busqueda del usuario huésped o visitante
+function btnHomeFiltrarInmueblesHandler() {
+
+    let valorFiltro = quitarAcentos(document.getElementById('txtHomeFiltrar').value.toLowerCase());
+    let inmueblesFiltrados = [];
+    let mensaje = '';
+
+    if (validarCampo(valorFiltro)) {
+
+        for (let i = 0; i < arrayInmuebles.length; i++) {
+
+            let inmueble = arrayInmuebles[i];
+            if (inmueble.habilitado == true) {
+                if (inmueble.titulo.toLowerCase().indexOf(valorFiltro) !== -1) {
+                    inmueblesFiltrados.push(inmueble)
+                } else if (inmueble.ciudad.toLowerCase().indexOf(valorFiltro) !== -1) {
+                    inmueblesFiltrados.push(inmueble)
+                } else if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1) {
+                    inmueblesFiltrados.push(inmueble)
+                }
+            }
+        }
+        if (inmueblesFiltrados.length > 0) {
+            armarMuro(inmueblesFiltrados);
+            mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
+        } else {
+
+            mensaje = 'No existen resultados para su búsqueda';
+            armarMuro(0);
+        }
+    } else {
+        mensaje = 'Debe ingresar criterio de búsqueda';
+        armarMuro(arrayInmuebles);
+    }
+
+    document.getElementById('msgHomeFiltroInmueble').innerText = mensaje;
+    limpiarCampos('txtHomeFiltrar');
+    if (usuarioConectado == null || usuarioConectado == undefined) {
+        //Selecciono todos los ver mas
+        let verMas = document.querySelectorAll('.ver-mas')
+
+        //Los oculto
+        ocultarElementos(verMas)
+    }
+
+
+}
+
+//Función para filtrar por popularidad o precio los inmuebles, para huéspd o visitante
+function btnHomeFiltrarInmHandler() {
+
+    let criterio = document.getElementById('btnHomeFiltrarInm').value;
+
+    if (criterio === "Filtrar por popularidad") {
+        document.getElementById('btnHomeFiltrarInm').value = "Filtrar por precio";
+        criterioOrden = "popularidad";
+
+    } else {
+        document.getElementById('btnHomeFiltrarInm').value = "Filtrar por popularidad";
+        criterioOrden = "precio";
+    }
+
+    armarMuro(arrayInmuebles);
+    if (usuarioConectado == null || usuarioConectado == undefined) {
+        //Selecciono todos los ver mas
+        let verMas = document.querySelectorAll('.ver-mas')
+
+        //Los oculto
+        ocultarElementos(verMas)
+    }
+
+}
+
+//Función para cambiar la moneda de dolares a pesos y viceversa
+function btnMonedaHandler() {
+    //me guardo la moneda anterior (string)
+    let monedaAnterior = moneda;
+
+    //si la actual es dólares
+    if (moneda === "USD") {
+        //cambio a pesos
+        moneda = "$U";
+    } else {
+        //cambio a dólares
+        moneda = "USD";
+    }
+
+    armarMuro(arrayInmuebles);
+
+    //modifico la etiqueta para volver a la moneda anterior
+    document.getElementById("btnCambiarMoneda").value = `Cambiar a ${monedaAnterior}`;
+}
+
+//DETALLE INMUEBLE PARA HUÉSPED
+
+//handler del botón anterior de la galería
+function btnGaleriaAnteriorHandler() {
+
+    //en la variable global posicionFotoGalería tengo guardada en número del índice
+    //de la foto que estoy mostrando actualmente en la galería.
+
+    //si la posción es distinta a 0 (pues no puedo mostrar la foto -1)
+    if (posicionFotoGaleria !== 0) {
+        //selecciono el elemento imagen
+        let imgElement = document.querySelector(".galeria .img-container img");
+        //disminuyo el valor de la posición;
+        posicionFotoGaleria--;
+
+        //modifico el src de la imagen con la nueva foto tomandola del array de las fotos
+        //del auto seleccionado;
+        imgElement.src = `./assets/img/${inmuebleSeleccionado.imagenes[posicionFotoGaleria]}`;
+    }
+}
+
+//handle del botón siguiente de la galeraía
+function btnGaleriaSiguienteHandler() {
+
+    //si no estoy parado en la última foto
+    if (posicionFotoGaleria !== inmuebleSeleccionado.imagenes.length - 1) {
+
+        //tomo el elemento foto de la galería
+        let imgElement = document.querySelector(".galeria .img-container img");
+
+        //aumento la posición de la foto para la siguiente
+        posicionFotoGaleria++;
+
+        //modifico el src del a foto con la siguiente imagen del auto seleccionado
+        imgElement.src = `./assets/img/${inmuebleSeleccionado.imagenes[posicionFotoGaleria]}`;
+    }
+}
+
+//handler de todos los botones ver más
+function verMasHandler() {
+    //con el id del ver más apretado tomo el substring correspondiente
+    //a la posición del auto que quiero mostrar en detalle
+    let posInm = Number(this.id.substr(6));
+
+    //cargo la variable global
+    inmuebleSeleccionado = arrayInmueblesOrden[posInm];
+    //armo detalle
+    armarGaleria();
+    //lo muestro
+    mostrarPantalla('Detalles')
+}
+
+//RESERVAS INMUEBLE PARA HUÉSPED
+
+let cantNoches;
+let precioTotal;
+
+function btnSolicitarHandler() {
+    cantNoches = document.getElementById('txtCantidadNoches').value;
+    precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
+    document.getElementById('btnGuardarReserva').style.display = 'block';
+    if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0) {
+        document.getElementById('msgReservaResultado').innerHTML = `Precio total: ${moneda} ${precioTotal}`;
+    } else {
+        document.getElementById('msgReservaResultado').innerHTML = `Noche(s) inválidas`;
+        document.getElementById('btnGuardarReserva').style.display = 'none';
+
+    }
+
+    limpiarCampos('txtCantidadNoches');
+}
+
+
+function btnGuardarReservaHandler() {
+    usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
+    document.getElementById('msgReservaResultado').innerHTML = `Reserva exitosa`;
+    document.getElementById('btnGuardarReserva').style.display = 'none';
+
+}
+
+//GUARDAR CALIFICACION INMUEBLES PARA HUÉSPED
+function guardarCalificacionHandler() {
+    let posGuardar = Number(this.id.substr(22));
+    let calificacionIngresada = document.getElementById(`txtCalificacion${posGuardar}`).value;
+
+    if (valorNumerico(calificacionIngresada) && validarCampo(calificacionIngresada) && calificacionIngresada >= 1 && calificacionIngresada <= 5) {
+        //Pasamos parámetro de califacion a la reserva
+        usuarioConectado.reservas[posGuardar].calificacion = Number(calificacionIngresada);
+
+        calificacionInmueble(usuarioConectado.reservas)
+        //Ingresamos calificacion al inmueble seleccionado
+        usuarioConectado.reservas[posGuardar].inmueble.calificaciones.push(Number(calificacionIngresada));
+
+        //Ingresamos el promedio al mueble seleccionado
+        usuarioConectado.reservas[posGuardar].inmueble.promedio = promedio(sumarArray(usuarioConectado.reservas[posGuardar].inmueble.calificaciones), usuarioConectado.reservas[posGuardar].inmueble.calificaciones.length, 1);
+        //Cambiamos el atributo de la reserva .calificado a true
+        usuarioConectado.reservas[posGuardar].calificado = true;
+        //Mensaje de éxito
+        document.getElementById(`tdCalificacion${posGuardar}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
+
+    } else {
+        document.getElementById(`msgCalificar${posGuardar}`).innerHTML = `<p>Ingrese un numero entre 1 y 5</p>`
+        limpiarCampos(`txtCalificacion${posGuardar}`);
+    }
+
+}
+
+/******************************************************************************* */
+
+//ACCESO DE ANFITRION
+
+function pantallasAnfitrion() {
+    aMisInmueblesAnfHandler();
+
+    //Selecciono los menú del anfitrión
+    let menuAnf = document.querySelectorAll('.menuAnf')
+    //Los muestro
+    mostrarElementos(menuAnf);
+}
+
+//MENÚ DE ANFITRION
+
+//VER MIS INMUEBLES ANFITRIÓN
+function aMisInmueblesAnfHandler() {
+    mostrarPantalla('MisInmuebles');
+    misInmuebles(arrayInmuebles);
+}
+
+//REGISTRO DE INMUEBLES ANFITRIÓN
+function aRegistroInmuebleHandler() {
+    mostrarPantalla('RegistroInmueble');
+    //Dejo párrafo vacío por si quedó info del registro anterior
+    mostrarMensaje('msgRegInmueble', '');
+}
 
 //No habilitamos el botón de guardar hasta que usuario ingrese al menos 3 fotos
 if (imagenesSeleccionadas.length < 3) {
@@ -307,9 +557,6 @@ if (imagenesSeleccionadas.length < 3) {
 }
 
 //MODÚLO PARA AGREGAR IMAGENES EN REGISTRO INMUEBLE
-
-//Ceamos botón para dar alta a las imagenes
-crearBoton('btnAltaImagen', btnAltaImagenHandler);
 //función que arma automáticamente el selector para agregar imágenes
 armarSelectorImagenes();
 
@@ -397,132 +644,6 @@ function btnGuardarInmuebleHandler() {
 
 }
 
-//**************************************************************************************************************
-
-//FILTRO DOLAR PESOS
-
-//función que recibe un importe del inmueble y retorna el importe en la 
-//moneda correspondiente.
-function obtenerPrecio(importe) {
-    let precioAMostrar;
-
-    //si la moneda es dólares
-    if (moneda === "USD") {
-        //Hacemos conversión a dolares
-        precioAMostrar = (importe / cotizacionDolar).toFixed(2);
-    } else {
-        //sino es dólares el precio es el dado
-        precioAMostrar = importe;
-    }
-    //retorno precio
-    return precioAMostrar;
-}
-
-//función del handler del cambio de moneda
-function btnMonedaHandler() {
-    //me guardo la moneda anterior (string)
-    let monedaAnterior = moneda;
-
-    //si la actual es dólares
-    if (moneda === "USD") {
-        //cambio a pesos
-        moneda = "$U";
-    } else {
-        //cambio a dólares
-        moneda = "USD";
-    }
-
-    armarMuro(arrayInmuebles);
-
-    //modifico la etiqueta para volver a la moneda anterior
-    document.getElementById("btnCambiarMoneda").value = `Cambiar a ${monedaAnterior}`;
-}
-
-
-//**************************************************************************************************************
-
-//CERRAR SESIÓN
-
-function aCerrarSesionHandler() {
-
-    //Llamamos función para cambiar criterioOrden y moneda
-    reseteoCriteriosYMoneda();
-
-    iniciarApp();
-
-    document.getElementById('aLogin').style.display = 'block';
-    document.getElementById('aRegistrarse').style.display = 'block';
-    document.getElementById('aCerrarSesion').style.display = 'none';
-
-    //Reseteamos los valores
-    usuarioConectado = null;
-
-}
-
-/******************************************************************************* */
-
-
-//ACCESO DE HUÉSPED
-
-function pantallasHuesped() {
-    armarMuro(arrayInmuebles);
-
-    mostrarPantalla('Home');
-    //Selecciono todos los ver mas
-    let verMas = document.querySelectorAll('.ver-mas')
-    //Los muestro
-    mostrarElementos(verMas);
-
-    //Selecciono los menú del huesped
-    let menuHuesp = document.querySelectorAll('.menuHuesp')
-    //Los muestro
-    mostrarElementos(menuHuesp);
-
-}
-
-/******************************************************************************* */
-
-//MENÚ DE HUÉSPED
-
-function aInmueblesHuespedHandler() {
-    mostrarPantalla('Home');
-    armarMuro(arrayInmueblesOrden);
-}
-
-function aConsultaCalificacionHandler() {
-    mostrarPantalla('ConsultarCalificar');
-    calificacionInmueble(usuarioConectado.reservas)
-}
-
-
-/******************************************************************************* */
-
-//ACCESO DE ANFITRION
-
-function pantallasAnfitrion() {
-    aMisInmueblesAnfHandler();
-
-    //Selecciono los menú del anfitrión
-    let menuAnf = document.querySelectorAll('.menuAnf')
-    //Los muestro
-    mostrarElementos(menuAnf);
-}
-
-/******************************************************************************* */
-
-//MENÚ DE ANFITRION
-
-function aMisInmueblesAnfHandler() {
-    mostrarPantalla('MisInmuebles');
-    mostrarInmueblesAnf();
-}
-
-function aRegistroInmuebleHandler() {
-    mostrarPantalla('RegistroInmueble');
-    //Dejo párrafo vacío por si quedó info del registro anterior
-    mostrarMensaje('msgRegInmueble', '');
-}
-
 /******************************************************************************* */
 
 //ACCESO DE ADMIN
@@ -544,7 +665,6 @@ function pantallasAdmin() {
 
 }
 
-/******************************************************************************* */
 
 //MENÚ DE ADMIN
 
@@ -575,11 +695,7 @@ function aReporteInmueblesHandler() {
     document.getElementById('tituloReportes').style.display = 'block';
 }
 
-/******************************************************************************* */
-
 //FUNCION PARA ACTUALIZAR COTIZACIÓN
-
-crearBoton('btnActualizarDolar', btnActualizarDolarHandler);
 
 function btnActualizarDolarHandler() {
     let nuevoDolar = document.getElementById('txtUSD').value;
@@ -593,194 +709,7 @@ function btnActualizarDolarHandler() {
     }
 }
 
-
-//Funcion para filtrar vista de inmuebles en el muro segun busqueda del usuario
-crearBoton('btnHomeFiltrar', btnHomeFiltrarInmueblesHandler);
-
-
-function btnHomeFiltrarInmueblesHandler() {
-
-    let valorFiltro = quitarAcentos(document.getElementById('txtHomeFiltrar').value.toLowerCase());
-    let inmueblesFiltrados = [];
-    let mensaje = '';
-
-    if (validarCampo(valorFiltro)) {
-
-        for (let i = 0; i < arrayInmuebles.length; i++) {
-
-            let inmueble = arrayInmuebles[i];
-            if (inmueble.habilitado == true) {
-                if (inmueble.titulo.toLowerCase().indexOf(valorFiltro) !== -1) {
-                    inmueblesFiltrados.push(inmueble)
-                } else if (inmueble.ciudad.toLowerCase().indexOf(valorFiltro) !== -1) {
-                    inmueblesFiltrados.push(inmueble)
-                } else if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1) {
-                    inmueblesFiltrados.push(inmueble)
-                }
-            }
-        }
-        if (inmueblesFiltrados.length > 0) {
-            armarMuro(inmueblesFiltrados);
-            mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
-        } else {
-
-            mensaje = 'No existen resultados para su búsqueda';
-            armarMuro(0);
-        }
-    } else {
-        mensaje = 'Debe ingresar criterio de búsqueda';
-        armarMuro(arrayInmuebles);
-    }
-
-    document.getElementById('msgHomeFiltroInmueble').innerText = mensaje;
-    limpiarCampos('txtHomeFiltrar');
-    if (usuarioConectado == null || usuarioConectado == undefined) {
-        //Selecciono todos los ver mas
-        let verMas = document.querySelectorAll('.ver-mas')
-
-        //Los oculto
-        ocultarElementos(verMas)
-    }
-
-
-}
-
-
-//Funcion para mostrar inmuebles propios de cada anfitrion
-
-function mostrarInmueblesAnf() {
-    misInmuebles(arrayInmuebles);
-
-
-}
-
-//****************************************************************************** */
-//DETALLE
-
-//handler del botón anterior de la galería
-function btnGaleriaAnteriorHandler() {
-
-    //en la variable global posicionFotoGalería tengo guardada en número del índice
-    //de la foto que estoy mostrando actualmente en la galería.
-
-    //si la posción es distinta a 0 (pues no puedo mostrar la foto -1)
-    if (posicionFotoGaleria !== 0) {
-        //selecciono el elemento imagen
-        let imgElement = document.querySelector(".galeria .img-container img");
-        //disminuyo el valor de la posición;
-        posicionFotoGaleria--;
-
-        //modifico el src de la imagen con la nueva foto tomandola del array de las fotos
-        //del auto seleccionado;
-        imgElement.src = `./assets/img/${inmuebleSeleccionado.imagenes[posicionFotoGaleria]}`;
-    }
-}
-
-//handle del botón siguiente de la galeraía
-function btnGaleriaSiguienteHandler() {
-
-    //si no estoy parado en la última foto
-    if (posicionFotoGaleria !== inmuebleSeleccionado.imagenes.length - 1) {
-
-        //tomo el elemento foto de la galería
-        let imgElement = document.querySelector(".galeria .img-container img");
-
-        //aumento la posición de la foto para la siguiente
-        posicionFotoGaleria++;
-
-        //modifico el src del a foto con la siguiente imagen del auto seleccionado
-        imgElement.src = `./assets/img/${inmuebleSeleccionado.imagenes[posicionFotoGaleria]}`;
-    }
-}
-
-//handler de todos los botones ver más
-function verMasHandler() {
-    //con el id del ver más apretado tomo el substring correspondiente
-    //a la posición del auto que quiero mostrar en detalle
-    let posInm = Number(this.id.substr(6));
-
-    //cargo la variable global
-    inmuebleSeleccionado = arrayInmueblesOrden[posInm];
-    //armo detalle
-    armarGaleria();
-    //lo muestro
-    mostrarPantalla('Detalles')
-}
-
-/******************************************************************************* */
-//RESERVAS
-
-let cantNoches;
-let precioTotal;
-
-function btnSolicitarHandler() {
-    cantNoches = document.getElementById('txtCantidadNoches').value;
-    precioTotal = Number(cantNoches) * inmuebleSeleccionado.precio;
-    document.getElementById('btnGuardarReserva').style.display = 'block';
-    if (valorNumerico(cantNoches) && validarCampo(cantNoches) && cantNoches > 0) {
-        document.getElementById('msgReservaResultado').innerHTML = `Precio total: ${moneda} ${precioTotal}`;
-    } else {
-        document.getElementById('msgReservaResultado').innerHTML = `Noche(s) inválidas`;
-        document.getElementById('btnGuardarReserva').style.display = 'none';
-
-    }
-
-    limpiarCampos('txtCantidadNoches');
-}
-
-
-function btnGuardarReservaHandler() {
-    usuarioConectado.reservas.push(new Reserva(cantNoches, inmuebleSeleccionado, precioTotal));
-    document.getElementById('msgReservaResultado').innerHTML = `Reserva exitosa`;
-    document.getElementById('btnGuardarReserva').style.display = 'none';
-
-}
-
-
-
-
-/******************************************************************************* */
-//GUARDAR CALIFICACION
-function guardarCalificacionHandler() {
-    let posGuardar = Number(this.id.substr(22));
-    let calificacionIngresada = document.getElementById(`txtCalificacion${posGuardar}`).value;
-
-    if (valorNumerico(calificacionIngresada) && validarCampo(calificacionIngresada) && calificacionIngresada >= 1 && calificacionIngresada <= 5) {
-        //Pasamos parámetro de califacion a la reserva
-        usuarioConectado.reservas[posGuardar].calificacion = Number(calificacionIngresada);
-
-        calificacionInmueble(usuarioConectado.reservas)
-        //Ingresamos calificacion al inmueble seleccionado
-        usuarioConectado.reservas[posGuardar].inmueble.calificaciones.push(Number(calificacionIngresada));
-
-        //Ingresamos el promedio al mueble seleccionado
-        usuarioConectado.reservas[posGuardar].inmueble.promedio = promedio(sumarArray(usuarioConectado.reservas[posGuardar].inmueble.calificaciones), usuarioConectado.reservas[posGuardar].inmueble.calificaciones.length, 1);
-        //Cambiamos el atributo de la reserva .calificado a true
-        usuarioConectado.reservas[posGuardar].calificado = true;
-        //Mensaje de éxito
-        document.getElementById(`tdCalificacion${posGuardar}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
-
-    } else {
-        document.getElementById(`msgCalificar${posGuardar}`).innerHTML = `<p>Ingrese un numero entre 1 y 5</p>`
-        limpiarCampos(`txtCalificacion${posGuardar}`);
-    }
-
-}
-
-/******************************************************************************** */
-
-//Función para obtener la variable 'tipoRegistro' usada para el registro
-function obtenerTipo() {
-    if (usuarioConectado === undefined || usuarioConectado === null) {
-        tipoRegistro = 'huesped';
-    } else if (usuarioConectado.tipo === 'admin') {
-        tipoRegistro = 'admin';
-    }
-}
-
-//********************************************************************* */
-crearBoton('btnFiltroMontos', btnFiltroMontosHandler)
-
+//FUNCIÓN PARA FILTRAR POR MONTO LOS REPORTES
 function btnFiltroMontosHandler() {
     let montoDesde = (document.getElementById('txtMontoDesde').value).trim();
     let montoHasta = (document.getElementById('txtMontoHasta').value).trim();
@@ -828,40 +757,22 @@ function btnFiltroMontosHandler() {
 
 }
 
+//**************************************************************************************************************
 
-crearBoton('btnHomeFiltrarInm', btnHomeFiltrarInmHandler);
+//CERRAR SESIÓN
 
-function btnHomeFiltrarInmHandler() {
+function aCerrarSesionHandler() {
 
-    let criterio = document.getElementById('btnHomeFiltrarInm').value;
+    //Llamamos función para cambiar criterioOrden y moneda
+    reseteoCriteriosYMoneda();
 
-    if (criterio === "Filtrar por popularidad") {
-        document.getElementById('btnHomeFiltrarInm').value = "Filtrar por precio";
-        criterioOrden = "popularidad";
+    iniciarApp();
 
-    } else {
-        document.getElementById('btnHomeFiltrarInm').value = "Filtrar por popularidad";
-        criterioOrden = "precio";
-    }
+    document.getElementById('aLogin').style.display = 'block';
+    document.getElementById('aRegistrarse').style.display = 'block';
+    document.getElementById('aCerrarSesion').style.display = 'none';
 
-    armarMuro(arrayInmuebles);
-    if (usuarioConectado == null || usuarioConectado == undefined) {
-        //Selecciono todos los ver mas
-        let verMas = document.querySelectorAll('.ver-mas')
+    //Reseteamos los valores
+    usuarioConectado = null;
 
-        //Los oculto
-        ocultarElementos(verMas)
-    }
-
-}
-
-//Función para resetear moneda a $U y criterioOrden a 'Popular'
-function reseteoCriteriosYMoneda() {
-    if (moneda === 'USD') {
-        btnMonedaHandler();
-    }
-
-    if (criterioOrden === 'precio') {
-        btnHomeFiltrarInmHandler();
-    }
 }
