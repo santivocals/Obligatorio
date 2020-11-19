@@ -33,9 +33,9 @@ arrayUsuarios.push(new Usuario('Huesped', '10', 'huesp10@gmail.com', 91689277, '
 let arrayInmuebles = [];
 
 //Creamos inmuebles precargados
-arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 20, ['CasaA_1.jpeg', 'CasaA_2.jpeg', 'CasaA_3.jpeg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa de campo', 'Rancho amplio terreno', 'Atlantida', 200, ['CasaB_1.jpeg', 'CasaB_2.jpeg', 'CasaB_3.jpeg'], 'anf2@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa 3', 'Rancho amplio dfsdf', 'Atlantasdida', 10, ['CasaC_1.jpeg', 'CasaC_2.jpeg', 'CasaC_3.jpeg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 20, ['CasaA_1.jpg', 'CasaA_2.jpg', 'CasaA_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa de campo', 'Rancho amplio terreno', 'Atlantida', 200, ['CasaB_1.jpg', 'CasaB_2.jpg', 'CasaB_3.jpg'], 'anf2@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa 3', 'Rancho amplio dfsdf', 'Atlantasdida', 10, ['CasaC_1.jpg', 'CasaC_2.jpg', 'CasaC_3.jpg'], 'agustina@gmail.com'));
 
 //Declaro e inicializo un array para guardar la copia de inmuebles
 let arrayInmueblesOrden = [];
@@ -46,28 +46,28 @@ arrayInmuebles[1].calificaciones = [1,2];
 
 //array global para el array de archivo de fotos para los inmuebles
 let arrayImagenes = [];
-arrayImagenes.push('CasaA_1.jpeg', 'CasaA_2.jpeg', 'CasaA_3.jpeg');
-arrayImagenes.push('CasaB_1.jpeg', 'CasaB_2.jpeg', 'CasaB_3.jpeg');
-arrayImagenes.push('CasaC_1.jpeg', 'CasaC_2.jpeg', 'CasaC_3.jpeg');
-arrayImagenes.push('CasaD_1.jpeg', 'CasaD_2.jpeg', 'CasaD_3.jpeg');
-arrayImagenes.push('CasaE_1.jpeg', 'CasaE_2.jpeg', 'CasaE_3.jpeg');
-arrayImagenes.push('CasaF_1.jpeg', 'CasaF_2.jpeg', 'CasaF_3.jpeg');
-arrayImagenes.push('CasaG_1.jpeg', 'CasaG_2.jpeg', 'CasaG_3.jpeg');
-arrayImagenes.push('CasaH_1.jpeg', 'CasaH_2.jpeg', 'CasaH_3.jpeg');
-arrayImagenes.push('CasaI_1.jpeg', 'CasaI_2.jpeg', 'CasaI_3.jpeg');
-arrayImagenes.push('CasaJ_1.jpeg', 'CasaJ_2.jpeg', 'CasaJ_3.jpeg');
-arrayImagenes.push('CasaK_1.jpeg', 'CasaK_2.jpeg', 'CasaK_3.jpeg');
-arrayImagenes.push('CasaL_1.jpeg', 'CasaL_2.jpeg', 'CasaL_3.jpeg');
-arrayImagenes.push('CasaM_1.jpeg', 'CasaM_2.jpeg', 'CasaM_3.jpeg');
-arrayImagenes.push('CasaN_1.jpeg', 'CasaN_2.jpeg', 'CasaN_3.jpeg');
-arrayImagenes.push('CasaO_1.jpeg', 'CasaO_2.jpeg', 'CasaO_3.jpeg');
-arrayImagenes.push('CasaP_1.jpeg', 'CasaP_2.jpeg', 'CasaP_3.jpeg');
-arrayImagenes.push('CasaQ_1.jpeg', 'CasaQ_2.jpeg', 'CasaQ_3.jpeg');
-arrayImagenes.push('CasaR_1.jpeg', 'CasaR_2.jpeg', 'CasaR_3.jpeg');
-arrayImagenes.push('CasaS_1.jpeg', 'CasaS_2.jpeg', 'CasaS_3.jpeg');
-arrayImagenes.push('CasaT_1.jpeg', 'CasaT_2.jpeg', 'CasaT_3.jpeg');
-arrayImagenes.push('CasaX_1.jpeg', 'CasaX_2.jpeg', 'CasaX_3.jpeg');
-arrayImagenes.push('CasaZ_1.jpeg', 'CasaZ_2.jpeg', 'CasaZ_3.jpeg');
+arrayImagenes.push('CasaA_1.jpg', 'CasaA_2.jpg', 'CasaA_3.jpg');
+arrayImagenes.push('CasaB_1.jpg', 'CasaB_2.jpg', 'CasaB_3.jpg');
+arrayImagenes.push('CasaC_1.jpg', 'CasaC_2.jpg', 'CasaC_3.jpg');
+arrayImagenes.push('CasaD_1.jpg', 'CasaD_2.jpg', 'CasaD_3.jpg');
+arrayImagenes.push('CasaE_1.jpg', 'CasaE_2.jpg', 'CasaE_3.jpg');
+arrayImagenes.push('CasaF_1.jpg', 'CasaF_2.jpg', 'CasaF_3.jpg');
+arrayImagenes.push('CasaG_1.jpg', 'CasaG_2.jpg', 'CasaG_3.jpg');
+arrayImagenes.push('CasaH_1.jpg', 'CasaH_2.jpg', 'CasaH_3.jpg');
+arrayImagenes.push('CasaI_1.jpg', 'CasaI_2.jpg', 'CasaI_3.jpg');
+arrayImagenes.push('CasaJ_1.jpg', 'CasaJ_2.jpg', 'CasaJ_3.jpg');
+arrayImagenes.push('CasaK_1.jpg', 'CasaK_2.jpg', 'CasaK_3.jpg');
+arrayImagenes.push('CasaL_1.jpg', 'CasaL_2.jpg', 'CasaL_3.jpg');
+arrayImagenes.push('CasaM_1.jpg', 'CasaM_2.jpg', 'CasaM_3.jpg');
+arrayImagenes.push('CasaN_1.jpg', 'CasaN_2.jpg', 'CasaN_3.jpg');
+arrayImagenes.push('CasaO_1.jpg', 'CasaO_2.jpg', 'CasaO_3.jpg');
+arrayImagenes.push('CasaP_1.jpg', 'CasaP_2.jpg', 'CasaP_3.jpg');
+arrayImagenes.push('CasaQ_1.jpg', 'CasaQ_2.jpg', 'CasaQ_3.jpg');
+arrayImagenes.push('CasaR_1.jpg', 'CasaR_2.jpg', 'CasaR_3.jpg');
+arrayImagenes.push('CasaS_1.jpg', 'CasaS_2.jpg', 'CasaS_3.jpg');
+arrayImagenes.push('CasaT_1.jpg', 'CasaT_2.jpg', 'CasaT_3.jpg');
+arrayImagenes.push('CasaX_1.jpg', 'CasaX_2.jpg', 'CasaX_3.jpg');
+arrayImagenes.push('CasaZ_1.jpg', 'CasaZ_2.jpg', 'CasaZ_3.jpg');
 
 
 
