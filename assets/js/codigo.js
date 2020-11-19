@@ -19,9 +19,8 @@ function iniciarApp() {
     crearBoton('aInicio', aInicioHandler);
     crearBoton('aLogin', aLoginHandler);
     crearBoton('aRegistrarse', aRegistroHandler);
-    crearBoton('aCerrarSesion', aCerrarSesionHandler);
-    crearBoton('aCerrarSesion', btnHomeFiltrarInmHandler); 
-    crearBoton('aCerrarSesion', btnMonedaHandler);
+    crearBoton('aCerrarSesion', aCerrarSesionHandler); 
+    
 
     //preparo clicks a las opciones de usuario huesped
     crearBoton('aInmueblesHuesped', aInmueblesHuespedHandler);
@@ -439,15 +438,16 @@ function btnMonedaHandler() {
 //CERRAR SESIÓN
 
 function aCerrarSesionHandler() {
+    
     iniciarApp();
 
     document.getElementById('aLogin').style.display = 'block';
     document.getElementById('aRegistrarse').style.display = 'block';
     document.getElementById('aCerrarSesion').style.display = 'none';
 
-
+    //Reseteamos los valores
     usuarioConectado = null;
-    criterioOrden = 'popularidad';
+    
 }
 
 /******************************************************************************* */
