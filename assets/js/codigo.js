@@ -91,7 +91,7 @@ function mostrarPantalla(pPantalla) {
 
 //ACCESO A LA PANTALLA LOGIN
 function aLoginHandler() {
-
+    
     //Muestro la pantalla de login y escondo el home
     mostrarPantalla('Login');
 
@@ -123,7 +123,9 @@ function aInicioHandler() {
 
 //ACCESO A LA PANTALLA DE REGISTRO HUESPED
 function aRegistroHandler() {
-
+    //Pasamos funcion para dar valor a variable tipo usada en el registro
+    obtenerTipo();
+    
     document.getElementById('tituloRegistro').innerHTML = `<h3 id="tituloRegistroHuesped">Registro de Huéspedes</h3>`
     document.getElementById('btnRegistro').innerHTML = `<td></td> <td><input type="button" value="Registrar" id="btnRegistro"></input></td>`;
 
@@ -239,7 +241,7 @@ function bntRegistroHandler() {
     }
 
     //CÓDIGO COMÚN A AMBOS REGISTROS
-    //Nota: Recordamos qque la variable global 'tipo' se asigna cuando admin se loguea o cuando huesped entra a menú de "Registrarse"
+    //Nota: Recordamos que la variable global 'tipoRegistro' se asigna cuando admin se loguea o cuando huesped entra a menú de "Registrarse"
 
     let nombre = document.getElementById('txtNombre').value;
     let apellido = document.getElementById('txtApellido').value;
@@ -256,7 +258,7 @@ function bntRegistroHandler() {
                 if (validarCelular(celular)) {
                     if (validarContrasena(password)) {
                         if (validarConfirmarContrasena(password, password2)) {
-                            arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipo))
+                            arrayUsuarios.push(new Usuario(nombre, apellido, correo, celular, password, tipoRegistro))
                             limpiarCampos(arrayDeIds);
                             document.getElementById('msgRegistro').innerText = `Registro exitoso`;
                         } else {
@@ -770,9 +772,9 @@ function guardarCalificacionHandler() {
 //Función para obtener la variable 'tipo' usada para el registro
 function obtenerTipo() {
     if (usuarioConectado === undefined || usuarioConectado === null) {
-        tipo = 'huesped';
+        tipoRegistro = 'huesped';
     } else if (usuarioConectado.tipo === 'admin') {
-        tipo = 'admin';
+        tipoRegistro = 'admin';
     }
 }
 
