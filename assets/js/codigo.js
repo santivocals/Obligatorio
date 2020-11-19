@@ -571,7 +571,7 @@ crearBoton('btnActualizarDolar', btnActualizarDolarHandler);
 function btnActualizarDolarHandler() {
     let nuevoDolar = document.getElementById('txtUSD').value;
 
-    if (valorNumerico(nuevoDolar)) {
+    if (valorNumerico(nuevoDolar) && validarCampo(nuevoDolar) && nuevoDolar > 0) {
         cotizacionDolar = Number(nuevoDolar);
         mostrarMensaje('msgActualizacion', 'Cotización actualizada correctamente');
         document.getElementById('txtUSD').value = '';
