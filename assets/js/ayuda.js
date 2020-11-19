@@ -74,9 +74,24 @@ function validarCampo(pCadena) {
     return campoValido;
 }
 
+//Función para comprobar si correo existe en el array de usuarios
+function compararCorreo(pCorreo) {
+    for (let i=0; i < arrayUsuarios.length; i++) {
+        correoAComparar = arrayUsuarios[i].correo;
+        if (pCorreo === correoAComparar) {
+            correoEsValido = false;
+        }
+    }
+
+    return correoEsValido;
+}
+
 //Función para validar correo
 function validarCorreo(pCorreo) {
     let correoEsValido = false;
+    
+    //Llamamos a la función comparar correo y almacenamos en una variable
+    let comparacionCorreo = compararCorreo(pCorreo);
 
     //Me guardo posición de @
     let buscarArroba = pCorreo.indexOf('@');
@@ -84,7 +99,9 @@ function validarCorreo(pCorreo) {
     //Me guardo posición de . luego de @ y un caracter
     let buscarPunto = pCorreo.indexOf('.', (buscarArroba + 2));
 
-    if (buscarArroba !== -1 // Valido que exista el arroba en el string
+    if (comparacionCorreo //Valida que el correo no exista en la propiedad .correo del array usuarios
+        &&
+        buscarArroba !== -1 // Valido que exista el arroba en el string
         &&
         buscarPunto !== -1 //Valido que exista el punto luego de el arroba y al menos un caracter
         &&
@@ -97,6 +114,7 @@ function validarCorreo(pCorreo) {
                 correoEsValido = false;
             }
         }
+
     }
 
     return correoEsValido;
@@ -287,11 +305,14 @@ function misInmuebles(pInmueblesAMostrar) {
         <input type="button" id="btnDeshabilitar${i}" class ="btnDeshabilitar" value="Deshabilitar">
         <hr>
         </div>`
+
         }
 
+        
+        
     }
 
-   document.getElementById('divMisInm').innerHTML = muroHtml; 
+    document.getElementById('divMisInm').innerHTML = muroHtml;
 
     let botonesDeshabilitar = document.querySelectorAll('.btnDeshabilitar');
     let botonesHabilitar = document.querySelectorAll('.btnHabilitar');
@@ -310,22 +331,32 @@ function misInmuebles(pInmueblesAMostrar) {
         btnDeshabilitar.addEventListener('click', btnDesInmuebleHandler);
     }
 
-
-}
-
-
-
-function btnHabInmuebleHandler(){
-    posicion = Number(this.id.substr(12)); 
-    arrayInmueblesOrden[posicion].habilitado = true;
-  
     
 }
 
 
+// Función para cambiar propiedad del inmueble a habilitado
+function btnHabInmuebleHandler(){
+    posicion = Number(this.id.substr(12)); 
+        //Habilitamos el inmueble al presionar el botón
+        arrayInmueblesOrden[posicion].habilitado = true;
+        //Deshabilitamos el botón de habilitar
+        document.getElementById(`btnHabilitar${posicion}`).disabled = true;
+        //Habilitamos el botón de deshabilitar
+        document.getElementById(`btnDeshabilitar${posicion}`).disabled = false;    
+}
+
+// Función para cambiar propiedad del inmueble a Deshabilitado
 function btnDesInmuebleHandler(){
-    posicion = Number(this.id.substr(15));  
-    arrayInmueblesOrden[posicion].habilitado = false;
+    posicion = Number(this.id.substr(15));
+        //Deshabilitamos inmueble al presionar botón
+        arrayInmueblesOrden[posicion].habilitado = false;
+        //Deshabilitamos botón de deshabilitar
+        document.getElementById(`btnDeshabilitar${posicion}`).disabled = true;
+        //Habilitamos botón de habilitar
+        document.getElementById(`btnHabilitar${posicion}`).disabled = false;
+      
+    
 
 }
 
