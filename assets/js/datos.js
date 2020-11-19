@@ -33,25 +33,25 @@ arrayUsuarios.push(new Usuario('Huesped', '10', 'huesp10@gmail.com', 91689277, '
 let arrayInmuebles = [];
 
 //Creamos inmuebles precargados
-arrayInmuebles.push(new Inmueble('Chalet con piscina', 'Amplio chalet con piscina y parrillero', 'La Floresta', 200, ['CasaA_1.jpg', 'CasaA_2.jpg', 'CasaA_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Chalet con piscina', 'Amplio chalet con piscina y parrillero', 'La Floresta', 200, ['CasaH_1.jpg', 'CasaH_2.jpg', 'CasaH_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa de campo', 'Rancho amplio terreno', 'Atlantida', 450, ['CasaB_1.jpg', 'CasaB_2.jpg', 'CasaB_3.jpg'], 'anf2@gmail.com'));
-arrayInmuebles.push(new Inmueble('Amplia casa arbolada', 'Amplia casa arbolada a cuadras de la playa', 'Punta del Diablo', 500, ['CasaC_1.jpg', 'CasaC_2.jpg', 'CasaC_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Punta del este', 500, ['CasaD_1.jpg', 'CasaD_2.jpg', 'CasaD_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Amplia casa arbolada', 'Amplia casa arbolada a cuadras de la playa', 'Punta del Diablo', 660, ['CasaC_1.jpg', 'CasaC_2.jpg', 'CasaC_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Punta del este', 420, ['CasaD_1.jpg', 'CasaD_2.jpg', 'CasaD_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'La Paloma', 400, ['CasaE_1.jpg', 'CasaE_2.jpg', 'CasaE_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'La Coronilla', 500, ['CasaF_1.jpg', 'CasaF_2.jpg', 'CasaF_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Aguas Dulces', 200, ['CasaG_1.jpg', 'CasaG_2.jpg', 'CasaG_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'La Coronilla', 530, ['CasaF_1.jpg', 'CasaF_2.jpg', 'CasaF_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Aguas Dulces', 280, ['CasaG_1.jpg', 'CasaG_2.jpg', 'CasaG_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Manantiales', 300, ['CasaH_1.jpg', 'CasaH_2.jpg', 'CasaH_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'San Ignacio', 500, ['CasaI_1.jpg', 'CasaI_2.jpg', 'CasaI_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'San Ignacio', 590, ['CasaI_1.jpg', 'CasaI_2.jpg', 'CasaI_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa de piedra', 'Amplia casa con terreno', 'Valizas', 550, ['CasaJ_1.jpg', 'CasaJ_2.jpg', 'CasaJ_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Costa Azul', 500, ['CasaK_1.jpg', 'CasaK_2.jpg', 'CasaK_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Punta ballena', 500, ['CasaL_1.jpg', 'CasaL_2.jpg', 'CasaL_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Las Flores', 500, ['CasaM_1.jpg', 'CasaM_2.jpg', 'CasaM_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Guazuvirá', 500, ['CasaN_1.jpg', 'CasaN_2.jpg', 'CasaN_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Costa Azul', 700, ['CasaK_1.jpg', 'CasaK_2.jpg', 'CasaK_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Punta ballena', 580, ['CasaL_1.jpg', 'CasaL_2.jpg', 'CasaL_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Las Flores', 570, ['CasaM_1.jpg', 'CasaM_2.jpg', 'CasaM_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Guazuvirá', 560, ['CasaN_1.jpg', 'CasaN_2.jpg', 'CasaN_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Punta del Diablo', 450, ['CasaR_1.jpg', 'CasaR_2.jpg', 'CasaR_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'La Pedrera', 500, ['CasaR_1.jpg', 'CasaR_2.jpg', 'CasaR_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Atlantida', 500, ['CasaS_1.jpg', 'CasaS_2.jpg', 'CasaS_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'La Pedrera', 650, ['CasaR_1.jpg', 'CasaR_2.jpg', 'CasaR_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Atlantida', 480, ['CasaS_1.jpg', 'CasaS_2.jpg', 'CasaS_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Punta del Diablo', 350, ['CasaT_1.jpg', 'CasaT_2.jpg', 'CasaT_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Aguas Dulces', 500, ['CasaX_1.jpg', 'CasaX_2.jpg', 'CasaZ_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Aguas Dulces', 630, ['CasaX_1.jpg', 'CasaX_2.jpg', 'CasaZ_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en la colina', 'Comoda casa en barrio tranquilo', 'Manantiales', 600, ['CasaZ_1.jpg', 'CasaZ_2.jpg', 'CasaZ_3.jpg'], 'agustina@gmail.com'));
 
 
