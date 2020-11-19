@@ -411,11 +411,14 @@ function btnMonedaHandler() {
     }
 
     armarMuro(arrayInmuebles);
-    //Selecciono todos los ver mas
-    let verMas = document.querySelectorAll('.ver-mas')
+    
+    if (usuarioConectado == null || usuarioConectado == undefined) {
+        //Selecciono todos los ver mas
+        let verMas = document.querySelectorAll('.ver-mas')
 
-    //Los oculto
-    ocultarElementos(verMas)
+        //Los oculto
+        ocultarElementos(verMas)
+    }
 
 
     //modifico la etiqueta para volver a la moneda anterior
