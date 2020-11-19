@@ -611,7 +611,7 @@ function btnHomeFiltrarInmueblesHandler() {
         for (let i = 0; i < arrayInmuebles.length; i++) {
 
             let inmueble = arrayInmuebles[i];
-            if (inmueble.titulo.toLowerCase().indexOf(valorFiltro) !== -1) {
+            if (inmueble.titulo.toLowerCase().indexOf(valorFiltro) !== -1 && inmueble.habilitado == true) {
                 inmueblesFiltrados.push(inmueble)
             }
         }
@@ -624,7 +624,7 @@ function btnHomeFiltrarInmueblesHandler() {
 
                 let inmueble = arrayInmuebles[i];
 
-                if (inmueble.ciudad.toLowerCase().indexOf(valorFiltro) !== -1) {
+                if (inmueble.ciudad.toLowerCase().indexOf(valorFiltro) !== -1 && inmueble.habilitado == true) {
                     inmueblesFiltrados.push(inmueble)
                 }
             }
@@ -638,7 +638,7 @@ function btnHomeFiltrarInmueblesHandler() {
 
                     let inmueble = arrayInmuebles[i];
 
-                    if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1) {
+                    if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1 && inmueble.habilitado == true) {
                         inmueblesFiltrados.push(inmueble)
                     }
                 }
