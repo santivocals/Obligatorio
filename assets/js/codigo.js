@@ -569,7 +569,8 @@ function aReporteInmueblesHandler() {
     //Limpiamos párrafo
     mostrarMensaje('msgResultadoFiltroMonto', '');
     //Volvemos a armar muro
-    armarMuro(arrayInmuebles);
+    reporteInm(arrayInmuebles);
+    document.getElementById('tituloReportes').style.display = 'block';
 }
 
 /******************************************************************************* */
@@ -812,11 +813,13 @@ function btnFiltroMontosHandler() {
 
     }
     if (inmueblesFiltrados.length > 0) {
-        armarMuro(inmueblesFiltrados);
+        reporteInm(inmueblesFiltrados);
         mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
+        document.getElementById('tituloReportes').style.display = 'block';
     } else {
         mensaje = 'No existen resultados para su búsqueda';
-        armarMuro(0);
+        reporteInm(0)
+        document.getElementById('tituloReportes').style.display = 'none';
     }
 
     document.getElementById('msgResultadoFiltroMonto').innerText = mensaje;
