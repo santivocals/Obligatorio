@@ -123,9 +123,9 @@ function aInicioHandler() {
 
 //ACCESO A LA PANTALLA DE REGISTRO HUESPED
 function aRegistroHandler() {
-    //Pasamos funcion para dar valor a variable tipo usada en el registro
+    //Pasamos funcion para dar valor a variable tipoRegistro usada en el registro
     obtenerTipo();
-    
+
     document.getElementById('tituloRegistro').innerHTML = `<h3 id="tituloRegistroHuesped">Registro de Huéspedes</h3>`
     document.getElementById('btnRegistro').innerHTML = `<td></td> <td><input type="button" value="Registrar" id="btnRegistro"></input></td>`;
 
@@ -213,7 +213,7 @@ function btnLoginHandler() {
         //Llamamos función para cambiar criterioOrden y moneda
         reseteoCriteriosYMoneda();
 
-        //Pasamos funcion para dar valor a variable tipo usada en el registro
+        //Pasamos funcion para dar valor a variable tipoRegistro usada en el registro
         obtenerTipo();
 
     }
@@ -769,7 +769,7 @@ function guardarCalificacionHandler() {
 
 /******************************************************************************** */
 
-//Función para obtener la variable 'tipo' usada para el registro
+//Función para obtener la variable 'tipoRegistro' usada para el registro
 function obtenerTipo() {
     if (usuarioConectado === undefined || usuarioConectado === null) {
         tipoRegistro = 'huesped';
