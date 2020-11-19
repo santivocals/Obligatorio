@@ -759,7 +759,7 @@ function guardarCalificacionHandler() {
         document.getElementById(`tdCalificacion${posGuardar}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
 
     } else {
-        document.getElementById(`msgCalificar${posGuardar}`).innerHTML += `<p>Ingrese un numero entre 1 y 5</p>`
+        document.getElementById(`msgCalificar${posGuardar}`).innerHTML = `<p>Ingrese un numero entre 1 y 5</p>`
         limpiarCampos(`txtCalificacion${posGuardar}`);
     }
 
