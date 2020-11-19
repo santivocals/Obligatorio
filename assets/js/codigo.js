@@ -751,7 +751,7 @@ function guardarCalificacionHandler() {
         usuarioConectado.reservas[posGuardar].calificacion = Number(calificacionIngresada);
 
         calificacionInmueble(usuarioConectado.reservas)
-        //Ingresamo calificacion al inmueble seleccionado
+        //Ingresamos calificacion al inmueble seleccionado
         usuarioConectado.reservas[posGuardar].inmueble.calificaciones.push(Number(calificacionIngresada));
 
         //Ingresamos el promedio al mueble seleccionado
