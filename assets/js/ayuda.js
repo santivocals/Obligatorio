@@ -329,7 +329,7 @@ function btnDesInmuebleHandler(){
 function calificacionInmueble(pInmueblesAMostrar) {
     let muroHtml = "";
 
-    if (pInmueblesAMostrar > 0) {
+    if (pInmueblesAMostrar.length > 0) {
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
 
         let inmueble = pInmueblesAMostrar[i].inmueble;
@@ -354,6 +354,7 @@ function calificacionInmueble(pInmueblesAMostrar) {
         }
     }
     document.getElementById('tableCalificacion').innerHTML = muroHtml;
+    document.getElementById('msgCalificarReserva').innerText = ``;
 } else {
     document.getElementById('msgCalificarReserva').innerText = `No ha realizado ninguna reserva.`;
 }
