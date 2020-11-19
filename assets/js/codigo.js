@@ -20,7 +20,8 @@ function iniciarApp() {
     crearBoton('aLogin', aLoginHandler);
     crearBoton('aRegistrarse', aRegistroHandler);
     crearBoton('aCerrarSesion', aCerrarSesionHandler);
-
+    crearBoton('aCerrarSesion', btnHomeFiltrarInmHandler); 
+    crearBoton('aCerrarSesion', btnMonedaHandler);
 
     //preparo clicks a las opciones de usuario huesped
     crearBoton('aInmueblesHuesped', aInmueblesHuespedHandler);
@@ -446,6 +447,7 @@ function aCerrarSesionHandler() {
 
 
     usuarioConectado = null;
+    criterioOrden = 'popularidad';
 }
 
 /******************************************************************************* */
