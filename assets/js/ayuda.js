@@ -422,7 +422,7 @@ function calificacionInmueble(pInmueblesAMostrar) {
     let muroHtml = "";
 
     if (pInmueblesAMostrar.length > 0) {
-        for (let i = 0; i < pInmueblesAMostrar.length; i++) {
+        for (let i = ((pInmueblesAMostrar.length)-1); i >= 0; i--) {
 
             let inmueble = pInmueblesAMostrar[i].inmueble;
 
