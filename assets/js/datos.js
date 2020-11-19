@@ -41,8 +41,8 @@ arrayInmuebles.push(new Inmueble('Casa 3', 'Rancho amplio dfsdf', 'Atlantasdida'
 let arrayInmueblesOrden = [];
 
 //Calificaciones
-arrayInmuebles[0].calificaciones.push(3,2);
-arrayInmuebles[1].calificaciones.push(1,2);
+arrayInmuebles[0].calificaciones = [3,2];
+arrayInmuebles[1].calificaciones = [1,2];
 
 //array global para el array de archivo de fotos para los inmuebles
 let arrayImagenes = ['Casa1.jpeg','Casa2.jpeg','Casa3.jpeg','Casa4.jpeg','Casa5.jpeg','Casa6.jpeg','Casa7.jpeg'];
