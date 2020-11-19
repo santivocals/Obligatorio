@@ -660,7 +660,7 @@ function btnHomeFiltrarInmueblesHandler() {
 //Funcion para mostrar inmuebles propios de cada anfitrion
 
 function mostrarInmueblesAnf() {
-    misInmuebles(arrayInmueblesOrden);
+    misInmuebles(arrayInmuebles);
 
 
 }
