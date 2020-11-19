@@ -44,14 +44,14 @@ arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'San Ignacio', 590, ['CasaI_1.jpg', 'CasaI_2.jpg', 'CasaI_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa de piedra', 'Amplia casa con terreno', 'Valizas', 550, ['CasaJ_1.jpg', 'CasaJ_2.jpg', 'CasaJ_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Costa Azul', 700, ['CasaK_1.jpg', 'CasaK_2.jpg', 'CasaK_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Punta ballena', 580, ['CasaL_1.jpg', 'CasaL_2.jpg', 'CasaL_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Rancho en Valizas', 'Rancho a cuadras de la playa', 'Valizas', 580, ['CasaL_1.jpg', 'CasaL_2.jpg', 'CasaL_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Las Flores', 570, ['CasaM_1.jpg', 'CasaM_2.jpg', 'CasaM_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Guazuvirá', 560, ['CasaN_1.jpg', 'CasaN_2.jpg', 'CasaN_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Punta del Diablo', 450, ['CasaR_1.jpg', 'CasaR_2.jpg', 'CasaR_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'La Pedrera', 650, ['CasaR_1.jpg', 'CasaR_2.jpg', 'CasaR_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Atlantida', 480, ['CasaS_1.jpg', 'CasaS_2.jpg', 'CasaS_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Punta del Diablo', 350, ['CasaT_1.jpg', 'CasaT_2.jpg', 'CasaT_3.jpg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa en barrio tranquilo', 'Amplia casa de dos pisos', 'Aguas Dulces', 630, ['CasaX_1.jpg', 'CasaX_2.jpg', 'CasaZ_3.jpg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Apartamento con vista al mar', 'Apartamenteo frente a la playa', 'Aguas Dulces', 630, ['CasaX_1.jpg', 'CasaX_2.jpg', 'CasaZ_3.jpg'], 'agustina@gmail.com'));
 arrayInmuebles.push(new Inmueble('Casa en la colina', 'Comoda casa en barrio tranquilo', 'Manantiales', 600, ['CasaZ_1.jpg', 'CasaZ_2.jpg', 'CasaZ_3.jpg'], 'agustina@gmail.com'));
 
 
