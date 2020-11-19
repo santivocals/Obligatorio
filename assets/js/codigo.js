@@ -98,6 +98,7 @@ function aLoginHandler() {
     document.getElementById('aInicio').style.display = 'block';
     document.getElementById('aLogin').style.display = 'none';
     document.getElementById('aRegistrarse').style.display = 'block';
+    document.getElementById('msgLogin').innerText = '';
 
 }
 
