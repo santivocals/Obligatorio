@@ -557,7 +557,17 @@ function aCargaCotizacionHandler() {
 }
 
 function aReporteInmueblesHandler() {
+
     mostrarPantalla('ReporteInmuebles');
+
+    //Reseteamos cada vez que entra por si admin realizó un fitro de búsqueda
+    //Limpiamos campos de búsqueda
+    let arrayCampos = ['txtMontoDesde', 'txtMontoHasta'];
+    limpiarCampos(arrayCampos);
+    //Limpiamos párrafo
+    mostrarMensaje('msgResultadoFiltroMonto', '');
+    //Volvemos a armar muro
+    armarMuro(arrayInmuebles);
 }
 
 /******************************************************************************* */
@@ -652,6 +662,8 @@ function btnHomeFiltrarInmueblesHandler() {
         //Los oculto
         ocultarElementos(verMas)
     }
+
+
 }
 
 
