@@ -76,10 +76,13 @@ function validarCampo(pCadena) {
 
 //Función para comprobar si correo existe en el array de usuarios
 function compararCorreo(pCorreo) {
+    let correoEsValido = true;
+    let correoAComparar;
     for (let i = 0; i < arrayUsuarios.length; i++) {
         correoAComparar = arrayUsuarios[i].correo;
         if (pCorreo === correoAComparar) {
             correoEsValido = false;
+            break;
         }
     }
 
