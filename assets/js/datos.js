@@ -170,7 +170,7 @@ let moneda = '$U';
 let cotizacionDolar = 43;
 
 //variable global tipo que utilizamos en registro
-let tipo = '';
+let tipoRegistro = '';
 
 //variable global para el orden del muro
 let criterioOrden = 'popularidad';
