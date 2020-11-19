@@ -411,6 +411,12 @@ function btnMonedaHandler() {
     }
 
     armarMuro(arrayInmuebles);
+    //Selecciono todos los ver mas
+    let verMas = document.querySelectorAll('.ver-mas')
+
+    //Los oculto
+    ocultarElementos(verMas)
+
 
     //modifico la etiqueta para volver a la moneda anterior
     document.getElementById("btnCambiarMoneda").value = `Cambiar a ${monedaAnterior}`;
