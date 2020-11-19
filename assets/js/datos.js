@@ -33,9 +33,9 @@ arrayUsuarios.push(new Usuario('Huesped', '10', 'huesp10@gmail.com', 91689277, '
 let arrayInmuebles = [];
 
 //Creamos inmuebles precargados
-arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 20, ['Casa3.jpeg','Casa2.jpeg'], 'agustina@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa de campo', 'Rancho amplio terreno', 'Atlantida', 200, ['Casa1.jpeg','Casa5.jpeg'], 'anf2@gmail.com'));
-arrayInmuebles.push(new Inmueble('Casa 3', 'Rancho amplio dfsdf', 'Atlantasdida', 10, ['Casa2.jpeg','Casa5.jpeg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa de playa', 'Amplia casa a dos cuadras del mar', 'La Floresta', 20, ['CasaA_1.jpeg', 'CasaA_2.jpeg', 'CasaA_3.jpeg'], 'agustina@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa de campo', 'Rancho amplio terreno', 'Atlantida', 200, ['CasaB_1.jpeg', 'CasaB_2.jpeg', 'CasaB_3.jpeg'], 'anf2@gmail.com'));
+arrayInmuebles.push(new Inmueble('Casa 3', 'Rancho amplio dfsdf', 'Atlantasdida', 10, ['CasaC_1.jpeg', 'CasaC_2.jpeg', 'CasaC_3.jpeg'], 'agustina@gmail.com'));
 
 //Declaro e inicializo un array para guardar la copia de inmuebles
 let arrayInmueblesOrden = [];
@@ -45,7 +45,33 @@ arrayInmuebles[0].calificaciones = [3,2];
 arrayInmuebles[1].calificaciones = [1,2];
 
 //array global para el array de archivo de fotos para los inmuebles
-let arrayImagenes = ['Casa1.jpeg','Casa2.jpeg','Casa3.jpeg','Casa4.jpeg','Casa5.jpeg','Casa6.jpeg','Casa7.jpeg'];
+let arrayImagenes = [];
+arrayImagenes.push('CasaA_1.jpeg', 'CasaA_2.jpeg', 'CasaA_3.jpeg');
+arrayImagenes.push('CasaB_1.jpeg', 'CasaB_2.jpeg', 'CasaB_3.jpeg');
+arrayImagenes.push('CasaC_1.jpeg', 'CasaC_2.jpeg', 'CasaC_3.jpeg');
+arrayImagenes.push('CasaD_1.jpeg', 'CasaD_2.jpeg', 'CasaD_3.jpeg');
+arrayImagenes.push('CasaE_1.jpeg', 'CasaE_2.jpeg', 'CasaE_3.jpeg');
+arrayImagenes.push('CasaF_1.jpeg', 'CasaF_2.jpeg', 'CasaF_3.jpeg');
+arrayImagenes.push('CasaG_1.jpeg', 'CasaG_2.jpeg', 'CasaG_3.jpeg');
+arrayImagenes.push('CasaH_1.jpeg', 'CasaH_2.jpeg', 'CasaH_3.jpeg');
+arrayImagenes.push('CasaI_1.jpeg', 'CasaI_2.jpeg', 'CasaI_3.jpeg');
+arrayImagenes.push('CasaJ_1.jpeg', 'CasaJ_2.jpeg', 'CasaJ_3.jpeg');
+arrayImagenes.push('CasaK_1.jpeg', 'CasaK_2.jpeg', 'CasaK_3.jpeg');
+arrayImagenes.push('CasaL_1.jpeg', 'CasaL_2.jpeg', 'CasaL_3.jpeg');
+arrayImagenes.push('CasaM_1.jpeg', 'CasaM_2.jpeg', 'CasaM_3.jpeg');
+arrayImagenes.push('CasaN_1.jpeg', 'CasaN_2.jpeg', 'CasaN_3.jpeg');
+arrayImagenes.push('CasaO_1.jpeg', 'CasaO_2.jpeg', 'CasaO_3.jpeg');
+arrayImagenes.push('CasaP_1.jpeg', 'CasaP_2.jpeg', 'CasaP_3.jpeg');
+arrayImagenes.push('CasaQ_1.jpeg', 'CasaQ_2.jpeg', 'CasaQ_3.jpeg');
+arrayImagenes.push('CasaR_1.jpeg', 'CasaR_2.jpeg', 'CasaR_3.jpeg');
+arrayImagenes.push('CasaS_1.jpeg', 'CasaS_2.jpeg', 'CasaS_3.jpeg');
+arrayImagenes.push('CasaT_1.jpeg', 'CasaT_2.jpeg', 'CasaT_3.jpeg');
+arrayImagenes.push('CasaX_1.jpeg', 'CasaX_2.jpeg', 'CasaX_3.jpeg');
+arrayImagenes.push('CasaZ_1.jpeg', 'CasaZ_2.jpeg', 'CasaZ_3.jpeg');
+
+
+
+
 
 //array global para ir guardando las fotos seleccionadas al momento del alta del inmueble
 let imagenesSeleccionadas = [];
