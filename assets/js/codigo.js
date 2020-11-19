@@ -336,10 +336,7 @@ function btnAltaImagenHandler() {
     if (imagenesSeleccionadas.indexOf(imagenSeleccionada) === -1) {
         //agrego la foto al array global de imágenes seleccionadas
         imagenesSeleccionadas.push(imagenSeleccionada);
-    } else {
-        //sino aviso que esa imagen ya fue seleccionada
-        mostrarMensaje('msgAltaImagenes', 'Esta imagen ya ha sido seleccionada')
-    }
+    
 
     if (imagenesSeleccionadas.length < 3) {
         //Notificamos a usuario cuantos fotos quedan por cargar mínimo.
@@ -349,6 +346,10 @@ function btnAltaImagenHandler() {
         //Habilitamos botón para poder guardar el inmueble
         document.getElementById('btnGuardarInmueble').disabled = false;
     }
+} else {
+    //sino aviso que esa imagen ya fue seleccionada
+    mostrarMensaje('msgAltaImagenes', 'Esta imagen ya ha sido seleccionada')
+}
 
 }
 
