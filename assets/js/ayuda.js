@@ -352,7 +352,7 @@ function misInmuebles(pInmueblesAMostrar) {
 function btnHabInmuebleHandler() {
     posicion = Number(this.id.substr(12));
     //Habilitamos el inmueble al presionar el botón
-    arrayInmueblesOrden[posicion].habilitado = true;
+    arrayInmuebles[posicion].habilitado = true;
     //Deshabilitamos el botón de habilitar
     document.getElementById(`btnHabilitar${posicion}`).disabled = true;
     //Habilitamos el botón de deshabilitar
@@ -363,7 +363,7 @@ function btnHabInmuebleHandler() {
 function btnDesInmuebleHandler() {
     posicion = Number(this.id.substr(15));
     //Deshabilitamos inmueble al presionar botón
-    arrayInmueblesOrden[posicion].habilitado = false;
+    arrayInmuebles[posicion].habilitado = false;
     //Deshabilitamos botón de deshabilitar
     document.getElementById(`btnDeshabilitar${posicion}`).disabled = true;
     //Habilitamos botón de habilitar
