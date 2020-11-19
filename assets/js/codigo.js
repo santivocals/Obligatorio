@@ -478,6 +478,7 @@ function aCerrarSesionHandler() {
 //ACCESO DE HUÉSPED
 
 function pantallasHuesped() {
+    armarMuro(arrayInmuebles);
 
     mostrarPantalla('Home');
     //Selecciono todos los ver mas
@@ -498,7 +499,7 @@ function pantallasHuesped() {
 
 function aInmueblesHuespedHandler() {
     mostrarPantalla('Home');
-    armarMuro(arrayInmuebles);
+    armarMuro(arrayInmueblesOrden);
 }
 
 function aConsultaCalificacionHandler() {
