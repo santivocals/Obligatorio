@@ -111,7 +111,46 @@ arrayImagenes.push('CasaX_1.jpg', 'CasaX_2.jpg', 'CasaX_3.jpg');
 arrayImagenes.push('CasaZ_1.jpg', 'CasaZ_2.jpg', 'CasaZ_3.jpg');
 
 
+//Agrego reservas para los huéspedes 
+arrayUsuarios[6].reservas.push(new Reserva(5, arrayInmuebles[0], (arrayInmuebles[0].precio * 5)));
+arrayUsuarios[6].reservas.push(new Reserva(2, arrayInmuebles[2], (arrayInmuebles[2].precio * 2)));
+arrayUsuarios[6].reservas.push(new Reserva(3, arrayInmuebles[3], (arrayInmuebles[3].precio * 3)));
 
+arrayUsuarios[7].reservas.push(new Reserva(5, arrayInmuebles[1], (arrayInmuebles[1].precio * 5)));
+arrayUsuarios[7].reservas.push(new Reserva(5, arrayInmuebles[5], (arrayInmuebles[5].precio * 5)));
+arrayUsuarios[7].reservas.push(new Reserva(5, arrayInmuebles[4], (arrayInmuebles[4].precio * 5)));
+
+arrayUsuarios[8].reservas.push(new Reserva(5, arrayInmuebles[7], (arrayInmuebles[7].precio * 5)));
+arrayUsuarios[8].reservas.push(new Reserva(5, arrayInmuebles[6], (arrayInmuebles[6].precio * 5)));
+arrayUsuarios[8].reservas.push(new Reserva(5, arrayInmuebles[9], (arrayInmuebles[9].precio * 5)));
+
+arrayUsuarios[9].reservas.push(new Reserva(5, arrayInmuebles[8], (arrayInmuebles[8].precio * 5)));
+arrayUsuarios[9].reservas.push(new Reserva(5, arrayInmuebles[12], (arrayInmuebles[12].precio * 5)));
+arrayUsuarios[9].reservas.push(new Reserva(5, arrayInmuebles[11], (arrayInmuebles[11].precio * 5)));
+
+arrayUsuarios[10].reservas.push(new Reserva(5, arrayInmuebles[10], (arrayInmuebles[10].precio * 5)));
+arrayUsuarios[10].reservas.push(new Reserva(5, arrayInmuebles[13], (arrayInmuebles[13].precio * 5)));
+arrayUsuarios[10].reservas.push(new Reserva(5, arrayInmuebles[14], (arrayInmuebles[14].precio * 5)));
+
+arrayUsuarios[11].reservas.push(new Reserva(5, arrayInmuebles[16], (arrayInmuebles[16].precio * 5)));
+arrayUsuarios[11].reservas.push(new Reserva(5, arrayInmuebles[17], (arrayInmuebles[17].precio * 5)));
+arrayUsuarios[11].reservas.push(new Reserva(5, arrayInmuebles[15], (arrayInmuebles[15].precio * 5)));
+
+arrayUsuarios[12].reservas.push(new Reserva(5, arrayInmuebles[18], (arrayInmuebles[18].precio * 5)));
+arrayUsuarios[12].reservas.push(new Reserva(5, arrayInmuebles[19], (arrayInmuebles[19].precio * 5)));
+arrayUsuarios[12].reservas.push(new Reserva(5, arrayInmuebles[4], (arrayInmuebles[4].precio * 5)));
+
+arrayUsuarios[13].reservas.push(new Reserva(5, arrayInmuebles[3], (arrayInmuebles[3].precio * 5)));
+arrayUsuarios[13].reservas.push(new Reserva(5, arrayInmuebles[17], (arrayInmuebles[17].precio * 5)));
+arrayUsuarios[13].reservas.push(new Reserva(5, arrayInmuebles[8], (arrayInmuebles[8].precio * 5)));
+
+arrayUsuarios[14].reservas.push(new Reserva(5, arrayInmuebles[12], (arrayInmuebles[12].precio * 5)));
+arrayUsuarios[14].reservas.push(new Reserva(5, arrayInmuebles[19], (arrayInmuebles[19].precio * 5)));
+arrayUsuarios[14].reservas.push(new Reserva(5, arrayInmuebles[2], (arrayInmuebles[2].precio * 5)));
+
+arrayUsuarios[15].reservas.push(new Reserva(5, arrayInmuebles[1], (arrayInmuebles[1].precio * 5)));
+arrayUsuarios[15].reservas.push(new Reserva(5, arrayInmuebles[0], (arrayInmuebles[0].precio * 5)));
+arrayUsuarios[15].reservas.push(new Reserva(5, arrayInmuebles[14], (arrayInmuebles[14].precio * 5)));
 
 
 //array global para ir guardando las fotos seleccionadas al momento del alta del inmueble
