@@ -128,8 +128,8 @@
                 <input type="button" value="Buscar" id='btnHomeFiltrar'> <br>
                 <p id="msgHomeFiltroInmueble"></p>
                 <input type="button" value="Cambiar a USD" id='btnCambiarMoneda'>
-                
-                <input type="button" id="btnHomeFiltrarInm" value ="Filtrar por precio">
+
+                <input type="button" id="btnHomeFiltrarInm" value="Filtrar por precio">
                 <div id="divMuro">
 
                 </div>
@@ -142,7 +142,7 @@
                 <div id="divDetalleInm">
 
                 </div>
-                
+
 
             </div>
             <!--FIN DETALLES-->
@@ -161,7 +161,7 @@
             <div id="divMisInmuebles" class="pantalla">
                 <h3>Mis inmuebles</h3>
                 <div id="divMisInm">
-                    
+
                 </div>
             </div>
 
@@ -192,19 +192,27 @@
 
                         <tr>
                             <td><label for="txtInmImagenes">Seleccione<br>imágenes *</label></td>
-                            <td><select  id="slcAltaImagenes"></select></td>     
+                            <td><select id="slcAltaImagenes"></select></td>
                         </tr>
 
                         <tr>
-                            <td><td><input type="button" id="btnAltaImagen" value="Agregar Imagen"></td></td>
+                            <td>
+                            <td><input type="button" id="btnAltaImagen" value="Agregar Imagen"></td>
+                            </td>
                         </tr>
 
                         <tr>
-                            <td><td><p id="msgAltaImagenes"></p></td></td>
+                            <td>
+                            <td>
+                                <p id="msgAltaImagenes"></p>
+                            </td>
+                            </td>
                         </tr><br>
 
                         <tr>
-                            <td><td><input type="button" value="Guardar" id="btnGuardarInmueble"></td></td>
+                            <td>
+                            <td><input type="button" value="Guardar" id="btnGuardarInmueble"></td>
+                            </td>
                         </tr>
                 </table>
 
@@ -241,13 +249,23 @@
                     </tr>
                 </table>
                 <p id="msgResultadoFiltroMonto"></p>
-                <div id="divReporte"></div>
-                
-                
-                
-                
+                <table id="tituloReportes">
+                    <tr>
+                        <th class="thReporte">Imagen</th>
+                        <th class="thReporte">Título</th>
+                        <th class="thReporte">Precio</th>
+                    </tr>
+                </table>
+                <table id="tableReporte">
 
-                
+                </table>
+
+
+
+
+
+
+
             </div>
             <!--FIN DETALLES-->
 
