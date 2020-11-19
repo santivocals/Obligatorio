@@ -98,6 +98,7 @@ function aLoginHandler() {
     document.getElementById('aInicio').style.display = 'block';
     document.getElementById('aLogin').style.display = 'none';
     document.getElementById('aRegistrarse').style.display = 'block';
+    document.getElementById('msgLogin').innerText = '';
 
 }
 
@@ -122,7 +123,7 @@ function aInicioHandler() {
 
 //ACCESO A LA PANTALLA DE REGISTRO HUESPED
 function aRegistroHandler() {
-     
+
     document.getElementById('tituloRegistro').innerHTML = `<h3 id="tituloRegistroHuesped">Registro de Huéspedes</h3>`
     document.getElementById('btnRegistro').innerHTML = `<td></td> <td><input type="button" value="Registrar" id="btnRegistro"></input></td>`;
 
@@ -335,18 +336,19 @@ function btnAltaImagenHandler() {
     if (imagenesSeleccionadas.indexOf(imagenSeleccionada) === -1) {
         //agrego la foto al array global de imágenes seleccionadas
         imagenesSeleccionadas.push(imagenSeleccionada);
+
+
+        if (imagenesSeleccionadas.length < 3) {
+            //Notificamos a usuario cuantos fotos quedan por cargar mínimo.
+            mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(", ")} ha(n) sido cargada(s). Resta(n) al menos ${3 - imagenesSeleccionadas.length} imagen(es) más.`);
+        } else {
+            mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(", ")} ha(n) sido cargada(s).`);
+            //Habilitamos botón para poder guardar el inmueble
+            document.getElementById('btnGuardarInmueble').disabled = false;
+        }
     } else {
         //sino aviso que esa imagen ya fue seleccionada
         mostrarMensaje('msgAltaImagenes', 'Esta imagen ya ha sido seleccionada')
-    }
-
-    if (imagenesSeleccionadas.length < 3) {
-        //Notificamos a usuario cuantos fotos quedan por cargar mínimo.
-        mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(", ")} ha(n) sido cargada(s). Resta(n) al menos ${3 - imagenesSeleccionadas.length} imagen(es) más.`);
-    } else {
-        mostrarMensaje('msgAltaImagenes', `${imagenesSeleccionadas.join(", ")} ha(n) sido cargada(s).`);
-        //Habilitamos botón para poder guardar el inmueble
-        document.getElementById('btnGuardarInmueble').disabled = false;
     }
 
 }
@@ -443,7 +445,7 @@ function aCerrarSesionHandler() {
 
     //Llamamos función para cambiar criterioOrden y moneda
     reseteoCriteriosYMoneda();
-    
+
     iniciarApp();
 
     document.getElementById('aLogin').style.display = 'block';
@@ -579,7 +581,7 @@ crearBoton('btnActualizarDolar', btnActualizarDolarHandler);
 function btnActualizarDolarHandler() {
     let nuevoDolar = document.getElementById('txtUSD').value;
 
-    if (valorNumerico(nuevoDolar)) {
+    if (valorNumerico(nuevoDolar) && validarCampo(nuevoDolar) && nuevoDolar > 0) {
         cotizacionDolar = Number(nuevoDolar);
         mostrarMensaje('msgActualizacion', 'Cotización actualizada correctamente');
         document.getElementById('txtUSD').value = '';
@@ -604,8 +606,14 @@ function btnHomeFiltrarInmueblesHandler() {
         for (let i = 0; i < arrayInmuebles.length; i++) {
 
             let inmueble = arrayInmuebles[i];
-            if (inmueble.titulo.toLowerCase().indexOf(valorFiltro) !== -1 && inmueble.habilitado == true) {
-                inmueblesFiltrados.push(inmueble)
+            if (inmueble.habilitado == true) {
+                if (inmueble.titulo.toLowerCase().indexOf(valorFiltro) !== -1) {
+                    inmueblesFiltrados.push(inmueble)
+                } else if (inmueble.ciudad.toLowerCase().indexOf(valorFiltro) !== -1) {
+                    inmueblesFiltrados.push(inmueble)
+                } else if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1) {
+                    inmueblesFiltrados.push(inmueble)
+                }
             }
         }
         if (inmueblesFiltrados.length > 0) {
@@ -613,41 +621,9 @@ function btnHomeFiltrarInmueblesHandler() {
             mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
         } else {
 
-            for (let i = 0; i < arrayInmuebles.length; i++) {
-
-                let inmueble = arrayInmuebles[i];
-
-                if (inmueble.ciudad.toLowerCase().indexOf(valorFiltro) !== -1 && inmueble.habilitado == true) {
-                    inmueblesFiltrados.push(inmueble)
-                }
-            }
-
-            if (inmueblesFiltrados.length > 0) {
-                armarMuro(inmueblesFiltrados);
-                mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
-            } else {
-
-                for (let i = 0; i < arrayInmuebles.length; i++) {
-
-                    let inmueble = arrayInmuebles[i];
-
-                    if (inmueble.descripcion.toLowerCase().indexOf(valorFiltro) !== -1 && inmueble.habilitado == true) {
-                        inmueblesFiltrados.push(inmueble)
-                    }
-                }
-
-                if (inmueblesFiltrados.length > 0) {
-                    armarMuro(inmueblesFiltrados);
-                    mensaje = `${inmueblesFiltrados.length} resultado(s) encontrado(s)`
-                } else {
-                    mensaje = 'No existen resultados para su búsqueda';
-                    armarMuro(0);
-                }
-            }
-
+            mensaje = 'No existen resultados para su búsqueda';
+            armarMuro(0);
         }
-
-
     } else {
         mensaje = 'Debe ingresar criterio de búsqueda';
         armarMuro(arrayInmuebles);
@@ -670,7 +646,7 @@ function btnHomeFiltrarInmueblesHandler() {
 //Funcion para mostrar inmuebles propios de cada anfitrion
 
 function mostrarInmueblesAnf() {
-    misInmuebles(arrayInmueblesOrden);
+    misInmuebles(arrayInmuebles);
 
 
 }
@@ -871,16 +847,16 @@ function btnHomeFiltrarInmHandler() {
         //Los oculto
         ocultarElementos(verMas)
     }
-   
+
 }
 
 //Función para resetear moneda a $U y criterioOrden a 'Popular'
 function reseteoCriteriosYMoneda() {
-    if (moneda === 'USD')  {
+    if (moneda === 'USD') {
         btnMonedaHandler();
     }
-    
-    if (criterioOrden === 'precio')  {
+
+    if (criterioOrden === 'precio') {
         btnHomeFiltrarInmHandler();
     }
 }
