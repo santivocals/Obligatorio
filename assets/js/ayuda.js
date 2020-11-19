@@ -260,6 +260,11 @@ function armarMuro(pInmueblesAMostrar) {
 
 //Inmuebles propios del anfitrion
 function misInmuebles(pInmueblesAMostrar) {
+     //Llamamos función para cambiar moneda
+     if (moneda === 'USD')  {
+        btnMonedaHandler();
+    }
+
     let muroHtml = "";
 
     for (let i = 0; i < pInmueblesAMostrar.length; i++) {
