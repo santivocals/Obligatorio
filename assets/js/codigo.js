@@ -11,7 +11,7 @@ iniciarApp()
 
 //FUNCION PARA INICIAR LA APP
 function iniciarApp() {
-    
+
     armarMuro(arrayInmuebles);
 
     //utilizo la función que controla las pantallas para mostrar la de home
@@ -21,8 +21,8 @@ function iniciarApp() {
     crearBoton('aInicio', aInicioHandler);
     crearBoton('aLogin', aLoginHandler);
     crearBoton('aRegistrarse', aRegistroHandler);
-    crearBoton('aCerrarSesion', aCerrarSesionHandler); 
-    
+    crearBoton('aCerrarSesion', aCerrarSesionHandler);
+
 
     //preparo clicks a las opciones de usuario huesped
     crearBoton('aInmueblesHuesped', aInmueblesHuespedHandler);
@@ -362,23 +362,30 @@ function btnGuardarInmuebleHandler() {
     let arrayDeIds = ['txtInmTitulo', 'txtInmDescripción', 'txtInmCiudad', 'txtInmPrecio'];
 
     //Valido los campos
-    if (validarCampo(titulo) && validarCampo(descripcion) && validarCampo(ciudad) && valorNumerico(precio)) {
-        //Instancia para nuevo inmueble y le asigno los parametros correspondientes
-        let inmuebleNuevo = new Inmueble(titulo, descripcion, ciudad, precio, imagenesSeleccionadas, anfitrion);
-        //Lo agrego al array de inmuebles
-        arrayInmuebles.push(inmuebleNuevo);
-        //Muestro mensaje de Registro exitoso
-        mostrarMensaje('msgRegInmueble', 'Registro de inmueble exitoso');
-        //vacío el array de imágenes seleccionadas
-        imagenesSeleccionadas = [];
-        //Utlizo función para borrar los campos
-        limpiarCampos(arrayDeIds);
-        //Limpiamos parrafo imagenes
-        mostrarMensaje('msgAltaImagenes', '');
-        //Vuelvo a deshabilitar botón de guardar
-        document.getElementById('btnGuardarInmueble').disabled = true;
-        //Rearmamos el selector
-        armarSelectorImagenes();
+    if (validarCampo(titulo) && validarCampo(descripcion) && validarCampo(ciudad)) {
+        if (valorNumerico(precio) && precio > 0) {
+            //Instancia para nuevo inmueble y le asigno los parametros correspondientes
+            let inmuebleNuevo = new Inmueble(titulo, descripcion, ciudad, precio, imagenesSeleccionadas, anfitrion);
+            //Lo agrego al array de inmuebles
+            arrayInmuebles.push(inmuebleNuevo);
+            //Muestro mensaje de Registro exitoso
+            mostrarMensaje('msgRegInmueble', 'Registro de inmueble exitoso');
+            //vacío el array de imágenes seleccionadas
+            imagenesSeleccionadas = [];
+            //Utlizo función para borrar los campos
+            limpiarCampos(arrayDeIds);
+            //Limpiamos parrafo imagenes
+            mostrarMensaje('msgAltaImagenes', '');
+            //Vuelvo a deshabilitar botón de guardar
+            document.getElementById('btnGuardarInmueble').disabled = true;
+            //Rearmamos el selector
+            armarSelectorImagenes();
+
+
+        } else {
+            mostrarMensaje('msgRegInmueble', 'Por favor ingrese un valor numerico mayor a 0 en el precio por noche.');
+        }
+
     } else {
         //Muestro mensaje de error
         mostrarMensaje('msgRegInmueble', 'Debe completar todos los campos');
@@ -401,7 +408,7 @@ function obtenerPrecio(importe) {
         precioAMostrar = (importe / cotizacionDolar).toFixed(2);
     } else {
         //sino es dólares el precio es el dado
-        precioAMostrar = importe; 
+        precioAMostrar = importe;
     }
     //retorno precio
     return precioAMostrar;
@@ -445,7 +452,7 @@ function aCerrarSesionHandler() {
 
     //Reseteamos los valores
     usuarioConectado = null;
-    
+
 }
 
 /******************************************************************************* */
@@ -491,10 +498,10 @@ function aConsultaCalificacionHandler() {
 function pantallasAnfitrion() {
     aMisInmueblesAnfHandler();
 
-     //Selecciono los menú del anfitrión
-     let menuAnf = document.querySelectorAll('.menuAnf')
-     //Los muestro
-     mostrarElementos(menuAnf);
+    //Selecciono los menú del anfitrión
+    let menuAnf = document.querySelectorAll('.menuAnf')
+    //Los muestro
+    mostrarElementos(menuAnf);
 }
 
 /******************************************************************************* */
@@ -638,20 +645,20 @@ function btnHomeFiltrarInmueblesHandler() {
 
     document.getElementById('msgHomeFiltroInmueble').innerText = mensaje;
     limpiarCampos('txtHomeFiltrar');
-    if (usuarioConectado == null || usuarioConectado == undefined){
+    if (usuarioConectado == null || usuarioConectado == undefined) {
         //Selecciono todos los ver mas
-   let verMas = document.querySelectorAll('.ver-mas')
+        let verMas = document.querySelectorAll('.ver-mas')
 
-   //Los oculto
-   ocultarElementos(verMas)
-   }
+        //Los oculto
+        ocultarElementos(verMas)
+    }
 }
 
 
 //Funcion para mostrar inmuebles propios de cada anfitrion
 
 function mostrarInmueblesAnf() {
-        misInmuebles(arrayInmueblesOrden);
+    misInmuebles(arrayInmueblesOrden);
 
 
 }
@@ -761,12 +768,12 @@ function guardarCalificacionHandler() {
         usuarioConectado.reservas[posGuardar].calificado = true;
         //Mensaje de éxito
         document.getElementById(`tdCalificacion${posGuardar}`).innerHTML = `<p>Su calificación fue de ${calificacionIngresada}</p>`
-        
-    } else{
+
+    } else {
         document.getElementById(`msgCalificar${posGuardar}`).innerHTML += `<p>Ingrese un numero entre 1 y 5</p>`
         limpiarCampos(`txtCalificacion${posGuardar}`);
     }
-    
+
 }
 
 /******************************************************************************** */
@@ -838,19 +845,19 @@ function btnHomeFiltrarInmHandler() {
     if (criterio === "Filtrar por popularidad") {
         document.getElementById('btnHomeFiltrarInm').value = "Filtrar por precio";
         criterioOrden = "popularidad";
-        
+
     } else {
         document.getElementById('btnHomeFiltrarInm').value = "Filtrar por popularidad";
         criterioOrden = "precio";
     }
 
     armarMuro(arrayInmuebles);
-    if (usuarioConectado == null || usuarioConectado == undefined){
-         //Selecciono todos los ver mas
-    let verMas = document.querySelectorAll('.ver-mas')
+    if (usuarioConectado == null || usuarioConectado == undefined) {
+        //Selecciono todos los ver mas
+        let verMas = document.querySelectorAll('.ver-mas')
 
-    //Los oculto
-    ocultarElementos(verMas)
+        //Los oculto
+        ocultarElementos(verMas)
     }
    
 }
